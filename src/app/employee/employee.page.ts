@@ -1,16 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, ModalController} from '@ionic/angular';
 import {ModalPage} from '../Employee/modal/modal.page';
+
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-employee',
+  templateUrl: './employee.page.html',
+  styleUrls: ['./employee.page.scss'],
 })
-export class HomePage {
+export class EmployeePage implements OnInit {
 
   constructor( private modalController: ModalController) { }
   // constructor( ) { }
-
+  ngOnInit() {
+  }
  
   async openModal()
   {
@@ -19,7 +21,6 @@ export class HomePage {
 
     });
 
-    await modal.present();
+    modal.present();
   }
-
 }
