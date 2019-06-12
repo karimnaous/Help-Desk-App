@@ -11,6 +11,8 @@ export class EmployeePage implements OnInit {
 
   constructor( private modalController: ModalController) { }
   // constructor( ) { }
+
+  
   ngOnInit() {
   }
  
@@ -21,6 +23,7 @@ export class EmployeePage implements OnInit {
 
     });
 
+    
     modal.present();
   }
 }
