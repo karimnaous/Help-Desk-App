@@ -5,13 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SecretaryPage } from './secretary.page';
-import { AssignModalPage } from './assign-modal/assign-modal.page';
+import { AssignModalPage } from './assign-modal.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: SecretaryPage
+    component: AssignModalPage
   }
 ];
 
@@ -22,7 +21,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [SecretaryPage,AssignModalPage],
-  entryComponents: [AssignModalPage]
+  declarations: [AssignModalPage]
 })
-export class SecretaryPageModule {}
+export class AssignModalPageModule {}
