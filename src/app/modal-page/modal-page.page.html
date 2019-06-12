@@ -1,8 +1,55 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>New Task</ion-title>
+    <ion-title>Reassign Task</ion-title>
   </ion-toolbar>
 </ion-header>
 
+<style>
+  div {
+    position: absolute;
+    left: 50%;
+    margin-left: -50px;}
+</style>
+
 <ion-content>
+    <ion-list>
+          <ion-item>
+              <ion-label>Officer</ion-label>
+              <ion-select [(ngModel)]="username" [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Select One">
+                <ion-select-option value={{user1}}>{{user1}}</ion-select-option>
+                <ion-select-option value={{user2}}>{{user2}}</ion-select-option>
+                <ion-select-option value={{user3}}>{{user3}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+        
+       <ion-item>
+            <ion-label>Priority</ion-label>
+            <ion-select [(ngModel)]="priority" placeholder="Select One">
+              <ion-select-option value="l">Low</ion-select-option>
+              <ion-select-option value="m">Medium</ion-select-option>
+              <ion-select-option value="h">High</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+              <ion-label>Date</ion-label>
+              <ion-datetime [(ngModel)]="date" display-format="MMM DD, YYYY"></ion-datetime>
+          </ion-item>
+
+          <ion-item>
+          <ion-label>Department</ion-label>
+          <ion-list>
+              <ion-item *ngFor="let entry of form">
+                <ion-label>{{entry.val}}</ion-label>
+                <ion-checkbox slot="end" [(ngModel)]="entry.isChecked"></ion-checkbox>
+              </ion-item>
+          </ion-list>
+          </ion-item>
+          
+        </ion-list>
+
+        <div>
+        <ion-button color="dark" (click)="savetask()">Submit</ion-button>
+        </div>   
+             
 </ion-content>

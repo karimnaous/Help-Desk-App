@@ -8,7 +8,35 @@ import { ModalController } from '@ionic/angular';
 })
 export class ModalPagePage implements OnInit {
 
-  constructor(public modalController: ModalController) { }
+  private username: string;
+  private priority: string;
+  private date: string;
+
+  constructor(public modalController: ModalController) { 
+    localStorage.setItem('user1', JSON.stringify('Layal'));
+    localStorage.setItem('user2', JSON.stringify('Alex'));
+    localStorage.setItem('user3', JSON.stringify('Lynn'));
+  }
+
+  public form = [
+    { val: 'Project Management', isChecked: false },
+    { val: 'IT', isChecked: false },
+    { val: 'Architecture', isChecked: false },
+    { val: 'Civil', isChecked: false },
+    { val: 'Mechanical', isChecked: false },
+    { val: 'Telecom', isChecked: false }
+  ];
+
+  public user1 = JSON.parse(localStorage.getItem('user1'));
+  public user2 = JSON.parse(localStorage.getItem('user2'));
+  public user3 = JSON.parse(localStorage.getItem('user3'));
+
+  async savetask()
+  {
+    
+    var info = [this.username, this.priority, this.date];
+    localStorage.setItem('task1', JSON.stringify(info));
+  }
 
   ngOnInit() {
   }

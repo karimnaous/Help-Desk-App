@@ -14,18 +14,17 @@ export class OfficermainPage {
 
   constructor(public modalController: ModalController) { }
   
-  async presentModal(){
+  async presentModalReassign(){
     const modal = await this.modalController.create({component: ModalPagePage});
     await modal.present();
   }
 
-  async presentModal1(){
+  async presentModalEdit(){
     const modal = await this.modalController.create({component: EditTaskPage});
     await modal.present();
   }
 
-
-  async presentModal2(){
+  async presentModalView(){
     const modal = await this.modalController.create({component: ViewTasksPage});
     await modal.present();
   }
