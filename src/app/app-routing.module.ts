@@ -17,6 +17,11 @@ const routes: Routes = [
   },
   { path: 'officermain', loadChildren: './officermain/officermain.module#OfficermainPageModule' },
   { path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' },
+  //{ path: 'view-tasks', loadChildren: './officermain/view-tasks/view-tasks.module#ViewTasksPageModule' },
+  //{ path: 'list-of-tasks', loadChildren: './officermain/list-of-tasks/list-of-tasks.module#ListOfTasksPageModule' },
+
+ //{ path: 'edit-task', loadChildren: './officermain/edit-task/edit-task.module#EditTaskPageModule' },
+
   //{ path: 'modal-page', loadChildren: './modal-page/modal-page.module#ModalPagePageModule' }
 
 ];
