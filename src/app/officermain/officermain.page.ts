@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalPagePage } from '../modal-page/modal-page.page';
 import { EditTaskPage } from '../officermain/edit-task/edit-task.page';
-import { ListOfTasksPage } from '../officermain/list-of-tasks/list-of-tasks.page';
 import { ViewTasksPage } from '../officermain/view-tasks/view-tasks.page';
 
 @Component({
@@ -25,10 +24,6 @@ export class OfficermainPage {
     await modal.present();
   }
 
-  async presentModal3(){
-    const modal = await this.modalController.create({component: ListOfTasksPage});
-    await modal.present();
-  }
 
   async presentModal2(){
     const modal = await this.modalController.create({component: ViewTasksPage});

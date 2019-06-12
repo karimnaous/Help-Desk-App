@@ -16,7 +16,7 @@ const routes: Routes = [
     loadChildren: './list/list.module#ListPageModule'
   },
   { path: 'officermain', loadChildren: './officermain/officermain.module#OfficermainPageModule' },
-  { path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' },
+  //{ path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' },
   //{ path: 'view-tasks', loadChildren: './officermain/view-tasks/view-tasks.module#ViewTasksPageModule' },
   //{ path: 'list-of-tasks', loadChildren: './officermain/list-of-tasks/list-of-tasks.module#ListOfTasksPageModule' },
 
