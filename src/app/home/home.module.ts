@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
-import {ModalPage} from '../Employee/modal/modal.page';
+
 import { HomePage } from './home.page';
 
 @NgModule({
@@ -18,7 +18,6 @@ import { HomePage } from './home.page';
       }
     ])
   ],
-  declarations: [HomePage, ModalPage],
-  entryComponents: [ModalPage]
+  declarations: [HomePage]
 })
 export class HomePageModule {}
