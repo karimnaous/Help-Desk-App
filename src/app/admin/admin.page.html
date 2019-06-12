@@ -1,20 +1,4 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>admin</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
-
-</ion-content> -->
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic 4 Modal Popup Example
-    </ion-title>
-    <ion-menu-button></ion-menu-button>
-  </ion-toolbar>
-</ion-header> -->
 
 <ion-header>
   <ion-toolbar>
@@ -26,43 +10,76 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<!--  
-<ion-content text-center>
-  <div class="ion-padding">
-    <h2>Create User</h2>
-  </div>
- 
-    <ion-button color="primary" (click)="openModal()">Login</ion-button>
- 
-    <p *ngIf="dataReturned">{{dataReturned}}</p>
- 
- 
-</ion-content> -->
-
-
-<ion-content text-center>
-    <div class="ion-padding">
-        <h2>Create User</h2>
-    </div>
-    <ion-button color="primary" href="create-user">Create User</ion-button>
-</ion-content>
-
-<ion-content text-center>
-    <div class="ion-padding">
-        <h2>Assign Role</h2>
-    </div>
-    <ion-button color="primary" href="assign-role">Assign Role</ion-button>
-</ion-content>
 
 <!-- 
-<ion-content text-center>
-  <div class="ion-padding">
-    <h2>Assign Roles</h2>
-  </div>
- 
-    <ion-button color="primary" (click)="openModal()">Login</ion-button>
- 
-    <p *ngIf="dataReturned">{{dataReturned}}</p>
- 
- 
-</ion-content> -->
+<tr *ngFor=" hero of heroes">
+    <td>{{hero.name}}</td>
+</tr>
+ -->
+
+<!-- <ion-list  >
+    <ion-item text-wrap *ngFor="let item of jsonData">
+      <p>{{item}} </p> 
+    </ion-item>
+</ion-list> -->
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+        <ion-col>ID</ion-col>
+        <ion-col>Name</ion-col>
+        <ion-col>Birthdate</ion-col>
+        <ion-col>Role</ion-col>
+        <ion-col>Department</ion-col>
+        <ion-col>Marital Status</ion-col>
+        <ion-col>Notes</ion-col>
+        <ion-col>View</ion-col>
+        <ion-col>Edit</ion-col>
+      </ion-row>
+
+      <ion-row>
+          <ion-col>1</ion-col>
+          <ion-col>Name</ion-col>
+          <ion-col>Birthdate</ion-col>
+          <ion-col>Role</ion-col>
+          <ion-col>Department</ion-col>
+          <ion-col>Marital Status</ion-col>
+          <ion-col>Notes</ion-col>
+          <ion-col><ion-button color="primary" (click)="openModal()">View</ion-button></ion-col>
+          <ion-col><ion-button color="primary" (click)="openModal()">Edit</ion-button></ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>1</ion-col>
+            <ion-col>Name</ion-col>
+            <ion-col>Birthdate</ion-col>
+            <ion-col>Role</ion-col>
+            <ion-col>Department</ion-col>
+            <ion-col>Marital Status</ion-col>
+            <ion-col>Notes</ion-col>
+            <ion-col><ion-button color="primary" (click)="openModal()">View</ion-button></ion-col>
+            <ion-col><ion-button color="primary" (click)="openModal()">Edit</ion-button></ion-col>
+          </ion-row>
+
+          <ion-row>
+              <ion-col>1</ion-col>
+              <ion-col>Name</ion-col>
+              <ion-col>Birthdate</ion-col>
+              <ion-col>Role</ion-col>
+              <ion-col>Department</ion-col>
+              <ion-col>Marital Status</ion-col>
+              <ion-col>Notes</ion-col>
+              <ion-col><ion-button color="primary" (click)="openModal()">View</ion-button></ion-col>
+              <ion-col><ion-button color="primary" (click)="openModal()">Edit</ion-button></ion-col>
+            </ion-row>
+
+  </ion-grid>
+
+  <ion-content text-center>
+        <!-- <ion-icon slot="icon-only" name="star"></ion-icon> -->
+        <ion-button color="primary" (click)="openModal()">Add Employee</ion-button>
+        <p *ngIf="dataReturned">{{dataReturned}}</p>
+  </ion-content>
+  
+<ion-content>
+

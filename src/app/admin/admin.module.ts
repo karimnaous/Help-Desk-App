@@ -24,3 +24,4 @@ const routes: Routes = [
   declarations: [AdminPage]
 })
 export class AdminPageModule {}
+
