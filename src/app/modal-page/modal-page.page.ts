@@ -83,20 +83,28 @@ export class ModalPagePage implements OnInit {
     }
   }
 
-  async dismiss()
-  {
-    this.modalController.dismiss();
-  }
-
-
-  async presentAlertMultipleButtons() {
+  async presentAlertConfirm() {
     const alert = await this.alertController.create({
       header: 'Cancel',
       message: 'Are you sure you want to cancel your changes?',
-      buttons: ['Yes', 'No']
+      buttons: [
+        {
+          text: 'Yes',
+          role: 'Yes',
+          cssClass: 'secondary',
+          handler: () => {
+            this.modalController.dismiss();
+          }
+        }, {
+          text: 'No',
+          handler: () => {
+            console.log('No');
+          }
+        }
+      ]
     });
 
-    return await alert.present();
+    await alert.present();
   }
 
 
