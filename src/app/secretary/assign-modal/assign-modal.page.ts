@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,Output, EventEmitter } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { ActionSheetController } from '@ionic/angular';
 import { SecretaryPage } from '../secretary.page'
@@ -12,11 +12,15 @@ import {Router} from "@angular/router";
 })
 
 export class AssignModalPage implements OnInit {
-  public id: any;
+  public record: any;
   public array: any[];
   public priority:"";
   public date:"";
   public current_id:"";
+  
+	private _anEmitter: EventEmitter< any >;
+
+  @Output() change: EventEmitter<Object> = new EventEmitter<Object>();
   constructor(private router: Router,private modalController:ModalController,private navParams:NavParams,private alertController: AlertController, private Actionsheet: ActionSheetController) { 
     
     
@@ -24,8 +28,12 @@ export class AssignModalPage implements OnInit {
 
   }
   ngOnInit() {
-   this.id=this.navParams.get('id');
-   console.log(this.id);
+
+   console.log(this.navParams);
+   this.record=JSON.parse(this.navParams.data.recordItem);
+   this.priority=this.record.priority;
+   this._anEmitter = this.navParams.data.theEmitter;
+   console.log(this._anEmitter);
    this.array=this.getArray();
   }
   getArray(): Object[] {
@@ -54,7 +62,7 @@ export class AssignModalPage implements OnInit {
           role:'cancel',
           handler:()=>
           {
-            SecretaryPage.mc.dismiss();
+            this.modalController.dismiss();
             console.log("Cancelled");
             
           }
@@ -66,7 +74,7 @@ export class AssignModalPage implements OnInit {
 
   async SaveRecord()
   {
-    var current_record=JSON.parse(this.id);
+    var current_record=this.record;
     console.log(current_record);
     var localStorageItem=JSON.parse(localStorage.getItem("ObjArray"));
     console.log(localStorageItem);
@@ -79,9 +87,13 @@ export class AssignModalPage implements OnInit {
     // console.log(newitem);
     // localStorageItem.splice(index,1,newitem);
     // window.localStorage.setItem("ObjArray", JSON.stringify(localStorageItem));
-
-     this.modalController.dismiss(current_record);
+      
+     this.myEventAction(JSON.stringify(current_record));
+     this.modalController.dismiss();
   }
+  private myEventAction( somePassedArg: any ) {
+		this._anEmitter.emit( somePassedArg );
+	}
   ngOnDestroy() {
     // location.reload();
     

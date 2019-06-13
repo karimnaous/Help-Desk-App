@@ -1,7 +1,8 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input,EventEmitter  } from '@angular/core';
 
 import { ModalController } from '@ionic/angular';
 import { AssignModalPage } from '../secretary/assign-modal/assign-modal.page'
+
 
 @Component({
   selector: 'app-secretary',
@@ -9,44 +10,44 @@ import { AssignModalPage } from '../secretary/assign-modal/assign-modal.page'
   styleUrls: ['./secretary.page.scss'],
 })
 export class SecretaryPage implements OnInit {
-  @Input() id: any;
+  @Input() recordItem: any;
   public array: any[];
   public item1:any;
-  public static mc:any;
+  public final_record:any;
   constructor(public modalController: ModalController) { 
-  this.array=this.getArray();
+  
   const uuidv1 = require('uuid/v1');
 
-    window.localStorage.setItem("ObjArray", JSON.stringify([
-      {"id":uuidv1(),"type":"txt1","priority":"low","date":"1/1/2009","name":"name1"},
-      {"id":uuidv1(),"type":"txt1","priority":"low","date":"1/1/2009","name":"name2"},
-      {"id":uuidv1(),"type":"txt1","priority":"low","date":"1/1/2009","name":"name3"}, 
-      {"id":uuidv1(),"type":"txt1","priority":"low","date":"1/1/2009","name":"name4"}
-    ]))
-
+    // window.localStorage.setItem("ObjArray", JSON.stringify([
+    //   {"id":uuidv1(),"type":"txt1","priority":"high","date":"1/1/2009","name":"name1"},
+    //   {"id":uuidv1(),"type":"txt1","priority":"low","date":"1/1/2009","name":"name2"},
+    //   {"id":uuidv1(),"type":"txt1","priority":"mod","date":"1/1/2009","name":"name3"}, 
+    //   {"id":uuidv1(),"type":"txt1","priority":"low","date":"1/1/2009","name":"name4"}
+    // ]))
+    this.array=this.getArray();
   }
 
   ngOnInit() {
-    SecretaryPage.mc=this.modalController;
+
   
   }
 async assignModal(event)
 {
     var target = event.target || event.srcElement || event.currentTarget;
-    var idAttr = target.attributes.id;
-    var value = idAttr.nodeValue;
-    var record=JSON.stringify(JSON.parse(localStorage.getItem("ObjArray")).find(x => x.id === JSON.parse(value)));
+    var idAttr = target.attributes.id.nodeValue;
+    var record=JSON.stringify(JSON.parse(localStorage.getItem("ObjArray")).find(x => x.id == idAttr));
     var localStorageItem=JSON.parse(localStorage.getItem("ObjArray"));
+
+    let myEmitter = new EventEmitter< any >();
+		myEmitter.subscribe(
+			v=> console.log( `my emitter fired and returned a value of ${v}`)
+		);
     const modal= await this.modalController.create({
   component: AssignModalPage,
-  componentProps: {id: record}
+  componentProps: {recordItem: record, theEmitter: myEmitter}
   }
   );
-  modal.onDidDismiss()
-  .then((data) => {
-        const current_record = data['data']; 
-        console.log(current_record);
-    });
+
   await modal.present();
 }
 
@@ -56,5 +57,9 @@ async assignModal(event)
 
   }
  
+  getfromModal(event) {
+    this.final_record = event;
+    console.log("hi",this.final_record);
+  }
 
 }
