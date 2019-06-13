@@ -15,11 +15,8 @@
     <ion-list>
           <ion-item>
               <ion-label>Officer</ion-label>
-              <ion-select [(ngModel)]="username" [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Select One">
-                <ion-select-option value={{user1}}>{{user1}}</ion-select-option>
-                <ion-select-option value={{user2}}>{{user2}}</ion-select-option>
-                <ion-select-option value={{user3}}>{{user3}}</ion-select-option>
-                <ion-select-option value={{user4}}>{{user4}}</ion-select-option>
+              <ion-select  [(ngModel)]="username" [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Select One">
+                <ion-select-option *ngFor="let name of officer" value={{name.username}}>{{name.username}}</ion-select-option>
               </ion-select>
             </ion-item>
         

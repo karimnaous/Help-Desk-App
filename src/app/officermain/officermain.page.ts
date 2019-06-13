@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalPagePage } from '../modal-page/modal-page.page';
-import { EditTaskPage } from '../officermain/edit-task/edit-task.page';
 import { ViewTasksPage } from '../officermain/view-tasks/view-tasks.page';
 
 @Component({
@@ -16,11 +15,6 @@ export class OfficermainPage {
   
   async presentModalReassign(){
     const modal = await this.modalController.create({component: ModalPagePage});
-    await modal.present();
-  }
-
-  async presentModalEdit(){
-    const modal = await this.modalController.create({component: EditTaskPage});
     await modal.present();
   }
 

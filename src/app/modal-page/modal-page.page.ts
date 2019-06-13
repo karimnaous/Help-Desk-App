@@ -13,12 +13,29 @@ export class ModalPagePage implements OnInit {
   private date: string;
 
   constructor(public modalController: ModalController) { 
-    localStorage.setItem('user1', JSON.stringify('Layal'));
-    localStorage.setItem('user2', JSON.stringify('Alex'));
-    localStorage.setItem('user3', JSON.stringify('Lynn'));
-    localStorage.setItem('user4', JSON.stringify('Tala'));
+    // localStorage.setItem('user1', JSON.stringify('Layal'));
+    // localStorage.setItem('user2', JSON.stringify('Alex'));
+    // localStorage.setItem('user3', JSON.stringify('Lynn'));
+    // localStorage.setItem('user4', JSON.stringify('Tala'));
+
+    let officer = [
+      {username:"Layal"},
+      {username:"Alex"},
+      {username:"Lynn"},
+      {username:"Tala"},
+      {username:"Karim"}
+    ];
+
+    localStorage.setItem('officer', JSON.stringify(officer));
+
+    let task = [
+      {id:"0", username:"Layal", priority:"High", date:"2019-06-13T11:14:12.880+03:00", domain:["Project Management","IT","Architecture"]},
+      {id:"1", username:"Alex", priority:"Low", date:"2019-04-15T11:14:12.880+06:00", domain:["Mechanical","Architecture"]}
+    ];
+
+    localStorage.setItem('task', JSON.stringify(task));
     
-    this.retreivetask();
+    this.retreivetask(1);
   }
 
   public form = [
@@ -30,15 +47,17 @@ export class ModalPagePage implements OnInit {
     { val: 'Telecom', isChecked: false }
   ];
   
-  public user1 = JSON.parse(localStorage.getItem('user1'));
-  public user2 = JSON.parse(localStorage.getItem('user2'));
-  public user3 = JSON.parse(localStorage.getItem('user3'));
-  public user4 = JSON.parse(localStorage.getItem('user4'));
+  // public user1 = JSON.parse(localStorage.getItem('user1'));
+  // public user2 = JSON.parse(localStorage.getItem('user2'));
+  // public user3 = JSON.parse(localStorage.getItem('user3'));
+  // public user4 = JSON.parse(localStorage.getItem('user4'));
+
+  public officer=JSON.parse(localStorage.getItem('officer'));
 
   async savetask()
   {
     var myObj;
-
+    
     var checked =[];
     for (let entry of this.form)
     {
@@ -53,16 +72,16 @@ export class ModalPagePage implements OnInit {
     localStorage.setItem('task1', JSON.stringify(myObj));
   }
 
-  public task1=JSON.parse(localStorage.getItem('task1'));
+  //public task1=JSON.parse(localStorage.getItem('task1'));
+  public task=JSON.parse(localStorage.getItem('task'));
   
-
-  async retreivetask()
+  async retreivetask(id: any)
   {
-    this.username=this.task1.username;
-    this.priority=this.task1.priority;
-    this.date= this.task1.date;
+    this.username=this.officer[id].username;
+    this.priority=this.task[id].priority;
+    this.date= this.task[id].date;
 
-    for(let entry of this.task1.domain)
+    for(let entry of this.task[id].domain)
     {
       for(let entry1 of this.form)
       {
