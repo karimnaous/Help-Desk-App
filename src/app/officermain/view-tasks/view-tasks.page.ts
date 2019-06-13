@@ -41,6 +41,14 @@ export class ViewTasksPage implements OnInit {
     this.domain= this.task[id].domain;
   }
 
+
+
+ // async resolvetask(id1: any)
+ // {
+
+ // }
+
+
   ngOnInit() {
   }
 

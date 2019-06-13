@@ -29,6 +29,8 @@ export class OfficermainPage {
 
     localStorage.setItem('task', JSON.stringify(task));
   }
+
+  public task=JSON.parse(localStorage.getItem('task'));
   
   async presentModalReassign(){
     const modal = await this.modalController.create({component: ModalPagePage});

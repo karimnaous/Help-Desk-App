@@ -5,7 +5,10 @@
 </ion-header>
 
 <ion-content>
-  <ion-button color="dark" (click)="presentModalReassign()">Reassign Task</ion-button>
-  <ion-button color="dark" (click)="presentModalView()">View Task</ion-button>
+  <ion-item *ngFor="let entry of task">
+      <ion-label>{{entry.id}}</ion-label>
+      <ion-button color="dark" (click)="presentModalReassign()">Reassign Task</ion-button>
+      <ion-button color="dark" (click)="presentModalView()">View Task</ion-button>
+  </ion-item>
 </ion-content>
 
