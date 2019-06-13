@@ -11,7 +11,9 @@ export class ViewTasksPage implements OnInit {
   private username: string;
   private priority: string;
   private date: string;
+  private domain: string;
   public splitted: string;
+  private id1: any = 0;
 
   public form = [
     { val: 'Project Management', isChecked: false },
@@ -24,31 +26,19 @@ export class ViewTasksPage implements OnInit {
 
 
   constructor(public modalController: ModalController) {
-  this.retreivetask();
+  this.retreivetask(this.id1);
    }
 
-  public task1=JSON.parse(localStorage.getItem('task1'));
+   public officer=JSON.parse(localStorage.getItem('officer'));
+   public task=JSON.parse(localStorage.getItem('task'));
   
-  async retreivetask()
+  async retreivetask(id: any)
   {
-    this.username=this.task1.username;
-    this.priority=this.task1.priority;
-    this.date= this.task1.date;
-
-    var splitted = this.task1.date.split("T", 1); 
-    this.splitted= splitted[0];
-
-    for(let entry of this.task1.domain)
-    {
-      for(let entry1 of this.form)
-      {
-        if(entry==entry1.val)
-        {
-          entry1.isChecked=true;
-        }
-      }
-    }
-    
+    this.username=this.officer[id].username;
+    this.priority=this.task[id].priority;
+    this.splitted = this.task[id].date.split("T", 1);
+    this.date= this.splitted[0];
+    this.domain= this.task[id].domain;
   }
 
   ngOnInit() {

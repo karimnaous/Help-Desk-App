@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-modal-page',
@@ -11,31 +13,15 @@ export class ModalPagePage implements OnInit {
   private username: string;
   private priority: string;
   private date: string;
+  private id1: any = 0;
 
-  constructor(public modalController: ModalController) { 
+  constructor(public modalController: ModalController, public alertController: AlertController) { 
     // localStorage.setItem('user1', JSON.stringify('Layal'));
     // localStorage.setItem('user2', JSON.stringify('Alex'));
     // localStorage.setItem('user3', JSON.stringify('Lynn'));
     // localStorage.setItem('user4', JSON.stringify('Tala'));
-
-    let officer = [
-      {username:"Layal"},
-      {username:"Alex"},
-      {username:"Lynn"},
-      {username:"Tala"},
-      {username:"Karim"}
-    ];
-
-    localStorage.setItem('officer', JSON.stringify(officer));
-
-    let task = [
-      {id:"0", username:"Layal", priority:"High", date:"2019-06-13T11:14:12.880+03:00", domain:["Project Management","IT","Architecture"]},
-      {id:"1", username:"Alex", priority:"Low", date:"2019-04-15T11:14:12.880+06:00", domain:["Mechanical","Architecture"]}
-    ];
-
-    localStorage.setItem('task', JSON.stringify(task));
     
-    this.retreivetask(1);
+    this.retreivetask(this.id1);
   }
 
   public form = [
@@ -54,10 +40,9 @@ export class ModalPagePage implements OnInit {
 
   public officer=JSON.parse(localStorage.getItem('officer'));
 
-  async savetask()
+  async savetask(id: any)
   {
-    var myObj;
-    
+    //var myObj;
     var checked =[];
     for (let entry of this.form)
     {
@@ -66,10 +51,15 @@ export class ModalPagePage implements OnInit {
         checked.push(entry.val);
       }
     }
-    myObj = {"username":this.username, "priority":this.priority, "date":this.date, "domain":checked};
 
-    localStorage.removeItem('task1');
-    localStorage.setItem('task1', JSON.stringify(myObj));
+    //myObj = {"username":this.username, "priority":this.priority, "date":this.date, "domain":checked};
+    this.task[id].username = this.username;
+    this.task[id].priority = this.priority;
+    this.task[id].date = this.date;
+    this.task[id].domain = checked;
+
+    localStorage.removeItem('task');
+    localStorage.setItem('task', JSON.stringify(this.task));
   }
 
   //public task1=JSON.parse(localStorage.getItem('task1'));
@@ -93,8 +83,23 @@ export class ModalPagePage implements OnInit {
     }
   }
 
-  
-  
+  async dismiss()
+  {
+    this.modalController.dismiss();
+  }
+
+
+  async presentAlertMultipleButtons() {
+    const alert = await this.alertController.create({
+      header: 'Cancel',
+      message: 'Are you sure you want to cancel your changes?',
+      buttons: ['Yes', 'No']
+    });
+
+    return await alert.present();
+  }
+
+
   ngOnInit() {
   }
 

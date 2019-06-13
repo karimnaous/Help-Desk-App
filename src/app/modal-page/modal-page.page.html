@@ -7,8 +7,8 @@
 <style>
   div {
     position: absolute;
-    left: 50%;
-    margin-left: -50px;}
+    left: 33%;
+    margin-left: -33px;}
 </style>
 
 <ion-content>
@@ -47,7 +47,9 @@
         </ion-list>
 
         <div>
-        <ion-button color="dark" (click)="savetask()">Submit</ion-button>
+        <ion-button color="dark" (click)="savetask(id1)">Submit</ion-button>
+        <ion-button color="dark" (click)="presentAlertMultipleButtons()">Cancel</ion-button>
         </div>   
+        
              
 </ion-content>
