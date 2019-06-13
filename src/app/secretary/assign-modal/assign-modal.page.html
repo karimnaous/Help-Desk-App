@@ -9,16 +9,16 @@
   <ion-item>
     <ion-label>Employee Name</ion-label>
     <ion-select placeholder="Select One">
-      <ion-select-option *ngFor="let row of array"> {{row.name }}</ion-select-option>
+      <ion-select-option *ngFor="let row of array" [(ngModel)]="emp"> {{row.name }}</ion-select-option>
     </ion-select>
   </ion-item>
 
   <ion-item>
-    <ion-label>Date</ion-label>
-    <ion-datetime display-format="MMM DD, YYYY"></ion-datetime>
+    <ion-label  >Date</ion-label>
+    <ion-datetime display-format="MMM DD, YYYY" [(ngModel)]="date" ></ion-datetime>
   </ion-item>
   <ion-list>
-    <ion-radio-group  [(ngModel)]="inputValue">
+    <ion-radio-group  [(ngModel)]="priority">
       <h1>Priority
       </h1>
 
@@ -60,12 +60,12 @@
     <ion-row>
       <ion-col>
         <div>
-          <ion-button expand="block" (click)=" presentAlert()">Cancel</ion-button>
+          <ion-button expand="block" (click)="presentAlert()">Cancel</ion-button>
         </div>
       </ion-col>
       <ion-col>
         <div>
-          <ion-button expand="block">Save</ion-button>
+          <ion-button expand="block" (click)="SaveRecord()" >Save</ion-button>
         </div>
       </ion-col>
     </ion-row>
