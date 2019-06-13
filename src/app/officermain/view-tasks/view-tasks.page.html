@@ -1,9 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>View Tasks</ion-title>
+    <ion-title>View Task</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+<ion-item>
+  <ion-label>Officer</ion-label>
+  <ion-label text-right>{{task1.username}}</ion-label>
+</ion-item>
+
+<ion-item>
+  <ion-label>Priority</ion-label>
+  <ion-label text-right>{{task1.priority}}</ion-label>
+</ion-item>
+
+<ion-item>
+  <ion-label>Date</ion-label>
+  <ion-label text-right>{{splitted}}</ion-label>
+</ion-item>
+
+<ion-item>
+    <ion-label>Domain</ion-label>
+    <ion-label text-right>{{task1.domain}}</ion-label>
+</ion-item>
 
 </ion-content>

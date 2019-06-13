@@ -18,7 +18,7 @@ export class AppComponent {
     {
       title: 'Officer',
       url: '/officermain',
-      icon: 'home'
+      icon: 'contact'
     }
   ];
 
