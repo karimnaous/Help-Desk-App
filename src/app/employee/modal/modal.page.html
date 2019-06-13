@@ -1,89 +1,83 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title >New Request</ion-title>
+    <ion-title>New Request</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<!-- <ion-content>
-    <ion-item>
-        <ion-label position="fixed" placeholder="Text here" >Full Name</ion-label>
-        <ion-input></ion-input>
-      </ion-item>
-       -->
-        <ion-content>
-            <ion-item *ngFor="let names of fullNames">
-            <ion-label>{{ names.label }}</ion-label>
-            <ion-input></ion-input>
-            </ion-item>
-
-        
+<ion-content>
   <ion-item>
-    <ion-label position="fixed" placeholder="Text here" >Incident Title</ion-label>
-      <ion-input></ion-input>
-        </ion-item>
- <ion-item>
-   <ion-label >
-     Incident Date
-   </ion-label >
-   <ion-datetime placeholder = "Date" display-format = "MMM DD, YYYY" ></ion-datetime>
- </ion-item>
+    <ion-label position="fixed" placeholder="Text here">Full Name</ion-label>
+    <ion-input [(ngModel)]="name"></ion-input>
+  </ion-item>
 
- <ion-item>
-  <ion-label>Incident Category</ion-label>
-  <ion-select placeholder="Select One">
-    <ion-select-option color = "dark" value="inst" >Installation</ion-select-option>
-    <ion-select-option value="hardw">Hardware</ion-select-option>
-    <ion-select-option value="softw">Software</ion-select-option>
-  </ion-select>
-</ion-item>
+  <ion-item>
+    <ion-label position="fixed" placeholder="Text here">Incident Title</ion-label>
+    <ion-input [(ngModel)]="incidentTitle"></ion-input>
+  </ion-item>
 
-<ion-list>
-  <ion-label>Domain</ion-label>
+  <ion-item>
+    <ion-label>
+      Incident Date
+    </ion-label>
+    <ion-datetime placeholder="Date" display-format="MMM DD, YYYY" [(ngModel)]="date"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Incident Category</ion-label>
+    <ion-select placeholder="Select One" [(ngModel)]="category">
+      <ion-select-option color="dark" value=" Installation">Installation</ion-select-option>
+      <ion-select-option value="Hardware">Hardware</ion-select-option>
+      <ion-select-option value="Hardware">Software</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-list>
+    <ion-label>Domain</ion-label>
     <ion-item *ngFor="let entry of form">
       <ion-label>{{entry.valueM}}</ion-label>
-      <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" color = "dark"></ion-checkbox>
+      <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" color="dark" ></ion-checkbox>
     </ion-item>
   </ion-list>
-  
-<ion-list>
-    <ion-radio-group>
+
+  <ion-list>
+    <ion-radio-group [(ngModel)]="priority" >
       <ion-list-header>
-        <ion-label >Priority</ion-label>
+        <ion-label>Priority</ion-label>
       </ion-list-header>
-  
+
       <ion-item>
-        <ion-label>High</ion-label>
-        <ion-radio slot="start"  color = "dark"></ion-radio>
+        <ion-label [(ngModel)]="priority">High</ion-label>
+        <ion-radio slot="start" color="dark" value = "High" ></ion-radio>
       </ion-item>
-  
+
       <ion-item>
-        <ion-label>Meduim</ion-label>
-        <ion-radio slot="start" color = "dark" checked></ion-radio>
+        <ion-label [(ngModel)]="priority">Meduim</ion-label>
+        <ion-radio slot="start" color="dark" checked value= "Meduim"></ion-radio>
       </ion-item>
-  
+
       <ion-item>
-        <ion-label>Low</ion-label>
-        <ion-radio slot="start"  color = "dark"></ion-radio>
+        <ion-label [(ngModel)]="priority">Low</ion-label>
+        <ion-radio slot="start" color="dark" value = "Low"></ion-radio>
       </ion-item>
     </ion-radio-group>
   </ion-list>
 
   <ion-item>
-      <ion-label position="stacked" color = "dark">Incident Description</ion-label>
-      <ion-textarea placeholder="Describe your incident here ">
-      </ion-textarea>
-    </ion-item>
+    <ion-label position="stacked" color="dark">Incident Description</ion-label>
+    <ion-textarea placeholder="Describe your incident here " [(ngModel)]="desc"> 
+    </ion-textarea>
+  </ion-item>
 
-    <ion-fab  vertical="bottom" horizontal="end" slot="fixed" >
-        <ion-fab-button color = "dark" (click) = "saveData()" expand = "full">
-          <ion-icon name="checkmark"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="dark" (click)="saveData()" expand="full">
+      <ion-icon name="checkmark"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
-      <ion-fab  vertical="bottom" horizontal="start" slot="fixed">
-          <ion-fab-button color = "dark"  expand = "full">
-            <ion-icon name="close"></ion-icon>
-          </ion-fab-button>
-        </ion-fab>
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button color="dark" expand="full">
+      <ion-icon name="close"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>
