@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { Input } from '@angular/core';
+import { NavParams } from '@ionic/angular';
 
 
 @Component({
@@ -13,14 +15,16 @@ export class ModalPagePage implements OnInit {
   private username: string;
   private priority: string;
   private date: string;
-  private id1: any = 0;
 
-  constructor(public modalController: ModalController, public alertController: AlertController) { 
+  // @Input() value: number;
+  private id1: any = this.navParams.get('value');
+
+  constructor(public modalController: ModalController, public alertController: AlertController, public navParams: NavParams) { 
     // localStorage.setItem('user1', JSON.stringify('Layal'));
     // localStorage.setItem('user2', JSON.stringify('Alex'));
     // localStorage.setItem('user3', JSON.stringify('Lynn'));
     // localStorage.setItem('user4', JSON.stringify('Tala'));
-    
+    //const id1: string = this.navParams.get('value');
     this.retreivetask(this.id1);
   }
 
@@ -39,6 +43,7 @@ export class ModalPagePage implements OnInit {
   // public user4 = JSON.parse(localStorage.getItem('user4'));
 
   public officer=JSON.parse(localStorage.getItem('officer'));
+  public task=JSON.parse(localStorage.getItem('task'));
 
   async savetask(id: any)
   {
@@ -60,14 +65,14 @@ export class ModalPagePage implements OnInit {
 
     localStorage.removeItem('task');
     localStorage.setItem('task', JSON.stringify(this.task));
+    this.modalController.dismiss();
   }
 
   //public task1=JSON.parse(localStorage.getItem('task1'));
-  public task=JSON.parse(localStorage.getItem('task'));
   
   async retreivetask(id: any)
   {
-    this.username=this.officer[id].username;
+    this.username=this.task[id].username;
     this.priority=this.task[id].priority;
     this.date= this.task[id].date;
 

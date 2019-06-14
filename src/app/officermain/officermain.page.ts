@@ -12,35 +12,44 @@ import { ViewTasksPage } from '../officermain/view-tasks/view-tasks.page';
 export class OfficermainPage {
 
   constructor(public modalController: ModalController) { 
-    let officer = [
-      {username:"Layal"},
-      {username:"Alex"},
-      {username:"Lynn"},
-      {username:"Tala"},
-      {username:"Karim"}
-    ];
 
-    localStorage.setItem('officer', JSON.stringify(officer));
+    // let officer = [
+    //   {username:"Layal"},
+    //   {username:"Alex"},
+    //   {username:"Lynn"},
+    //   {username:"Tala"},
+    //   {username:"Karim"}
+    // ];
 
-    let task = [
-      {id:"0", username:"Layal", priority:"High", date:"2019-06-13T11:14:12.880+03:00", domain:["Project Management","IT","Architecture"]},
-      {id:"1", username:"Alex", priority:"Low", date:"2019-04-15T11:14:12.880+06:00", domain:["Mechanical","Architecture"]}
-    ];
+    // localStorage.setItem('officer', JSON.stringify(officer));
 
-    localStorage.setItem('task', JSON.stringify(task));
+    // let task = [
+    //   {id:"0", username:"Layal", priority:"High", date:"2019-06-13T11:14:12.880+03:00", domain:["Project Management","IT","Architecture"]},
+    //   {id:"1", username:"Alex", priority:"Low", date:"2019-04-15T11:14:12.880+06:00", domain:["Mechanical","Architecture"]},
+    //   {id:"2", username:"Layal", priority:"Medium", date:"2019-09-20T11:14:12.880+06:00", domain:["Civil","Architecture"]}
+    // ];
+
+    // localStorage.setItem('task', JSON.stringify(task));
+
+    // let myuser = {user: "Layal"};
+
+    // localStorage.setItem('myuser', JSON.stringify(myuser));
+
   }
 
   public task=JSON.parse(localStorage.getItem('task'));
+  public myuser=JSON.parse(localStorage.getItem('myuser'));
   
-  async presentModalReassign(){
-    const modal = await this.modalController.create({component: ModalPagePage});
+  async presentModalReassign(id: any){
+    const modal = await this.modalController.create({component: ModalPagePage, componentProps: { value: id }});
     await modal.present();
   }
 
-  async presentModalView(){
-    const modal = await this.modalController.create({component: ViewTasksPage});
+  async presentModalView(id: any){
+    const modal = await this.modalController.create({component: ViewTasksPage, componentProps: { value: id }});
     await modal.present();
   }
+
 
 }
 

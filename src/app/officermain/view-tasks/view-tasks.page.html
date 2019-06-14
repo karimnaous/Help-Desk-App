@@ -1,3 +1,10 @@
+<style>
+  div {
+    position: absolute;
+    left: 40%;
+    margin-left: -50px;}
+</style>
+
 <ion-header>
   <ion-toolbar>
     <ion-title>View Task</ion-title>
@@ -26,9 +33,10 @@
 </ion-item>
 
 
-<!-- <div>
-    <ion-button color="dark" (click)="resolvetask(id1)">Resolve</ion-button>
-</div>    -->
+<div>
+    <ion-button color="dark" (click)="dismiss()">Close</ion-button>
+    <ion-button color="dark" (click)="dismiss()">Resolve</ion-button>
+</div>   
     
     
 </ion-content>

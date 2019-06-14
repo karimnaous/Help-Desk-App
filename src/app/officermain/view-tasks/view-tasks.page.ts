@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { Input } from '@angular/core';
+import { NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-view-tasks',
@@ -13,7 +15,10 @@ export class ViewTasksPage implements OnInit {
   private date: string;
   private domain: string;
   public splitted: string;
-  private id1: any = 0;
+  //private id1: any = 0;
+
+  // @Input() value: number;
+   private id1: any = this.navParams.get('value');
 
   public form = [
     { val: 'Project Management', isChecked: false },
@@ -25,8 +30,9 @@ export class ViewTasksPage implements OnInit {
   ];
 
 
-  constructor(public modalController: ModalController) {
-  this.retreivetask(this.id1);
+  constructor(public modalController: ModalController, public navParams: NavParams) {
+    //const id1: string = this.navParams.get('value');
+    this.retreivetask(this.id1);
    }
 
    public officer=JSON.parse(localStorage.getItem('officer'));
@@ -34,19 +40,17 @@ export class ViewTasksPage implements OnInit {
   
   async retreivetask(id: any)
   {
-    this.username=this.officer[id].username;
+    this.username=this.task[id].username;
     this.priority=this.task[id].priority;
     this.splitted = this.task[id].date.split("T", 1);
     this.date= this.splitted[0];
     this.domain= this.task[id].domain;
   }
 
-
-
- // async resolvetask(id1: any)
- // {
-
- // }
+  async dismiss()
+  {
+    this.modalController.dismiss();
+  }
 
 
   ngOnInit() {
