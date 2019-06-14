@@ -19,7 +19,7 @@ export class AssignModalPage implements OnInit {
   public priority:"";
   public date:"";
   public current_id:"";
-
+  public emp:"";
   checkBoxList:any;
   
 	private _anEmitter: EventEmitter< any >;
@@ -38,8 +38,9 @@ export class AssignModalPage implements OnInit {
    this.record=JSON.parse(this.navParams.data.recordItem);
    this.priority=this.record.priority;
    this.date=this.record.date;
-   this.checkBoxList=this.record.checkBoxList;
-   console.log(this.checkBoxList);
+   this.emp=this.record.emp;
+   console.log(this.record.checkBoxList);
+   this.checkBoxList=JSON.parse(this.record.checkBoxList);
    this._anEmitter = this.navParams.data.theEmitter;
    console.log(this._anEmitter);
    this.array=this.getArray();
@@ -91,6 +92,8 @@ console.log(this.checkBoxList);
     var current_record=this.record;
      current_record.priority=this.priority;
      current_record.date=this.date;
+     current_record.checkBoxList=JSON.stringify(this.checkBoxList);
+     current_record.emp=this.emp;
 
       
      this.myEventAction(JSON.stringify(current_record));
