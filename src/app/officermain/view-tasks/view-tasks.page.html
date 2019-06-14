@@ -32,11 +32,22 @@
     <ion-label text-right>{{domain}}</ion-label>
 </ion-item>
 
-
-<div>
+<ion-item>
+    <ion-label>Status</ion-label>
+    <ion-label text-right color="danger">{{status}}</ion-label>
+</ion-item>
+<div *ngIf="task[id1].status=='Assigned'" >
     <ion-button color="dark" (click)="dismiss()">Close</ion-button>
-    <ion-button color="dark" (click)="dismiss()">Resolve</ion-button>
+    <ion-button color="dark" (click)="start(id1)">Start</ion-button>
 </div>   
-    
-    
+
+<div *ngIf="task[id1].status=='In Progress'" >
+    <ion-button color="dark" (click)="dismiss()">Close</ion-button>
+    <ion-button color="dark" (click)="resolve(id1)">Resolve</ion-button>
+</div> 
+
+<div *ngIf="task[id1].status=='Resolved'" >
+    <ion-button color="dark" (click)="dismiss()">Close</ion-button>
+</div> 
+      
 </ion-content>

@@ -14,6 +14,7 @@ export class ViewTasksPage implements OnInit {
   private priority: string;
   private date: string;
   private domain: string;
+  private status: string;
   public splitted: string;
   //private id1: any = 0;
 
@@ -45,11 +46,26 @@ export class ViewTasksPage implements OnInit {
     this.splitted = this.task[id].date.split("T", 1);
     this.date= this.splitted[0];
     this.domain= this.task[id].domain;
+    this.status= this.task[id].status;
   }
 
   async dismiss()
   {
     this.modalController.dismiss();
+  }
+
+  async start(id: any)
+  {
+    this.task[id].status="In Progress";
+    localStorage.setItem('task', JSON.stringify(this.task));
+    this.dismiss();
+  }
+
+  async resolve(id: any)
+  {
+    this.task[id].status="Resolved";
+    localStorage.setItem('task', JSON.stringify(this.task));
+    this.dismiss();
   }
 
 

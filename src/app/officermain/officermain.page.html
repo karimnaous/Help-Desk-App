@@ -6,6 +6,27 @@
 
 <ion-content>
   <ion-grid>
+  <ion-item>
+    <ion-col >
+      <strong><ion-label>ID</ion-label></strong>
+    </ion-col>
+    <ion-col>
+        <strong><ion-label>Priority</ion-label></strong>
+    </ion-col>
+    <ion-col>
+        <strong><ion-label>Date</ion-label></strong>
+    </ion-col>
+    <ion-col>
+        <strong><ion-label>Domain</ion-label></strong>
+    </ion-col>
+    <ion-col>
+        <ion-label></ion-label>
+    </ion-col>
+    <ion-col>
+        <ion-label></ion-label>
+    </ion-col>
+  </ion-item>
+
   <ng-container *ngFor="let entry of task;">
   <ion-item *ngIf="entry.username==myuser.user">
     <ion-col>
