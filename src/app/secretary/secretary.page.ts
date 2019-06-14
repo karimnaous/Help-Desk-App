@@ -3,7 +3,6 @@ import { Component, OnInit,Input,EventEmitter  } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AssignModalPage } from '../secretary/assign-modal/assign-modal.page'
 
-
 @Component({
   selector: 'app-secretary',
   templateUrl: './secretary.page.html',
@@ -31,11 +30,13 @@ export class SecretaryPage implements OnInit {
 
   
   }
-async assignModal(event)
+  async viewModal(form)
+  {
+    console.log(form.value.id);
+  }
+async assignModal(form)
 {
-    var target = event.target || event.srcElement || event.currentTarget;
-    var idAttr = target.attributes.id.nodeValue;
-    var record=JSON.stringify(JSON.parse(localStorage.getItem("ObjArray")).find(x => x.id == idAttr));
+    var record=JSON.stringify(JSON.parse(localStorage.getItem("ObjArray")).find(x => x.id == form.value.id));
     var localStorageItem=JSON.parse(localStorage.getItem("ObjArray"));
 
     let myEmitter = new EventEmitter< any >();

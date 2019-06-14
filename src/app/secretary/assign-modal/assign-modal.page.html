@@ -22,29 +22,29 @@
       <h1>Priority
       </h1>
 
-      <ion-item *ngIf="priority === 'low'">
+      <ion-item *ngIf="priority == 'low'">
         <ion-label>Low</ion-label>
         <ion-radio value="low"  checked ></ion-radio>
       </ion-item>
-      <ion-item *ngIf="priority !== 'low'">
+      <ion-item *ngIf="priority != 'low'">
         <ion-label>Low</ion-label>
         <ion-radio value="low" ></ion-radio>
       </ion-item>
 
-      <ion-item *ngIf="priority === 'mod'">
+      <ion-item *ngIf="priority == 'mod'">
         <ion-label>Mod</ion-label>
         <ion-radio value="mod"  checked ></ion-radio>
       </ion-item>
-      <ion-item *ngIf="priority !== 'mod'">
+      <ion-item *ngIf="priority != 'mod'">
         <ion-label>Mod</ion-label>
         <ion-radio value="mod"  ></ion-radio>
       </ion-item>
 
-      <ion-item  *ngIf="priority === 'high'">
+      <ion-item  *ngIf="priority == 'high'">
         <ion-label>High</ion-label>
         <ion-radio value="high" checked></ion-radio>
       </ion-item>
-      <ion-item  *ngIf="priority !== 'high'">
+      <ion-item  *ngIf="priority != 'high'">
         <ion-label>High</ion-label>
         <ion-radio value="high"></ion-radio>
       </ion-item>
