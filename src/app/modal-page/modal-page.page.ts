@@ -48,6 +48,7 @@ export class ModalPagePage implements OnInit {
   public task=JSON.parse(localStorage.getItem('task'));
   public user=JSON.parse(localStorage.getItem('myuser'));
 
+
   async savetask(id: any)
   {
     //var myObj;

@@ -10,9 +10,9 @@ import { ViewTasksPage } from '../officermain/view-tasks/view-tasks.page';
 })
 
 export class OfficermainPage {
-  
 
-  constructor(public modalController: ModalController) { 
+
+  constructor(public modalController: ModalController) {
 
     // let officer = [
     //   {username:"Layal"},
@@ -38,18 +38,44 @@ export class OfficermainPage {
 
   }
 
-  public task=JSON.parse(localStorage.getItem('task'));
-  public myuser=JSON.parse(localStorage.getItem('myuser'));
-  
-  async presentModalReassign(id: any){
-    const modal = await this.modalController.create({component: ModalPagePage, componentProps: { value: id }});
+  // ngOnInit() {
+  //   console.log('123');
+  //   this.randomFunc()
+  //   .then(function (ret) {
+  //     console.log('1st', ret);
+  //    this.randomFunc()
+  //     .then(function(ret) {
+  //       console.log('2nd', ret);
+  //     });
+  //   })
+  //   .catch(function (err) {
+  //     console.log('err', err);
+  //   });
+  //   console.log('321');
+  // }
+
+  public task = JSON.parse(localStorage.getItem('task'));
+  public myuser = JSON.parse(localStorage.getItem('myuser'));
+
+  async presentModalReassign(id: any) {
+    const modal = await this.modalController.create({ component: ModalPagePage, componentProps: { value: id } });
     await modal.present();
   }
 
-  async presentModalView(id: any){
-    const modal = await this.modalController.create({component: ViewTasksPage, componentProps: { value: id }});
+  async presentModalView(id: any) {
+    const modal = await this.modalController.create({ component: ViewTasksPage, componentProps: { value: id } });
     await modal.present();
   }
+
+  // randomFunc() {
+  //   return new Promise(function (resolve, reject) {
+  //     setTimeout(function () {
+  //       resolve({
+  //         id: 123
+  //       });
+  //     }, 3000);
+  //   });
+  // }
 
 
 }
