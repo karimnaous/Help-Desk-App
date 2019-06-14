@@ -10,7 +10,7 @@
   </ion-header>
 
 <ion-content>
-  <!-- fab placed to the bottom end -->
+  
   <ion-fab  vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color = "dark" (click) = "openModal()" expand = "full">
       <ion-icon name="add"></ion-icon>
@@ -18,6 +18,12 @@
   </ion-fab>
 
   <ion-fab  vertical="start" horizontal="start" slot="fixed">
-    <ion-button color = "dark" (click) = "openView()" expand="block">View</ion-button>
+    <ion-button color = "dark" (click) = "openView()" expand="block">View Request</ion-button>
   </ion-fab>
+
+  <ion-fab  vertical="start" horizontal="end" slot="fixed">
+    <ion-button color = "dark" (click) = "openEdit()" expand="block">Edit Request</ion-button>
+  </ion-fab>
+
+
 </ion-content>

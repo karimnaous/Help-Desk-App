@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { Guid } from "guid-typescript";
 import { ValueAccessor } from '@ionic/angular/dist/directives/control-value-accessors/value-accessor';
 import { namespaceHTML } from '@angular/core/src/render3';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-modal',
@@ -10,15 +13,15 @@ import { namespaceHTML } from '@angular/core/src/render3';
 })
 export class ModalPage implements OnInit {
 
-  name: string = "";
-  incidentTitle: string = "";
-  date: string = "";
-  category: string = "";
-  priority: string = "";
-  desc: string = "";
-  
-  constructor() {
+  name: any ;
+  incidentTitle: any ;
+  date: any ;
+  category: any  ;
+  priority: any  ;
+  desc: any ;
+  public id: any;
 
+  constructor(private modalController: ModalController) {
 
   }
 
@@ -26,28 +29,34 @@ export class ModalPage implements OnInit {
 
   }
 
-   saveData() {
-     var checked = [];
-     var arr = [];
-     for(let entry of this.form)
-     {
-       if (entry.isChecked == true)
-       {
-         checked.push(entry.valueM)
-       }
-     }
-     
-    var obj =  {"Full Name": this.name, "Incident Title": this.incidentTitle, "Date": this.date, "Category": this.category, "Domain": checked, "Priority": this.priority, "Description": this.desc }
-    arr.push(obj);
-     
-    localStorage.setItem('Employees', JSON.stringify(arr));
-    // localStorage.setItem('Incidents', JSON.stringify({ "Incident Title": this.incidentTitle }));
-    // localStorage.setItem('Dates', JSON.stringify({ "Date ": this.date }));
-    // localStorage.setItem('Incident Category', JSON.stringify({ "Category ": this.category }));
-    // localStorage.setItem('Domain', JSON.stringify({ "Domain ": checked}));
-    // localStorage.setItem('Priority', JSON.stringify({ "Priority ": this.priority }));
-    // localStorage.setItem('Description', JSON.stringify({ "Description ": this.desc }));
+  saveData() {
+    var checked = [];
+    var arr = [];
 
+    for (let entry of this.form) {
+      if (entry.isChecked == true) {
+        checked.push(entry.valueM)
+      }
+    }
+
+
+
+
+    this.id = Guid.create().toJSON();
+    var obj = { "id": this.id.value, "Full Name": this.name, "Incident Title": this.incidentTitle, "Date": this.date, "Category": this.category, "Domain": checked, "Priority": this.priority, "Description": this.desc }
+    if (localStorage.length != 0) {
+      arr = JSON.parse(localStorage.getItem("Employees"));
+    }
+    arr.push(obj)
+    localStorage.setItem('Employees', JSON.stringify(arr));
+
+    arr = []
+    this.modalController.dismiss();
+
+  }
+
+  closeModal() {
+    this.modalController.dismiss();
   }
 
   public form = [
@@ -57,7 +66,7 @@ export class ModalPage implements OnInit {
     { valueM: "Architecture", isChecked: false },
     { valueM: "Telecom", isChecked: false }
   ];
-  
-   
-  
+
+
+
 }

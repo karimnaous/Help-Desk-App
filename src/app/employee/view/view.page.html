@@ -7,6 +7,11 @@
 <ion-content>
 
   <ion-item>
+    <ion-label>Request ID: </ion-label>
+    <ion-input value={{idYou}} disabled="true"> </ion-input>
+</ion-item>
+
+  <ion-item>
       <ion-label>Full Name</ion-label>
       <ion-input value={{name}} disabled="true"> </ion-input>
   </ion-item>
@@ -17,23 +22,28 @@
   </ion-item>
 
   <ion-item>
-      <ion-label>Date</ion-label>
+      <ion-label>Date: </ion-label>
       <ion-input value={{date}} disabled="true"> </ion-input>
     </ion-item>
 
     <ion-item>
-        <ion-label>Incident Category</ion-label>
+        <ion-label>Incident Category: </ion-label>
         <ion-input value={{inciCat}} disabled="true"></ion-input>
       </ion-item>
 
       <ion-item>
-          <ion-label>Domain</ion-label>
+          <ion-label>Domain: </ion-label>
           <ion-input value={{dom}} disabled="true"></ion-input>
         </ion-item>
 
         <ion-item>
-            <ion-label>Priority</ion-label>
+            <ion-label>Priority: </ion-label>
             <ion-input value={{prior}} disabled="true"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Description: </ion-label>
+            <ion-input value={{desc}} disabled="true"></ion-input>
           </ion-item>
 
 </ion-content>

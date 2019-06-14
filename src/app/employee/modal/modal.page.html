@@ -7,7 +7,7 @@
 <ion-content>
   <ion-item>
     <ion-label position="fixed" placeholder="Text here">Full Name</ion-label>
-    <ion-input [(ngModel)]="name"></ion-input>
+    <ion-input [(ngModel)]="name" value={{name}}></ion-input>
   </ion-item>
 
   <ion-item>
@@ -75,7 +75,7 @@
   </ion-fab>
 
   <ion-fab vertical="bottom" horizontal="start" slot="fixed">
-    <ion-fab-button color="dark" expand="full">
+    <ion-fab-button color="dark" (click) = "closeModal()" expand="full">
       <ion-icon name="close"></ion-icon>
     </ion-fab-button>
   </ion-fab>
