@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { Input } from '@angular/core';
 import { NavParams } from '@ionic/angular';
+import { userInfo } from 'os';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class ModalPagePage implements OnInit {
   private username: string;
   private priority: string;
   private date: string;
+  private change: boolean= false;
 
   // @Input() value: number;
   private id1: any = this.navParams.get('value');
@@ -44,6 +46,7 @@ export class ModalPagePage implements OnInit {
 
   public officer=JSON.parse(localStorage.getItem('officer'));
   public task=JSON.parse(localStorage.getItem('task'));
+  public user=JSON.parse(localStorage.getItem('myuser'));
 
   async savetask(id: any)
   {
@@ -66,6 +69,7 @@ export class ModalPagePage implements OnInit {
     localStorage.removeItem('task');
     localStorage.setItem('task', JSON.stringify(this.task));
     this.modalController.dismiss();
+    location.reload();
   }
 
   //public task1=JSON.parse(localStorage.getItem('task1'));
@@ -112,8 +116,15 @@ export class ModalPagePage implements OnInit {
     await alert.present();
   }
 
+  async onChange()
+  {
+    if (this.username==this.user.user)
+    {
+      this.change=false;
+    }
+    else {this.change=true;}
+  }
 
   ngOnInit() {
   }
-
 }

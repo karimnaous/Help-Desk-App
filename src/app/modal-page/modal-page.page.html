@@ -15,7 +15,7 @@
     <ion-list>
           <ion-item>
               <ion-label>Officer</ion-label>
-              <ion-select  [(ngModel)]="username" [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Select One">
+              <ion-select (ionChange)="onChange()" [(ngModel)]="username" [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Select One">
                 <ion-select-option *ngFor="let name of officer" value={{name.username}}>{{name.username}}</ion-select-option>
               </ion-select>
             </ion-item>
@@ -46,10 +46,14 @@
           
         </ion-list>
 
-        <div>
-        <ion-button color="dark" (click)="savetask(id1)">Reassign</ion-button>
-        <ion-button color="dark" (click)="presentAlertConfirm()">Cancel</ion-button>
-        </div>   
+        <div *ngIf="change==true">
+          <ion-button color="dark" (click)="savetask(id1)">Reassign</ion-button>
+          <ion-button color="dark" (click)="presentAlertConfirm()">Cancel</ion-button>
+        </div> 
         
-             
+        <div *ngIf="change==false">
+          <ion-button color="dark" (click)="savetask(id1)">Save</ion-button>
+          <ion-button color="dark" (click)="presentAlertConfirm()">Cancel</ion-button>
+        </div> 
+        
 </ion-content>
