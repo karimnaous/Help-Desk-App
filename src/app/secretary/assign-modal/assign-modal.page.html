@@ -15,58 +15,41 @@
 
   <ion-item>
     <ion-label  >Date</ion-label>
-    <ion-datetime display-format="MMM DD, YYYY"  ></ion-datetime>
+    <ion-datetime display-format="MMM DD, YYYY" [(ngModel)]="date" ></ion-datetime>
   </ion-item>
   <ion-list>
-    <ion-radio-group  [(ngModel)]="priority" >
+    <ion-radio-group  [(ngModel)]="priority"  value={{priority}}>
       <h1>Priority
       </h1>
-
-      <ion-item *ngIf="priority == 'low'">
+      <p>{{priority}}</p>
+      <ion-item >
         <ion-label>Low</ion-label>
-        <ion-radio value="low"  checked ></ion-radio>
-      </ion-item>
-      <ion-item *ngIf="priority != 'low'">
-        <ion-label>Low</ion-label>
-        <ion-radio value="low" ></ion-radio>
+        <ion-radio value="low"  ></ion-radio>
       </ion-item>
 
-      <ion-item *ngIf="priority == 'mod'">
+
+      <ion-item >
         <ion-label>Mod</ion-label>
-        <ion-radio value="mod"  checked ></ion-radio>
-      </ion-item>
-      <ion-item *ngIf="priority != 'mod'">
-        <ion-label>Mod</ion-label>
-        <ion-radio value="mod"  ></ion-radio>
+        <ion-radio value="mod" ></ion-radio>
       </ion-item>
 
-      <ion-item  *ngIf="priority == 'high'">
+
+      <ion-item  >
         <ion-label>High</ion-label>
-        <ion-radio value="high" checked></ion-radio>
-      </ion-item>
-      <ion-item  *ngIf="priority != 'high'">
-        <ion-label>High</ion-label>
-        <ion-radio value="high"></ion-radio>
+        <ion-radio value="high" ></ion-radio>
       </ion-item>
 
     </ion-radio-group>
   </ion-list>
-  <ion-list>
-    <h1>Domain
-    </h1>
-    <ion-item>
-      <ion-label>IT</ion-label>
-      <ion-checkbox slot="end"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>Architecture</ion-label>
-      <ion-checkbox slot="end"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>General Engineering</ion-label>
-      <ion-checkbox slot="end"></ion-checkbox>
-    </ion-item>
-  </ion-list>
+
+    <ion-list>
+      <ion-item *ngFor="let item of checkBoxList">
+        <ion-label>{{item.value}}</ion-label>
+        <ion-checkbox slot="start" 
+        [(ngModel)]="item.isChecked" 
+        (ionChange)="checkEvent()"></ion-checkbox>
+      </ion-item>
+    </ion-list>
 
   <ion-grid>
     <ion-row>

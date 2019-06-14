@@ -17,12 +17,20 @@ export class SecretaryPage implements OnInit {
   
   const uuidv1 = require('uuid/v1');
 
-    // window.localStorage.setItem("ObjArray", JSON.stringify([
-    //   {"id":uuidv1(),"type":"txt1","priority":"high","date":"1/1/2009","name":"name1"},
-    //   {"id":uuidv1(),"type":"txt1","priority":"low","date":"1/1/2009","name":"name2"},
-    //   {"id":uuidv1(),"type":"txt1","priority":"mod","date":"1/1/2009","name":"name3"}, 
-    //   {"id":uuidv1(),"type":"txt1","priority":"low","date":"1/1/2009","name":"name4"}
-    // ]))
+    window.localStorage.setItem("ObjArray", JSON.stringify([
+      {"id":uuidv1(),"type":"txt1","priority":"high","date":"1/1/2009", "checkBoxList":
+      '[{ value:"Transportation", isChecked:true},{value:"IT",isChecked:false},{value:"Civil",isChecked:false},{value:"Engineering",isChecked:false},{value:"Accounting",isChecked:false}]',
+       "name":"name1"},
+      {"id":uuidv1(),"type":"txt1","priority":"low","date":"1/1/2009", "checkBoxList":
+      '[{ value:"Transportation", isChecked:true},{value:"IT",isChecked:false},{value:"Civil",isChecked:false},{value:"Engineering",isChecked:false},{value:"Accounting",isChecked:false}]',
+      "name":"name2"},
+      {"id":uuidv1(),"type":"txt1","priority":"mod","date":"1/1/2009", "checkBoxList":
+      '[{ value:"Transportation", isChecked:true},{value:"IT",isChecked:false},{value:"Civil",isChecked:false},{value:"Engineering",isChecked:false},{value:"Accounting",isChecked:false}]',
+      "name":"name3"}, 
+      {"id":uuidv1(),"type":"txt1","priority":"low","date":"1/1/2009", "checkBoxList":
+      '[{ value:"Transportation", isChecked:true},{value:"IT",isChecked:false},{value:"Civil",isChecked:false},{value:"Engineering",isChecked:false},{value:"Accounting",isChecked:false}]',
+      "name":"name4"}
+    ]))
     this.array=this.getArray();
   }
 
@@ -41,7 +49,7 @@ async assignModal(form)
 
     let myEmitter = new EventEmitter< any >();
 		myEmitter.subscribe(
-			v=> console.log( `my emitter fired and returned a value of ${v}`)
+			v=> this.getfromModal(v)
 		);
     const modal= await this.modalController.create({
   component: AssignModalPage,
@@ -58,9 +66,20 @@ async assignModal(form)
 
   }
  
-  getfromModal(event) {
-    this.final_record = event;
-    console.log("hi",this.final_record);
+  getfromModal(record) {
+   
+   
+    record=JSON.parse(record);
+    var localStorageItem=JSON.parse(localStorage.getItem("ObjArray"));
+    var old_record=localStorageItem.find(x => x.id == record.id);  
+    var index=localStorageItem.indexOf(old_record);
+    console.log(index);
+    localStorageItem.splice(index,1,record);
+    window.localStorage.setItem("ObjArray", JSON.stringify(localStorageItem));
+    this.array=this.getArray();
+   
+
   }
+
 
 }

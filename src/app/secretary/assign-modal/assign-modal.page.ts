@@ -4,6 +4,7 @@ import { ActionSheetController } from '@ionic/angular';
 import { SecretaryPage } from '../secretary.page'
 import { NavParams } from '@ionic/angular';
 import {Router} from "@angular/router";
+import { ViewData } from '@angular/core/src/view';
 
 @Component({
   selector: 'app-assign-modal',
@@ -13,16 +14,20 @@ import {Router} from "@angular/router";
 
 export class AssignModalPage implements OnInit {
   public record: any;
+  view: ViewData;
   public array: any[];
   public priority:"";
   public date:"";
   public current_id:"";
+
+  checkBoxList:any;
   
 	private _anEmitter: EventEmitter< any >;
 
   @Output() change: EventEmitter<Object> = new EventEmitter<Object>();
   constructor(private router: Router,private modalController:ModalController,private navParams:NavParams,private alertController: AlertController, private Actionsheet: ActionSheetController) { 
     
+  
     
 
 
@@ -32,6 +37,9 @@ export class AssignModalPage implements OnInit {
    console.log(this.navParams);
    this.record=JSON.parse(this.navParams.data.recordItem);
    this.priority=this.record.priority;
+   this.date=this.record.date;
+   this.checkBoxList=this.record.checkBoxList;
+   console.log(this.checkBoxList);
    this._anEmitter = this.navParams.data.theEmitter;
    console.log(this._anEmitter);
    this.array=this.getArray();
@@ -41,6 +49,12 @@ export class AssignModalPage implements OnInit {
     return localStorageItem;
 
   }
+
+ 
+  checkEvent() {
+console.log(this.checkBoxList);
+  }
+ 
   async presentAlert() {
 
     const alert = await this.alertController.create({
@@ -75,18 +89,9 @@ export class AssignModalPage implements OnInit {
   async SaveRecord()
   {
     var current_record=this.record;
-    console.log(current_record);
-    var localStorageItem=JSON.parse(localStorage.getItem("ObjArray"));
-    console.log(localStorageItem);
-    
-    // var index=localStorageItem.indexOf(current_record);
-    // console.log(index);
      current_record.priority=this.priority;
      current_record.date=this.date;
-    // var newitem=temp;
-    // console.log(newitem);
-    // localStorageItem.splice(index,1,newitem);
-    // window.localStorage.setItem("ObjArray", JSON.stringify(localStorageItem));
+
       
      this.myEventAction(JSON.stringify(current_record));
      this.modalController.dismiss();
@@ -94,9 +99,7 @@ export class AssignModalPage implements OnInit {
   private myEventAction( somePassedArg: any ) {
 		this._anEmitter.emit( somePassedArg );
 	}
-  ngOnDestroy() {
-    // location.reload();
-    
-  } 
+
+
  
 }
