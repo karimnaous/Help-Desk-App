@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>View</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+  
+    <ion-item>
+      <ion-label>Employee Name</ion-label>
+      <ion-select placeholder={{emp}}  [disabled]="true">
+      </ion-select>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime display-format="MMM DD, YYYY" [(ngModel)]="date" disabled="true"></ion-datetime>
+    </ion-item>
+    <ion-list>
+      <ion-radio-group [(ngModel)]="priority" value={{priority}} disabled="true">
+        <h1>Priority
+        </h1>
+        <ion-item>
+          <ion-label>Low</ion-label>
+          <ion-radio value="low"  disabled="true"></ion-radio>
+        </ion-item>
+  
+  
+        <ion-item>
+          <ion-label>Mod</ion-label>
+          <ion-radio value="mod"  disabled="true"></ion-radio>
+        </ion-item>
+  
+  
+        <ion-item>
+          <ion-label>High</ion-label>
+          <ion-radio value="high"  disabled="true"></ion-radio>
+        </ion-item>
+  
+      </ion-radio-group>
+    </ion-list>
+  
+    <ion-list>
+      <ion-item *ngFor="let item of checkBoxList" disabled="true"> 
+        <ion-label>{{item.value}}</ion-label>
+        <ion-checkbox slot="start" [(ngModel)]="item.isChecked"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  
+  </ion-content>
+ <ion-button expand="block" (click)="close()">Close</ion-button>

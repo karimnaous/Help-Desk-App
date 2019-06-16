@@ -12,7 +12,9 @@ const routes: Routes = [
     loadChildren: './home/home.module#HomePageModule'
   },
 
-  { path: 'secretary', loadChildren: './secretary/secretary.module#SecretaryPageModule' },  { path: 'assign-modal', loadChildren: './secretary/assign-modal/assign-modal.module#AssignModalPageModule' }
+  { path: 'secretary', loadChildren: './secretary/secretary.module#SecretaryPageModule' },
+  { path: 'assign-modal', loadChildren: './secretary/assign-modal/assign-modal.module#AssignModalPageModule' },
+  { path: 'view-modal', loadChildren: './secretary/view-modal/view-modal.module#ViewModalPageModule' },
 
 
 ];

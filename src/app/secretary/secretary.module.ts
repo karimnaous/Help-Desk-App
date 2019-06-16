@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { SecretaryPage } from './secretary.page';
 import { AssignModalPage } from './assign-modal/assign-modal.page';
+import { ViewModalPage } from './view-modal/view-modal.page';
+import { jsonParse } from '../json-parse.pipe';
 
 const routes: Routes = [
   {
@@ -22,7 +24,8 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [SecretaryPage,AssignModalPage],
-  entryComponents: [AssignModalPage]
+  declarations: [SecretaryPage,AssignModalPage,ViewModalPage,jsonParse],
+  entryComponents: [AssignModalPage,ViewModalPage],
+  exports:[jsonParse]
 })
 export class SecretaryPageModule {}

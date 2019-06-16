@@ -1,8 +1,11 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Pipe } from '@angular/core';
 
-import { ModalController } from '@ionic/angular';
+import { ModalController} from '@ionic/angular';
 import { AssignModalPage } from '../secretary/assign-modal/assign-modal.page';
+
 import * as uuidv1 from 'uuid/v1';
+import { ViewModalPage } from './view-modal/view-modal.page';
+
 
 @Component({
   selector: 'app-secretary',
@@ -12,45 +15,49 @@ import * as uuidv1 from 'uuid/v1';
 export class SecretaryPage implements OnInit {
   @Input() recordItem: any;
   public array: any[];
+  public devWidth = window.innerWidth;
   public final_record: any;
   constructor(public modalController: ModalController) {
 
     localStorage.setItem("ObjArray", JSON.stringify([
       {
-        "id": uuidv1(), "type": "txt1", "priority": "high", "date": "1/1/2009", "checkBoxList":
+        "id": uuidv1(), "type": "txt1", "priority": "high", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
           '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
         "name": "name1"
       },
       {
-        "id": uuidv1(), "type": "txt1", "priority": "low", "date": "1/1/2009", "checkBoxList":
+        "id": uuidv1(), "type": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
           '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
         "name": "name2"
       },
       {
-        "id": uuidv1(), "type": "txt1", "priority": "mod", "date": "1/1/2009", "checkBoxList":
+        "id": uuidv1(), "type": "txt1", "priority": "mod", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
           '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
         "name": "name3"
       },
       {
-        "id": uuidv1(), "type": "txt1", "priority": "low", "date": "1/1/2009", "checkBoxList":
+        "id": uuidv1(), "type": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
           '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
         "name": "name4"
       }
     ]))
     this.array = this.getArray();
+    
 
+  }
+  onResize(event) {
+    this.devWidth=event.target.innerWidth;
+    
   }
 
   ngOnInit() {
     
-
+    
 
   }
-  async viewModal(form) {
-    console.log(form.value.id);
-  }
-  async assignModal(form) {
-    var record = JSON.stringify(JSON.parse(localStorage.getItem("ObjArray")).find(x => x.id == form.value.id));
+
+  async assignModal(id) {
+    var record = JSON.stringify(JSON.parse(localStorage.getItem("ObjArray")).find(x => x.id == id));
     var localStorageItem = JSON.parse(localStorage.getItem("ObjArray"));
 
     let myEmitter = new EventEmitter<any>();
@@ -65,6 +72,19 @@ export class SecretaryPage implements OnInit {
 
     await modal.present();
   }
+  async viewModal(id) {
+    var record = JSON.stringify(JSON.parse(localStorage.getItem("ObjArray")).find(x => x.id == id));
+    var localStorageItem = JSON.parse(localStorage.getItem("ObjArray"));
+
+    const modal = await this.modalController.create({
+      component: ViewModalPage,
+      componentProps: { recordItem: record }
+    }
+    );
+
+    await modal.present();
+  }
+
 
   getArray(): Object[] {
     var localStorageItem = JSON.parse(localStorage.getItem("ObjArray"));
@@ -89,3 +109,4 @@ export class SecretaryPage implements OnInit {
 
 
 }
+
