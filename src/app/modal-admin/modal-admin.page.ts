@@ -44,6 +44,15 @@ export class ModalAdminPage implements OnInit {
     if (this.department == "Accounting") { 
         this.departments[0]["isChecked"] = true;
     }
+    else if (this.department == "Engineering") {
+        this.departments[1]["isChecked"] = true;
+    }
+    else if (this.department == "Human Resources") { 
+        this.departments[2]["isChecked"] = true;
+    }
+    else { 
+        this.departments[3]["isChecked"] = true;
+    }
      
   }
 
@@ -60,12 +69,20 @@ export class ModalAdminPage implements OnInit {
 
   async closeModal(save:boolean) {
     if (save == true) {
+        var i;
+        this.department = "";
+        for (i = 0; i < this.departments.length; i++) {
+            if (this.departments[i]["isChecked"]) {
+                if (this.department != "") {
+                  this.department = this.department + ", " + this.departments[i]["val"];
+                }
+                else { this.department = this.departments[i]["val"]; } 
+            }
+        }
         let married = "Single";
         if (this.maritalStatus) { married = "Married"; }
         let emp = {Name : this.name, Gender:this.gender, Birthdate : this.date, Role : this.role , Department : this.department, MaritalStatus : married, Notes:this.notes};
-        // console.log(emp);
         this.arrayEmps[this.ID] = emp;
-        // console.log(this.arrayEmps);
         const onClosedData: [any] = this.arrayEmps;
         console.log(onClosedData);
         await this.modalController.dismiss(onClosedData);

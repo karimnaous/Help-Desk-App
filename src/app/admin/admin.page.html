@@ -13,19 +13,21 @@
 <ion-content>
   <ion-grid>
       <ion-row>
-          <ion-col>ID</ion-col>
-          <ion-col>Name</ion-col>
-          <ion-col>Birthdate</ion-col>
-          <ion-col>Role</ion-col>
-          <ion-col>Department</ion-col>
-          <ion-col>Marital Status</ion-col>
-          <ion-col>Notes</ion-col>
-          <ion-col>View</ion-col>
-          <ion-col>Edit</ion-col>
+          <ion-col><strong>ID</strong></ion-col>
+          <ion-col><strong>Name</strong></ion-col>
+          <ion-col><strong>Gender</strong></ion-col>
+          <ion-col><strong>Birthdate</strong></ion-col>
+          <ion-col><strong>Role</strong></ion-col>
+          <ion-col><strong>Department</strong></ion-col>
+          <ion-col><strong>Marital Status</strong></ion-col>
+          <ion-col><strong>Notes</strong></ion-col>
+          <ion-col><strong>View</strong></ion-col>
+          <ion-col><strong>Edit</strong></ion-col>
       </ion-row>
       <ion-row *ngFor="let employee of employees; let i = index">
               <ion-col>{{i}}</ion-col>
               <ion-col>{{employee.Name}}</ion-col>
+              <ion-col>{{employee.Gender}}</ion-col>
               <ion-col>{{employee.Birthdate}}</ion-col>
               <ion-col>{{employee.Role}}</ion-col>
               <ion-col>{{employee.Department}}</ion-col>
