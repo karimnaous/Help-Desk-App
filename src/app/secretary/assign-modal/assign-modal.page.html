@@ -9,7 +9,7 @@
   <ion-item>
     <ion-label>Employee Name</ion-label>
     <ion-select placeholder="Select Employee" [(ngModel)]="emp" id={{emp}} value={{emp}}>
-      <ion-select-option *ngFor="let row of array" value={{row.name}} > {{row.name}}</ion-select-option>
+      <ion-select-option *ngFor="let row of employee_array" value={{row.name}} > {{row.name}}</ion-select-option>
     </ion-select>
   </ion-item>
 

@@ -13,7 +13,8 @@ import { Router } from "@angular/router";
 
 export class AssignModalPage implements OnInit {
   public record: any;
-  public array: any[];
+  public incident_array: any[];
+  public employee_array: any[];
   public priority: "";
   public date: "";
   public current_id: "";
@@ -41,10 +42,16 @@ export class AssignModalPage implements OnInit {
     this.checkBoxList = JSON.parse(this.record.checkBoxList);
     this._anEmitter = this.navParams.data.theEmitter;
     console.log(this._anEmitter);
-    this.array = this.getArray();
+    this.incident_array = this.getIncidentArray();
+    this.employee_array=this.getEmployeeArray();
   }
-  getArray(): Object[] {
+  getIncidentArray(): Object[] {
     var localStorageItem = JSON.parse(localStorage.getItem("ObjArray"));
+    return localStorageItem;
+
+  }
+  getEmployeeArray(): Object[] {
+    var localStorageItem = JSON.parse(localStorage.getItem("EmployeeArray"));
     return localStorageItem;
 
   }
