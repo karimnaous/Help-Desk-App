@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { Input } from '@angular/core';
 import { NavParams } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-modal-page',
@@ -20,7 +21,7 @@ export class ModalPagePage implements OnInit {
   // @Input() value: number;
   private id1: any = this.navParams.get('value');
 
-  constructor(public modalController: ModalController, public alertController: AlertController, public navParams: NavParams) { 
+  constructor(public toastController: ToastController, public modalController: ModalController, public alertController: AlertController, public navParams: NavParams) { 
     // localStorage.setItem('user1', JSON.stringify('Layal'));
     // localStorage.setItem('user2', JSON.stringify('Alex'));
     // localStorage.setItem('user3', JSON.stringify('Lynn'));
@@ -72,6 +73,11 @@ export class ModalPagePage implements OnInit {
     // await this.modalController.dismiss(onClosedData); 
     this.modalController.dismiss();
     //location.reload();
+
+    const toast = await this.toastController.create({
+    message: 'Your edits have been saved.',
+    duration: 2000});
+    toast.present();
   }
 
   //public task1=JSON.parse(localStorage.getItem('task1'));

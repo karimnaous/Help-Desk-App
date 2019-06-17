@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Input } from '@angular/core';
 import { NavParams } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-view-tasks',
@@ -32,7 +33,7 @@ export class ViewTasksPage implements OnInit {
   ];
 
 
-  constructor(public modalController: ModalController, public navParams: NavParams) {
+  constructor(public toastController: ToastController, public modalController: ModalController, public navParams: NavParams) {
     //const id1: string = this.navParams.get('value');
     this.retreivetask(this.id1);
    }
@@ -61,6 +62,12 @@ export class ViewTasksPage implements OnInit {
     this.task[id].status="In Progress";
     localStorage.setItem('task', JSON.stringify(this.task));
     this.dismiss();
+
+    const toast = await this.toastController.create({
+    message: 'Task started successfully.',
+    duration: 2000});
+    toast.present();
+      
   }
 
   async resolve(id: any)
@@ -68,6 +75,11 @@ export class ViewTasksPage implements OnInit {
     this.task[id].status="Resolved";
     localStorage.setItem('task', JSON.stringify(this.task));
     this.dismiss();
+
+    const toast = await this.toastController.create({
+    message: 'Task resolved successfully.',
+    duration: 2000});
+    toast.present();
   }
 
 
