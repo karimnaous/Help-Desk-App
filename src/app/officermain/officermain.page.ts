@@ -76,18 +76,17 @@ export class OfficermainPage {
 
   findTaskIndex(guid:any)
   {
-    var index=0;
+    var index=-1;
    for(let entry of this.task)
    {
-     if (entry.id!=guid)
+     index++;
+     if (entry.id==guid)
      {
-        index++;
+        return index;
      }
    }
-   return index;
+   
 }
-  
-
 
   // randomFunc() {
   //   return new Promise(function (resolve, reject) {
