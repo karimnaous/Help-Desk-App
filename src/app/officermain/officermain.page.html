@@ -1,7 +1,8 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Officer</ion-title>
-    <ion-select [(ngModel)]="priority" text-right (ionChange)="onChange()" [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Filter by">
+    <ion-select [(ngModel)]="priority" text-right (ionChange)="onChange()" [interfaceOptions]="customActionSheetOptions"
+      interface="action-sheet" placeholder="Filter by">
       <ion-select-option value="ViewAll">View All</ion-select-option>
       <ion-select-option value="Low">Low</ion-select-option>
       <ion-select-option value="Medium">Medium</ion-select-option>
@@ -12,48 +13,58 @@
 
 <ion-content>
   <ion-grid>
-  <ion-row>
-    <ion-col size="2">
-      <strong><ion-label>ID</ion-label></strong>
-    </ion-col>
-    <ion-col size="2">
-        <strong><ion-label>Priority</ion-label></strong>
-    </ion-col>
-    <ion-col size="2">
-        <strong><ion-label>Date</ion-label></strong>
-    </ion-col>
-    <ion-col size="2">
-        <strong><ion-label>Domain</ion-label></strong>
-    </ion-col>
-    <ion-col size="2">
+    <ion-row>
+      <ion-col size="2">
+        <strong>
+          <ion-label>ID</ion-label>
+        </strong>
+      </ion-col>
+      <ion-col size="2">
+        <strong>
+          <ion-label>Priority</ion-label>
+        </strong>
+      </ion-col>
+      <ion-col size="2">
+        <strong>
+          <ion-label>Date</ion-label>
+        </strong>
+      </ion-col>
+      <ion-col size="2">
+        <strong>
+          <ion-label>Domain</ion-label>
+        </strong>
+      </ion-col>
+      <ion-col size="2">
         <ion-label></ion-label>
-    </ion-col>
-    <ion-col size="2">
+      </ion-col>
+      <ion-col size="2">
         <ion-label></ion-label>
-    </ion-col>
-  </ion-row>
-
-  <ng-container *ngFor="let entry of task_filtered;">
-  <ion-row *ngIf="entry.username==myuser.user">
-    <ion-col size="2">
-        <ion-label>{{entry.id}}</ion-label>
-    </ion-col>
-    <ion-col size="2"> 
-        <ion-label>{{entry.priority}}</ion-label>
-    </ion-col>
-    <ion-col size="2">
-        <ion-label>{{entry.date.split("T",1)}}</ion-label>
-    </ion-col>
-    <ion-col size="2">
-        <ion-label>{{entry.domain}}</ion-label>
-    </ion-col>
-    <ion-col size="2">
-        <ion-button expand="block" color="dark" (click)="presentModalReassign(findTaskIndex(entry.id))">Edit Task</ion-button>
-    </ion-col>
-    <ion-col size="2">
-        <ion-button expand="block" color="dark" (click)="presentModalView(findTaskIndex(entry.id))">View Task</ion-button>
-    </ion-col>  
+      </ion-col>
     </ion-row>
-  </ng-container> 
-</ion-grid> 
+
+    <ng-container *ngFor="let entry of task_filtered;">
+      <ion-row *ngIf="entry.username==myuser.user">
+        <ion-col size="2">
+          <ion-label>{{entry.id}}</ion-label>
+        </ion-col>
+        <ion-col size="2">
+          <ion-label>{{entry.priority}}</ion-label>
+        </ion-col>
+        <ion-col size="2">
+          <ion-label>{{entry.date.split("T",1)}}</ion-label>
+        </ion-col>
+        <ion-col size="2">
+          <ion-label>{{entry.domain}}</ion-label>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button expand="block" color="dark" (click)="presentModalReassign(findTaskIndex(entry.id))">Edit Task
+          </ion-button>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button expand="block" color="dark" (click)="presentModalView(findTaskIndex(entry.id))">View Task
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+  </ion-grid>
 </ion-content>

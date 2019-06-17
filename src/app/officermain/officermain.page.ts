@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { ModalPagePage } from '../modal-page/modal-page.page';
+import { ModalPagePage } from '../officermain/modal-page/modal-page.page';
 import { ViewTasksPage } from '../officermain/view-tasks/view-tasks.page';
 import { Guid } from "guid-typescript";
 

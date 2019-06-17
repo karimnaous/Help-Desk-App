@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { OfficermainPage } from './officermain.page';
-import { ModalPagePage } from '../modal-page/modal-page.page';
+import { ModalPagePage } from '../officermain/modal-page/modal-page.page';
 import { ViewTasksPage } from '../officermain/view-tasks/view-tasks.page';
 
 const routes: Routes = [
