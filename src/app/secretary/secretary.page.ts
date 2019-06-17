@@ -4,6 +4,7 @@ import { ModalController} from '@ionic/angular';
 import { AssignModalPage } from '../secretary/assign-modal/assign-modal.page';
 
 import * as uuidv1 from 'uuid/v1';
+import * as _ from 'lodash';
 import { ViewModalPage } from './view-modal/view-modal.page';
 
 
