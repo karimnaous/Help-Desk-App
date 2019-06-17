@@ -33,14 +33,14 @@ export class EmployeePage implements OnInit {
 
     var newEmployee = JSON.parse(localStorage.getItem("Employees"));
     for (let i = 0; i < newEmployee.length; i++) {
-      this.name = JSON.stringify(newEmployee[i]["Full Name"]);
-      this.incidentTitle = JSON.stringify(newEmployee[i]["Incident Title"]);
-      this.date = JSON.stringify(newEmployee[i]["Date"]);
-      this.category = JSON.stringify(newEmployee[i]["Category"]);
-      this.dom = JSON.stringify(newEmployee[i]["Domain"]);
-      this.priority = JSON.stringify(newEmployee[i]["Priority"]);
-      this.desc = JSON.stringify(newEmployee[i]["Description"]);
-      this.id = JSON.stringify(newEmployee[i]["id"]);
+      this.name = newEmployee[i]["Full Name"];
+      this.incidentTitle = newEmployee[i]["Incident Title"];
+      this.date = newEmployee[i]["Date"];
+      this.category = newEmployee[i]["Category"];
+      this.dom = newEmployee[i]["Domain"];
+      this.priority = newEmployee[i]["Priority"];
+      this.desc = newEmployee[i]["Description"];
+      this.id = newEmployee[i]["id"];
       this.information.push({ yourId: this.id, yourName: this.name, yourIncidentTitle: this.incidentTitle, yourDate: this.date, yourCategory: this.category, yourDom: this.dom, yourPrior: this.priority, yourDesc: this.desc });
     }
   }

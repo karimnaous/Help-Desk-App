@@ -28,7 +28,7 @@ export class EditPage implements OnInit {
   saveEdit() {
     var checked = [];
     var arr = [];
-
+    var index ;
     for (let entry of this.newform) {
       if (entry.isChecked == true) {
         checked.push(entry.valueM)
@@ -36,10 +36,19 @@ export class EditPage implements OnInit {
     }
     var obj = { "id": this.otherId, "Full Name": this.newName, "Incident Title": this.newIncidentTitle, "Date": this.newDate, "Category": this.newCategory, "Domain": checked, "Priority": this.newPriority, "Description": this.newDesc }
     arr = JSON.parse(localStorage.getItem("Employees"));
-    arr.push(obj);
+    for (let i = 0 ; i < arr.length ; i++)
+    {
+      if (arr[i].id === this.otherId )
+      {
+        index = i;
+        console.log(index);
+      }
+    }
+    arr.splice(index, 1, obj);
     localStorage.setItem('Employees', JSON.stringify(arr));
-
+    
     this.modalController.dismiss();
+    
   }
 
   closeEdit() {
