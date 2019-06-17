@@ -14,17 +14,17 @@ export class OfficermainPage {
 
 
   constructor(public modalController: ModalController) {
-    let task = [
-      {id: Guid.create()["value"], username:"Layal", priority:"High", date:"2019-06-13T11:14:12.880+03:00", domain:["Project Management","IT","Architecture"], "status":"Assigned"},
-      {id: Guid.create()["value"], username:"Alex", priority:"Low", date:"2019-04-15T11:14:12.880+06:00", domain:["Mechanical","Architecture"], "status":"Assigned"},
-      {id: Guid.create()["value"], username:"Layal", priority:"Medium", date:"2019-09-20T11:14:12.880+06:00", domain:["Civil","Architecture"], "status":"Assigned"}
-    ];
+    // let task = [
+    //   {id: Guid.create()["value"], username:"Layal", priority:"High", date:"2019-06-13T11:14:12.880+03:00", domain:["Project Management","IT","Architecture"], "status":"Assigned"},
+    //   {id: Guid.create()["value"], username:"Alex", priority:"Low", date:"2019-04-15T11:14:12.880+06:00", domain:["Mechanical","Architecture"], "status":"Assigned"},
+    //   {id: Guid.create()["value"], username:"Layal", priority:"Medium", date:"2019-09-20T11:14:12.880+06:00", domain:["Civil","Architecture"], "status":"Assigned"}
+    // ];
 
-    localStorage.setItem('task', JSON.stringify(task));
+    // localStorage.setItem('task', JSON.stringify(task));
 
-    let myuser = {user: "Layal"};
+    // let myuser = {user: "Layal"};
 
-    localStorage.setItem('myuser', JSON.stringify(myuser));
+    // localStorage.setItem('myuser', JSON.stringify(myuser));
 
   }
 

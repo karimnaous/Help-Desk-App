@@ -38,7 +38,7 @@
     <ion-col size="2">
         <ion-label>{{entry.id}}</ion-label>
     </ion-col>
-    <ion-col> 
+    <ion-col size="2"> 
         <ion-label>{{entry.priority}}</ion-label>
     </ion-col>
     <ion-col size="2">
@@ -48,7 +48,7 @@
         <ion-label>{{entry.domain}}</ion-label>
     </ion-col>
     <ion-col size="2">
-        <ion-button color="dark" (click)="presentModalReassign(findTaskIndex(entry.id))">Reassign Task</ion-button>
+        <ion-button color="dark" (click)="presentModalReassign(findTaskIndex(entry.id))">Edit Task</ion-button>
     </ion-col>
     <ion-col size="2">
         <ion-button color="dark" (click)="presentModalView(findTaskIndex(entry.id))">View Task</ion-button>

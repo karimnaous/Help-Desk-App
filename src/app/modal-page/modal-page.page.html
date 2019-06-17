@@ -4,10 +4,10 @@
   </ion-toolbar>
 </ion-header>
 
-<style>
-  div {
+ <style>
+  ion-fab {
     position: absolute;
-    left: 33%;
+    left: 38%;
     margin-left: -33px;}
 </style>
 
@@ -50,7 +50,8 @@
               <ion-select-option value="High">High</ion-select-option>
             </ion-select> -->
           <!-- </ion-item> -->
-
+          
+        
           <ion-item>
               <ion-label>Date</ion-label>
               <ion-datetime [(ngModel)]="date" display-format="MMM DD, YYYY"></ion-datetime>
@@ -65,17 +66,20 @@
               </ion-item>
           </ion-list>
           </ion-item>
-          
+          <br><br><br>
         </ion-list>
 
-        <div *ngIf="change">
+        <ion-fab slot="fixed" vertical="bottom">
+        <div *ngIf="change" >
           <ion-button color="dark" (click)="savetask(id1)">Reassign</ion-button>
           <ion-button color="dark" (click)="presentAlertConfirm()">Cancel</ion-button>
         </div> 
         
-        <div *ngIf="!change">
+        <div *ngIf="!change" slot="fixed">
           <ion-button color="dark" (click)="savetask(id1)">Save</ion-button>
           <ion-button color="dark" (click)="presentAlertConfirm()">Cancel</ion-button>
         </div> 
-        
+      </ion-fab>
+      
+
 </ion-content>

@@ -15,6 +15,7 @@ export class ViewTasksPage implements OnInit {
   private date: string;
   private domain: string;
   private status: string;
+  private ID: string;
   public splitted: string;
   //private id1: any = 0;
 
@@ -41,6 +42,7 @@ export class ViewTasksPage implements OnInit {
   
   async retreivetask(id: any)
   {
+    this.ID=this.task[id].id;
     this.username=this.task[id].username;
     this.priority=this.task[id].priority;
     this.splitted = this.task[id].date.split("T", 1);
