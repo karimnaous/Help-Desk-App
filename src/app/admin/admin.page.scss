@@ -1,0 +1,30 @@
+#nav ion-grid ion-row ion-col {
+    color: #900;
+    text-decoration: none;
+    padding: 3px 0; 
+    display: block;
+}
+ 
+// @media all and (min-width: 1001px) {
+// #nav ion-grid ion-row ion-col:after {
+//     content: " (" attr(data-email) ")";
+//     font-size: 11px;
+//     font-style: italic;
+//     color: #666;
+// }
+// }
+
+// @media all and (max-width: 1000px) and (min-width: 700px) {
+// #nav ion-grid ion-row ion-col:before {
+//     content: "Email: ";
+//     font-style: italic;
+//     color: #666;
+// }
+// }
+
+// @media all and (max-width: 699px) and (min-width: 520px), (min-width: 1151px) {
+// #nav ion-grid ion-row ion-col {
+//     padding-left: 21px;
+//     background: url(../images/email.png) left center no-repeat;
+// }
+// }

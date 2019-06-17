@@ -1,27 +1,27 @@
+
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
-import { empty } from 'rxjs';
 
 @Component({
-  selector: 'app-modal-admin',
-  templateUrl: './modal-admin.page.html',
-  styleUrls: ['./modal-admin.page.scss'],
+  selector: 'app-modal-add',
+  templateUrl: './modal-add.page.html',
+  styleUrls: ['./modal-add.page.scss'],
 })
-export class ModalAdminPage implements OnInit {
+export class ModalAddPage implements OnInit {
 
   modalTitle:string;
   modelId:number;
   arrayEmps: [any];
-  
   ID: string; 
-  public name : string; 
-  public gender : string; 
-  public date : string;
-  public department : string;  
-  public maritalStatus : boolean; 
-  public role : string;
-  public notes : string;
-  public index : number;
+
+  public name = ""; 
+  public gender = ""; 
+  public date = "";
+  public department = "";  
+  public maritalStatus = false; 
+  public role = "";
+  public notes = "";
+  public index = "";
   
 
   constructor(
@@ -32,33 +32,20 @@ export class ModalAdminPage implements OnInit {
   ngOnInit() {
     this.ID = this.navParams.data.ID;
     this.arrayEmps = this.navParams.data.arrayEmps;
-    this.index = this.findEmployee(this.ID);
-    this.readEmployee(this.arrayEmps[this.index]); 
     if (this.department == "Accounting") { 
         this.departments[0]["isChecked"] = true;
     }
-    else if (this.department == "Engineering") {
+    if (this.department == "Engineering") {
         this.departments[1]["isChecked"] = true;
     }
-    else if (this.department == "Human Resources") { 
+    if (this.department == "Human Resources") { 
         this.departments[2]["isChecked"] = true;
     }
-    else { 
+    if (this.department == "Information Technology") { 
         this.departments[3]["isChecked"] = true;
     }
      
   }
-
-  public readEmployee(emp : object) {
-      this.name = emp["Name"];
-      this.gender = emp["Gender"];
-      this.date = emp["Birthdate"];
-      this.department = emp["Department"];
-      if (emp["MaritalStatus"] == "Married") { this.maritalStatus = true; } 
-      else { this.maritalStatus = false; }
-      this.role = emp["Role"];
-      this.notes = emp["Notes"];
-  } 
 
   async closeModal(save:boolean) {
     if (save == true) {
@@ -75,7 +62,7 @@ export class ModalAdminPage implements OnInit {
         let married = "Single";
         if (this.maritalStatus) { married = "Married"; }
         let emp = {ID: this.ID, Name : this.name, Gender:this.gender, Birthdate : this.date, Role : this.role , Department : this.department, MaritalStatus : married, Notes:this.notes};
-        this.arrayEmps[this.index] = emp;
+        this.arrayEmps[this.arrayEmps.length] = emp;
         const onClosedData: [any] = this.arrayEmps;
         await this.modalController.dismiss(onClosedData);
     }
@@ -91,14 +78,4 @@ public departments = [
     {val: "Human Resources", isChecked: false},
     {val: "Information Technology", isChecked: false},
 ];
-
-public findEmployee(ID: string) { 
-  for (let i = 0; i < this.arrayEmps.length; i++) {
-      if (this.arrayEmps[i]["ID"] == ID) {
-          return i; 
-      }    
-  }
-  // Entry not found
-  return -1;
-} 
 }

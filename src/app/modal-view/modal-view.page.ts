@@ -3,11 +3,11 @@ import { ModalController, NavParams } from '@ionic/angular';
 import { empty } from 'rxjs';
 
 @Component({
-  selector: 'app-modal-admin',
-  templateUrl: './modal-admin.page.html',
-  styleUrls: ['./modal-admin.page.scss'],
+  selector: 'app-modal-view',
+  templateUrl: './modal-view.page.html',
+  styleUrls: ['./modal-view.page.scss'],
 })
-export class ModalAdminPage implements OnInit {
+export class ModalViewPage implements OnInit {
 
   modalTitle:string;
   modelId:number;
@@ -18,7 +18,7 @@ export class ModalAdminPage implements OnInit {
   public gender : string; 
   public date : string;
   public department : string;  
-  public maritalStatus : boolean; 
+  public maritalStatus : string; 
   public role : string;
   public notes : string;
   public index : number;
@@ -54,8 +54,7 @@ export class ModalAdminPage implements OnInit {
       this.gender = emp["Gender"];
       this.date = emp["Birthdate"];
       this.department = emp["Department"];
-      if (emp["MaritalStatus"] == "Married") { this.maritalStatus = true; } 
-      else { this.maritalStatus = false; }
+      this.maritalStatus = emp["MaritalStatus"];
       this.role = emp["Role"];
       this.notes = emp["Notes"];
   } 

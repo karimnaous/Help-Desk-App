@@ -9,7 +9,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ModalAdminPageModule } from './modal-admin/modal-admin.module';
-
+import { ModalAddPageModule } from './modal-add/modal-add.module';
+import { ModalViewPageModule } from './modal-view/modal-view.module';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -17,7 +18,9 @@ import { ModalAdminPageModule } from './modal-admin/modal-admin.module';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    ModalAdminPageModule
+    ModalAdminPageModule,
+    ModalAddPageModule,
+    ModalViewPageModule,
   ],
   providers: [
     StatusBar,

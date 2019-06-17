@@ -1,4 +1,3 @@
-
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -11,38 +10,40 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid>
-      <ion-row>
-          <ion-col><strong>ID</strong></ion-col>
-          <ion-col><strong>Name</strong></ion-col>
-          <ion-col><strong>Gender</strong></ion-col>
-          <ion-col><strong>Birthdate</strong></ion-col>
-          <ion-col><strong>Role</strong></ion-col>
-          <ion-col><strong>Department</strong></ion-col>
-          <ion-col><strong>Marital Status</strong></ion-col>
-          <ion-col><strong>Notes</strong></ion-col>
-          <ion-col><strong>View</strong></ion-col>
-          <ion-col><strong>Edit</strong></ion-col>
-      </ion-row>
-      <ion-row *ngFor="let employee of employees; let i = index">
-              <ion-col>{{i}}</ion-col>
-              <ion-col>{{employee.Name}}</ion-col>
-              <ion-col>{{employee.Gender}}</ion-col>
-              <ion-col>{{employee.Birthdate}}</ion-col>
-              <ion-col>{{employee.Role}}</ion-col>
-              <ion-col>{{employee.Department}}</ion-col>
-              <ion-col>{{employee.MaritalStatus}}</ion-col>
-              <ion-col>{{employee.Notes}}</ion-col>
-              <ion-col><ion-button color="primary" (click)="openModal(i)">View</ion-button></ion-col>
-              <ion-col><ion-button color="primary" (click)="openModal(i)">Edit</ion-button></ion-col>
-      </ion-row>
+
+  <ion-grid id="nav">
+    <ion-row>
+      <ion-col style="background-color:silver" size="2"><strong>ID</strong></ion-col>
+      <ion-col style="background-color:silver" size="2"><strong>Name</strong></ion-col>
+      <ion-col style="background-color:silver" size="1"><strong>Gender</strong></ion-col>
+      <ion-col style="background-color:silver" size="1"><strong>Birthdate</strong></ion-col>
+      <ion-col style="background-color:silver" size="1"><strong>Role</strong></ion-col>
+      <ion-col style="background-color:silver" size="1"><strong>Department</strong></ion-col>
+      <ion-col style="background-color:silver" size="1"><strong>Marital Status</strong></ion-col>
+      <!-- <ion-col size="1"><strong>Notes</strong></ion-col> -->
+      <ion-col style="background-color:silver" size="1"><strong>View</strong></ion-col>
+      <ion-col style="background-color:silver" size="1"><strong>Edit</strong></ion-col>
+    </ion-row>
+    <ion-row *ngFor="let employee of employees; let i = index">
+      <ion-col size="2">{{employee.ID}}</ion-col>
+      <ion-col size="2">{{employee.Name}}</ion-col>
+      <ion-col size="1">{{employee.Gender}}</ion-col>
+      <ion-col size="1">{{employee.Birthdate}}</ion-col>
+      <ion-col size="1">{{employee.Role}}</ion-col>
+      <ion-col size="1">{{employee.Department}}</ion-col>
+      <ion-col size="1">{{employee.MaritalStatus}}</ion-col>
+      <!-- <ion-col size="1">{{employee.Notes}}</ion-col> -->
+      <ion-col size="1">
+        <ion-button (click)="openModalView(i)">View</ion-button>
+      </ion-col>
+      <ion-col size="1">
+        <ion-button (click)="openModal(i)">Edit</ion-button>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 
   <ion-content text-center>
-        <!-- <ion-icon slot="icon-only" name="star"></ion-icon> -->
-        <ion-button color="primary" (click)="openModal()">Add Employee</ion-button>
-        <!-- <p *ngIf="dataReturned">{{dataReturned}}</p> -->
+    <ion-button (click)="openModalAdd()">Add Employee</ion-button>
   </ion-content>
-  
-<ion-content>
 
+  <ion-content>

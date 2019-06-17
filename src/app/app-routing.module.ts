@@ -23,10 +23,6 @@ const routes: Routes = [
     path: 'admin', 
     loadChildren: './admin/admin.module#AdminPageModule' 
   },
-  { path: 'assign-role', loadChildren: './assign-role/assign-role.module#AssignRolePageModule' },
-  { path: 'create-user', loadChildren: './create-user/create-user.module#CreateUserPageModule' },
-
-
 ];
 
 @NgModule({
