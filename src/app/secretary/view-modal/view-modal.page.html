@@ -6,6 +6,10 @@
   
   <ion-content>
   
+      <ion-item>
+          <ion-label>ID: {{ record.id}}</ion-label>
+        </ion-item>
+   
     <ion-item>
       <ion-label>Employee Name</ion-label>
       <ion-select placeholder={{emp}}  [disabled]="true">
@@ -47,5 +51,7 @@
       </ion-item>
     </ion-list>
   
+    <button></button>
   </ion-content>
+
  <ion-button expand="block" (click)="close()">Close</ion-button>

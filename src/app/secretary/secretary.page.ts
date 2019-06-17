@@ -6,6 +6,7 @@ import { AssignModalPage } from '../secretary/assign-modal/assign-modal.page';
 import * as uuidv1 from 'uuid/v1';
 import * as _ from 'lodash';
 import { ViewModalPage } from './view-modal/view-modal.page';
+import { defaultComparator } from '@angular/common/src/pipes/keyvalue_pipe';
 
 
 @Component({
@@ -20,149 +21,177 @@ export class SecretaryPage implements OnInit {
   public employee_array: any[];
   public devWidth = window.innerWidth;
   public final_record: any;
+  public switch_priority_order: boolean;
 
   constructor(public modalController: ModalController) {
-
-    // localStorage.setItem("ObjArray", JSON.stringify([
-    //   {
-    //     "id": uuidv1(), "type": "txt1", "priority": "high", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
-    //       '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
-    //     "name": "name1"
-    //   },
-    //   {
-    //     "id": uuidv1(), "type": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
-    //       '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
-    //     "name": "name2"
-    //   },
-    //   {
-    //     "id": uuidv1(), "type": "txt1", "priority": "mod", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
-    //       '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
-    //     "name": "name3"
-    //   },
-    //   {
-    //     "id": uuidv1(), "type": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
-    //       '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
-    //     "name": "name4"
-    //   }
-    // ]))
+    this.switch_priority_order=false;
+    localStorage.setItem("ObjArray", JSON.stringify([
+      {
+        "id": uuidv1(), "type": "txt1", "priority": "high", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
+          '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
+        "name": "name1"
+      },
+      {
+        "id": uuidv1(), "type": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
+          '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
+        "name": "name2"
+      },
+      {
+        "id": uuidv1(), "type": "txt1", "priority": "mod", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
+          '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
+        "name": "name3"
+      },
+      {
+        "id": uuidv1(), "type": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
+          '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
+        "name": "name4"
+      }
+    ]))
 
 
     localStorage.setItem("EmployeeArray", JSON.stringify([{
       "id": uuidv1(), "name": "name1"
 
-    },{
+    }, {
       "id": uuidv1(), "name": "name2"
 
-    },{
+    }, {
       "id": uuidv1(), "name": "name3"
 
-    },{
+    }, {
       "id": uuidv1(), "name": "name4"
 
     }
-    ,{
+      , {
       "id": uuidv1(), "name": "name5"
 
     }]));
     this.incident_array = this.getIncidentArray();
-    console.log(this.incident_array);
+
     this.employee_array = this.getEmployeeArray();
-    
-    console.log(_.groupBy(this.incident_array, this.groupbyPriority));
-    //     var result=_.mixin({
-    //       sortWith : function(arr, customFn) {
-    //           return _.map(arr).sort(customFn)
-    //       }
-    //   }); 
-    //   _.sortWith(this.incident_array, function(a, b) {
-    //    if(a==='low')
-    //    return -1
-    //    if (b==="high")
-    //    return 1
-    //    else return 0
-    //  });
+    //console.log(_.groupBy(this.incident_array, this.groupbyPriority));
+    console.log(_.orderBy(this.incident_array, ['priority'], [
+      (a, b) => b - a
+    ]));
+ // this.incident_array =_.orderBy(this.incident_array, ['priority'], [
+    //   (a, b) => {
+    //     if (a === 'low')
+    //       return -1
+    //     if (b === "high")
+    //       return -1
+    //     else return -1
+    //   }
+    // ]);
 
-    //  console.log(_.chain(result)
-    //     .get('priority')
-    //     .sortWith(function(a, b) {
-    //         //determine if a <=> b 
-    //      })
-    //     .value());
-
-
-
-  }
-  groupbyPriority(object) {
-    if (object.priority === "high")
-      return "high"
-    if (object.priority === "low")
-      return "low"
-    if (object.priority === "mod")
-      return "mod"
-
-
-  }
-  onResize(event) {
-    this.devWidth = event.target.innerWidth;
-
-  }
-
-  ngOnInit() {
 
 
 
   }
 
-  async assignModal(id) {
-    var record = JSON.stringify(JSON.parse(localStorage.getItem("ObjArray")).find(x => x.id == id));
-    var localStorageItem = JSON.parse(localStorage.getItem("ObjArray"));
-
-    let myEmitter = new EventEmitter<any>();
-    myEmitter.subscribe(
-      v => this.getfromModal(v)
-    );
-    const modal = await this.modalController.create({
-      component: AssignModalPage,
-      componentProps: { recordItem: record, employees_list:this.employee_array, theEmitter: myEmitter }
-    }
-    );
-
-    await modal.present();
+  priorityascComparator(a, b) {
+    if (a === 'low')
+      return -1
+    if (b === "high")
+      return -1
+    if (a === 'high')
+      return 1
+    if (b === "low")
+      return 1
+    else return 0
   }
-  async viewModal(id) {
-    var record = JSON.stringify(JSON.parse(localStorage.getItem("ObjArray")).find(x => x.id == id));
-    var localStorageItem = JSON.parse(localStorage.getItem("ObjArray"));
-
-    const modal = await this.modalController.create({
-      component: ViewModalPage,
-      componentProps: { recordItem: record }
-    }
-    );
-
-    await modal.present();
+  prioritydescComparator(a, b) {
+    if (a === 'low')
+      return 1
+    if (b === "high")
+      return 1
+    if (a === 'high')
+      return -1
+    if (b === "low")
+      return -1
+    else return 0
   }
-
-
-  getIncidentArray(): Object[] {
-    var localStorageItem = JSON.parse(localStorage.getItem("ObjArray"));
-    return localStorageItem;
-
+  sortbyascPriority()
+  {
+    this.switch_priority_order=!this.switch_priority_order;
+    this.incident_array.sort((a, b) => this.priorityascComparator(a.priority, b.priority));
   }
-  getEmployeeArray(): Object[] {
-    var employees = JSON.parse(localStorage.getItem("EmployeeArray"));
-    return employees;
+  sortbydescPriority()
+  {
+    this.switch_priority_order=!this.switch_priority_order;
+    this.incident_array.sort((a, b) => this.prioritydescComparator(a.priority, b.priority));
   }
 
-  getfromModal(record) {
-    record = JSON.parse(record);
-    var localStorageItem = JSON.parse(localStorage.getItem("ObjArray"));
-    var old_record = localStorageItem.find(x => x.id == record.id);
-    var index = localStorageItem.indexOf(old_record);
-    console.log(index);
-    localStorageItem.splice(index, 1, record);
-    window.localStorage.setItem("ObjArray", JSON.stringify(localStorageItem));
-    this.incident_array = this.getIncidentArray();
+// groupbyPriority(object) {
+//   if (object.priority === "high")
+//     return "high"
+//   if (object.priority === "low")
+//     return "low"
+//   if (object.priority === "mod")
+//     return "mod"
+
+
+// }
+onResize(event) {
+  this.devWidth = event.target.innerWidth;
+
+}
+
+ngOnInit() {
+
+
+
+}
+
+async assignModal(id) {
+  var record = JSON.stringify(JSON.parse(localStorage.getItem("ObjArray")).find(x => x.id == id));
+  var localStorageItem = JSON.parse(localStorage.getItem("ObjArray"));
+
+  let myEmitter = new EventEmitter<any>();
+  myEmitter.subscribe(
+    v => this.getfromModal(v)
+  );
+  const modal = await this.modalController.create({
+    component: AssignModalPage,
+    componentProps: { recordItem: record, employees_list: this.employee_array, theEmitter: myEmitter }
   }
+  );
+
+  await modal.present();
+}
+async viewModal(id) {
+  var record = JSON.stringify(JSON.parse(localStorage.getItem("ObjArray")).find(x => x.id == id));
+  var localStorageItem = JSON.parse(localStorage.getItem("ObjArray"));
+
+  const modal = await this.modalController.create({
+    component: ViewModalPage,
+    componentProps: { recordItem: record }
+  }
+  );
+
+  await modal.present();
+}
+
+
+getIncidentArray(): Object[] {
+  var localStorageItem = JSON.parse(localStorage.getItem("ObjArray"));
+  return localStorageItem;
+
+}
+getEmployeeArray(): Object[] {
+  var employees = JSON.parse(localStorage.getItem("EmployeeArray"));
+  return employees;
+}
+
+getfromModal(record) {
+  record = JSON.parse(record);
+  var localStorageItem = JSON.parse(localStorage.getItem("ObjArray"));
+  var old_record = localStorageItem.find(x => x.id == record.id);
+  var index = localStorageItem.indexOf(old_record);
+  console.log(index);
+  localStorageItem.splice(index, 1, record);
+  window.localStorage.setItem("ObjArray", JSON.stringify(localStorageItem));
+  this.incident_array = this.getIncidentArray();
+}
 
 
 }
