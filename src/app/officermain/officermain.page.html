@@ -1,8 +1,9 @@
 <ion-header>
   <ion-toolbar>
+
     <ion-title>Officer</ion-title>
     <ion-select [(ngModel)]="priority" text-right (ionChange)="onChange()" [interfaceOptions]="customActionSheetOptions"
-      interface="action-sheet" placeholder="Filter by">
+      interface="action-sheet" placeholder="Filter by" slot="end">
       <ion-select-option value="ViewAll">View All</ion-select-option>
       <ion-select-option value="Low">Low</ion-select-option>
       <ion-select-option value="Medium">Medium</ion-select-option>

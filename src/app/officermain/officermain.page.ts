@@ -45,6 +45,7 @@ export class OfficermainPage {
   // }
 
   public task = JSON.parse(localStorage.getItem('task'));
+
   public myuser = JSON.parse(localStorage.getItem('myuser'));
   private priority: string= "ViewAll";
   public task_filtered = this.data_filter();
@@ -87,18 +88,6 @@ export class OfficermainPage {
    }
    
 }
-
-  // randomFunc() {
-  //   return new Promise(function (resolve, reject) {
-  //     setTimeout(function () {
-  //       resolve({
-  //         id: 123
-  //       });
-  //     }, 3000);
-  //   });
-  // }
-
-  
 
 }
 

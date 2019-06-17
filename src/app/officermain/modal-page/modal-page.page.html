@@ -12,7 +12,7 @@
 </style>
 
 <ion-content>
-    <ion-list>
+    <ion-list (ionChange)="allChange()">
           <ion-item>
               <ion-label>Officer</ion-label>
               <ion-select (ionChange)="onChange()" [(ngModel)]="username" [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Select One">

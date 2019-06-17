@@ -15,6 +15,7 @@ export class ModalPagePage implements OnInit {
   private priority: string;
   private date: string;
   private change: boolean= false;
+  private allChange1: boolean= false;
 
   // @Input() value: number;
   private id1: any = this.navParams.get('value');
@@ -67,8 +68,10 @@ export class ModalPagePage implements OnInit {
 
     localStorage.removeItem('task');
     localStorage.setItem('task', JSON.stringify(this.task));
+    // const onClosedData = [this.username, this.priority, this.date, checked];
+    // await this.modalController.dismiss(onClosedData); 
     this.modalController.dismiss();
-    location.reload();
+    //location.reload();
   }
 
   //public task1=JSON.parse(localStorage.getItem('task1'));
@@ -92,6 +95,7 @@ export class ModalPagePage implements OnInit {
   }
 
   async presentAlertConfirm() {
+    if (this.allChange1 == true) {
     const alert = await this.alertController.create({
       header: 'Cancel',
       message: 'Are you sure you want to cancel your changes?',
@@ -112,7 +116,8 @@ export class ModalPagePage implements OnInit {
       ]
     });
 
-    await alert.present();
+    await alert.present();}
+    else { this.modalController.dismiss();}
   }
 
   async onChange()
@@ -122,6 +127,11 @@ export class ModalPagePage implements OnInit {
       this.change=false;
     }
     else {this.change=true;}
+  }
+
+  async allChange()
+  {
+      this.allChange1= true;
   }
 
   ngOnInit() {
