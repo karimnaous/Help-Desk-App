@@ -20,14 +20,36 @@
               </ion-select>
             </ion-item>
         
-       <ion-item>
-            <ion-label>Priority</ion-label>
-            <ion-select [(ngModel)]="priority" placeholder="Select One">
+       <!-- <ion-item> -->
+            <!-- <ion-label>Priority</ion-label> -->
+
+            <ion-radio-group [(ngModel)]="priority">
+                <ion-list-header>
+                 <h6><ion-label>Priority</ion-label></h6>
+                </ion-list-header>
+            
+                <ion-item>
+                  <ion-label>Low</ion-label>
+                  <ion-radio slot="start" value="Low" checked></ion-radio>
+                </ion-item>
+            
+                <ion-item>
+                  <ion-label>Medium</ion-label>
+                  <ion-radio slot="start" value="Medium"></ion-radio>
+                </ion-item>
+            
+                <ion-item>
+                  <ion-label>High</ion-label>
+                  <ion-radio slot="start" value="High"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
+
+            <!-- <ion-select [(ngModel)]="priority" placeholder="Select One">
               <ion-select-option value="Low">Low</ion-select-option>
               <ion-select-option value="Medium">Medium</ion-select-option>
               <ion-select-option value="High">High</ion-select-option>
-            </ion-select>
-          </ion-item>
+            </ion-select> -->
+          <!-- </ion-item> -->
 
           <ion-item>
               <ion-label>Date</ion-label>

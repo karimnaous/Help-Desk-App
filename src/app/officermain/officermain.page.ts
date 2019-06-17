@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalPagePage } from '../modal-page/modal-page.page';
 import { ViewTasksPage } from '../officermain/view-tasks/view-tasks.page';
+import { Guid } from "guid-typescript";
 
 @Component({
   selector: 'app-officermain',
@@ -13,17 +14,17 @@ export class OfficermainPage {
 
 
   constructor(public modalController: ModalController) {
-    // let task = [
-    //   {id:"0", username:"Layal", priority:"High", date:"2019-06-13T11:14:12.880+03:00", domain:["Project Management","IT","Architecture"]},
-    //   {id:"1", username:"Alex", priority:"Low", date:"2019-04-15T11:14:12.880+06:00", domain:["Mechanical","Architecture"]},
-    //   {id:"2", username:"Layal", priority:"Medium", date:"2019-09-20T11:14:12.880+06:00", domain:["Civil","Architecture"]}
-    // ];
+    let task = [
+      {id: Guid.create()["value"], username:"Layal", priority:"High", date:"2019-06-13T11:14:12.880+03:00", domain:["Project Management","IT","Architecture"], "status":"Assigned"},
+      {id: Guid.create()["value"], username:"Alex", priority:"Low", date:"2019-04-15T11:14:12.880+06:00", domain:["Mechanical","Architecture"], "status":"Assigned"},
+      {id: Guid.create()["value"], username:"Layal", priority:"Medium", date:"2019-09-20T11:14:12.880+06:00", domain:["Civil","Architecture"], "status":"Assigned"}
+    ];
 
-    // localStorage.setItem('task', JSON.stringify(task));
+    localStorage.setItem('task', JSON.stringify(task));
 
-    // let myuser = {user: "Layal"};
+    let myuser = {user: "Layal"};
 
-    // localStorage.setItem('myuser', JSON.stringify(myuser));
+    localStorage.setItem('myuser', JSON.stringify(myuser));
 
   }
 
@@ -47,6 +48,7 @@ export class OfficermainPage {
   public myuser = JSON.parse(localStorage.getItem('myuser'));
   private priority: string= "ViewAll";
   public task_filtered = this.data_filter();
+ 
 
   async presentModalReassign(id: any) {
     const modal = await this.modalController.create({ component: ModalPagePage, componentProps: { value: id } });
@@ -71,6 +73,19 @@ export class OfficermainPage {
   onChange(){
       this.task_filtered = this.data_filter();
   }
+
+  findTaskIndex(guid:any)
+  {
+    var index=0;
+   for(let entry of this.task)
+   {
+     if (entry.id!=guid)
+     {
+        index++;
+     }
+   }
+   return index;
+}
   
 
 

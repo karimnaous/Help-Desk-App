@@ -48,10 +48,10 @@
         <ion-label>{{entry.domain}}</ion-label>
     </ion-col>
     <ion-col>
-        <ion-button color="dark" (click)="presentModalReassign(entry.id)">Reassign Task</ion-button>
+        <ion-button color="dark" (click)="presentModalReassign(findTaskIndex(entry.id))">Reassign Task</ion-button>
     </ion-col>
     <ion-col>
-        <ion-button color="dark" (click)="presentModalView(entry.id)">View Task</ion-button>
+        <ion-button color="dark" (click)="presentModalView(findTaskIndex(entry.id))">View Task</ion-button>
     </ion-col>  
     </ion-item>
   </ng-container> 
