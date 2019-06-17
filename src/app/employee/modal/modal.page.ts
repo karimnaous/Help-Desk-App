@@ -48,6 +48,7 @@ export class ModalPage implements OnInit {
 
     arr = []
     this.modalController.dismiss();
+    location.reload();
 
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { analyzeAndValidateNgModules, ResourceLoader } from '@angular/compiler';
 
 @Component({
   selector: 'app-edit',
@@ -17,8 +17,8 @@ export class EditPage implements OnInit {
   public newDomain: any = this.navParams.get("Dom");
   public newPriority: any =  this.navParams.get("Priority");
   public newDesc: any = this.navParams.get("Desc");
-  newDesc: any;
-  newDesc: any;
+
+ 
 
   constructor(private modalController: ModalController, public navParams: NavParams) { }
 
