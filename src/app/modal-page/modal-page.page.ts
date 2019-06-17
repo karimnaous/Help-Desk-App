@@ -3,8 +3,6 @@ import { ModalController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { Input } from '@angular/core';
 import { NavParams } from '@ionic/angular';
-import { userInfo } from 'os';
-
 
 @Component({
   selector: 'app-modal-page',

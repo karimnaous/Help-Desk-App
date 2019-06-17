@@ -13,17 +13,6 @@ export class OfficermainPage {
 
 
   constructor(public modalController: ModalController) {
-
-    // let officer = [
-    //   {username:"Layal"},
-    //   {username:"Alex"},
-    //   {username:"Lynn"},
-    //   {username:"Tala"},
-    //   {username:"Karim"}
-    // ];
-
-    // localStorage.setItem('officer', JSON.stringify(officer));
-
     // let task = [
     //   {id:"0", username:"Layal", priority:"High", date:"2019-06-13T11:14:12.880+03:00", domain:["Project Management","IT","Architecture"]},
     //   {id:"1", username:"Alex", priority:"Low", date:"2019-04-15T11:14:12.880+06:00", domain:["Mechanical","Architecture"]},
@@ -43,7 +32,7 @@ export class OfficermainPage {
   //   this.randomFunc()
   //   .then(function (ret) {
   //     console.log('1st', ret);
-  //    this.randomFunc()
+  //     this.randomFunc()
   //     .then(function(ret) {
   //       console.log('2nd', ret);
   //     });
@@ -56,6 +45,8 @@ export class OfficermainPage {
 
   public task = JSON.parse(localStorage.getItem('task'));
   public myuser = JSON.parse(localStorage.getItem('myuser'));
+  private priority: string= "ViewAll";
+  public task_filtered = this.data_filter();
 
   async presentModalReassign(id: any) {
     const modal = await this.modalController.create({ component: ModalPagePage, componentProps: { value: id } });
@@ -67,6 +58,22 @@ export class OfficermainPage {
     await modal.present();
   }
 
+  data_filter(){
+    if(this.priority=="ViewAll")
+    {
+      return this.task;
+    }
+    else{
+    return this.task.filter( element => element.priority == this.priority);
+    }
+  } 
+
+  onChange(){
+      this.task_filtered = this.data_filter();
+  }
+  
+
+
   // randomFunc() {
   //   return new Promise(function (resolve, reject) {
   //     setTimeout(function () {
@@ -77,6 +84,7 @@ export class OfficermainPage {
   //   });
   // }
 
+  
 
 }
 
