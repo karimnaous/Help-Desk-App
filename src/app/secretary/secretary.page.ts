@@ -25,28 +25,28 @@ export class SecretaryPage implements OnInit {
 
   constructor(public modalController: ModalController) {
     this.switch_priority_order=false;
-    localStorage.setItem("ObjArray", JSON.stringify([
-      {
-        "id": uuidv1(), "type": "txt1", "priority": "high", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
-          '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
-        "name": "name1"
-      },
-      {
-        "id": uuidv1(), "type": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
-          '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
-        "name": "name2"
-      },
-      {
-        "id": uuidv1(), "type": "txt1", "priority": "mod", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
-          '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
-        "name": "name3"
-      },
-      {
-        "id": uuidv1(), "type": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
-          '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
-        "name": "name4"
-      }
-    ]))
+    // localStorage.setItem("ObjArray", JSON.stringify([
+    //   {
+    //     "id": uuidv1(), "type": "txt1", "priority": "high", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
+    //       '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
+    //     "name": "name1"
+    //   },
+    //   {
+    //     "id": uuidv1(), "type": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
+    //       '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
+    //     "name": "name2"
+    //   },
+    //   {
+    //     "id": uuidv1(), "type": "txt1", "priority": "mod", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
+    //       '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
+    //     "name": "name3"
+    //   },
+    //   {
+    //     "id": uuidv1(), "type": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
+    //       '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
+    //     "name": "name4"
+    //   }
+    // ]))
 
 
     // localStorage.setItem("EmployeeArray", JSON.stringify([{
@@ -70,43 +70,21 @@ export class SecretaryPage implements OnInit {
 
     this.employee_array = this.getEmployeeArray();
     //console.log(_.groupBy(this.incident_array, this.groupbyPriority));
-    console.log(_.orderBy(this.incident_array, ['priority'], [
-      (a, b) => b - a
-    ]));
- // this.incident_array =_.orderBy(this.incident_array, ['priority'], [
-    //   (a, b) => {
-    //     if (a === 'low')
-    //       return -1
-    //     if (b === "high")
-    //       return -1
-    //     else return -1
-    //   }
-    // ]);
-
-
-
 
   }
 
   priorityascComparator(a, b) {
-    if (a === 'low')
+    if (a === 'low' || b === "high")
       return -1
-    if (b === "high")
-      return -1
-    if (a === 'high')
-      return 1
-    if (b === "low")
+
+    if (a === 'high' || b === "low")
       return 1
     else return 0
   }
   prioritydescComparator(a, b) {
-    if (a === 'low')
+    if (a === 'low' || b === "high")
       return 1
-    if (b === "high")
-      return 1
-    if (a === 'high')
-      return -1
-    if (b === "low")
+    if (a === 'high' || b === "low")
       return -1
     else return 0
   }
@@ -121,17 +99,7 @@ export class SecretaryPage implements OnInit {
     this.incident_array.sort((a, b) => this.prioritydescComparator(a.priority, b.priority));
   }
 
-// groupbyPriority(object) {
-//  return
-//   if (object.priority === "high")
-//     return "high"
-//   if (object.priority === "low")
-//     return "low"
-//   if (object.priority === "mod")
-//     return "mod"
 
-
-// }
 onResize(event) {
   this.devWidth = event.target.innerWidth;
 
