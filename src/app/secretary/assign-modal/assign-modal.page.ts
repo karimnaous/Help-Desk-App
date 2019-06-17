@@ -21,9 +21,8 @@ export class AssignModalPage implements OnInit {
   public emp: "";
   checkBoxList: any;
 
-  private _anEmitter: EventEmitter<any>;
+  private submit_and_delete: any;
 
-  @Output() change: EventEmitter<Object> = new EventEmitter<Object>();
   constructor(private router: Router, private modalController: ModalController, private navParams: NavParams, private alertController: AlertController, private Actionsheet: ActionSheetController) {
 
 
@@ -40,8 +39,8 @@ export class AssignModalPage implements OnInit {
     this.emp = this.record.name;
     console.log(this.record.checkBoxList);
     this.checkBoxList = JSON.parse(this.record.checkBoxList);
-    this._anEmitter = this.navParams.data.theEmitter;
-    console.log(this._anEmitter);
+    this.submit_and_delete = this.navParams.data.submitAndRemoveFunc;
+    console.log(this.submit_and_delete);
     this.incident_array = this.getIncidentArray();
     this.employee_array=this.getEmployeeArray();
   }
@@ -100,13 +99,8 @@ export class AssignModalPage implements OnInit {
     current_record.date = this.date;
     current_record.checkBoxList = JSON.stringify(this.checkBoxList);
     current_record.name = this.emp;
-
-
-    this.myEventAction(JSON.stringify(current_record));
     this.modalController.dismiss();
-  }
-  private myEventAction(somePassedArg: any) {
-    this._anEmitter.emit(somePassedArg);
+    this.submit_and_delete(current_record);
   }
 
 
