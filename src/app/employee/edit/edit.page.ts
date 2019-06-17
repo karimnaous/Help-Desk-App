@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
@@ -8,27 +8,21 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
   styleUrls: ['./edit.page.scss'],
 })
 export class EditPage implements OnInit {
-  public newName: any;
-  public otherId: any;
-  public newIncidentTitle: any;
-  public newDate: any;
-  public newCategory: any;
-  public newDomain: any;
-  public newPriority: any;
-  public newDesc: any; 
+  
+  public newName: any = this.navParams.get("Name");
+  public otherId: any = this.navParams.get("ID");
+  public newIncidentTitle: any = this.navParams.get("IncidentTitle")
+  public newDate: any = this.navParams.get("Date");
+  public newCategory: any = this.navParams.get("Category");
+  public newDomain: any = this.navParams.get("Dom");
+  public newPriority: any =  this.navParams.get("Priority");
+  public newDesc: any = this.navParams.get("Desc");
+  newDesc: any;
+  newDesc: any;
 
-  constructor(private modalController: ModalController) { }
+  constructor(private modalController: ModalController, public navParams: NavParams) { }
 
   ngOnInit() {
-    var employee = JSON.parse(localStorage.getItem("Employees"));
-    this.otherId = JSON.stringify(employee[0]["id"]);
-    this.newName = JSON.stringify(employee[0]["Full Name"]);
-    this.newIncidentTitle = JSON.stringify(employee[0]["Incident Title"]);
-    this.newDate = JSON.stringify(employee[0]["Date"]);
-    this.newCategory = JSON.stringify(employee[0]["Category"]);
-    this.newDomain = JSON.stringify(employee[0]["Domain"]);
-    this.newPriority = JSON.stringify(employee[0]["Priority"]);
-    this.newDesc = JSON.stringify(employee[0]["Description"]);
   }
 
   saveEdit() {
@@ -41,6 +35,7 @@ export class EditPage implements OnInit {
       }
     }
     var obj = { "id": this.otherId, "Full Name": this.newName, "Incident Title": this.newIncidentTitle, "Date": this.newDate, "Category": this.newCategory, "Domain": checked, "Priority": this.newPriority, "Description": this.newDesc }
+    arr = JSON.parse(localStorage.getItem("Employees"));
     arr.push(obj);
     localStorage.setItem('Employees', JSON.stringify(arr));
 

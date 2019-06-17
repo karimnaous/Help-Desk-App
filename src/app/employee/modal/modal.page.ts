@@ -13,12 +13,12 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
 })
 export class ModalPage implements OnInit {
 
-  name: any ;
-  incidentTitle: any ;
-  date: any ;
-  category: any  ;
-  priority: any  ;
-  desc: any ;
+  name: any;
+  incidentTitle: any;
+  date: any;
+  category: any;
+  priority: any;
+  desc: any;
   public id: any;
 
   constructor(private modalController: ModalController) {
@@ -38,11 +38,7 @@ export class ModalPage implements OnInit {
         checked.push(entry.valueM)
       }
     }
-
-
-
-
-    this.id = Guid.create().toJSON();
+    this.id = Guid.create();
     var obj = { "id": this.id.value, "Full Name": this.name, "Incident Title": this.incidentTitle, "Date": this.date, "Category": this.category, "Domain": checked, "Priority": this.priority, "Description": this.desc }
     if (localStorage.length != 0) {
       arr = JSON.parse(localStorage.getItem("Employees"));

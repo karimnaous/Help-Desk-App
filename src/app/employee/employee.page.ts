@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NavController, ModalController } from '@ionic/angular';
 import { ModalPage } from '../Employee/modal/modal.page';
 import { ViewPage } from '../Employee/view/view.page';
@@ -16,11 +16,33 @@ export class EmployeePage implements OnInit {
 
 
   constructor(private modalController: ModalController) { }
+  name: any;
+  incidentTitle: any;
+  date: any;
+  category: any;
+  priority: any;
+  desc: any;
+  public dom: any;
+  public id: any;
 
-
+  public information = [
+  ];
 
   ngOnInit() {
 
+
+    var newEmployee = JSON.parse(localStorage.getItem("Employees"));
+    for (let i = 0; i < newEmployee.length; i++) {
+      this.name = JSON.stringify(newEmployee[i]["Full Name"]);
+      this.incidentTitle = JSON.stringify(newEmployee[i]["Incident Title"]);
+      this.date = JSON.stringify(newEmployee[i]["Date"]);
+      this.category = JSON.stringify(newEmployee[i]["Category"]);
+      this.dom = JSON.stringify(newEmployee[i]["Domain"]);
+      this.priority = JSON.stringify(newEmployee[i]["Priority"]);
+      this.desc = JSON.stringify(newEmployee[i]["Description"]);
+      this.id = JSON.stringify(newEmployee[i]["id"]);
+      this.information.push({ yourId: this.id, yourName: this.name, yourIncidentTitle: this.incidentTitle, yourDate: this.date, yourCategory: this.category, yourDom: this.dom, yourPrior: this.priority, yourDesc: this.desc });
+    }
   }
 
   async openModal() {
@@ -28,13 +50,15 @@ export class EmployeePage implements OnInit {
     modal.present();
   }
 
-  async openView() {
-    const view = await this.modalController.create({ component: ViewPage });
+  async openView(newId: any, newName: any, newInciTitle: any, newDate: any, newCategory: any, newDom: any, newPriority: any, newDesc: any) {
+    const view = await this.modalController.create({ component: ViewPage, componentProps: {valueID: newId, valueName: newName, valueIncidentTitle: newInciTitle, valueDate: newDate, valueCategory: newCategory, valueDom: newDom, valuePriority: newPriority, valueDesc: newDesc }});
     view.present();
   }
 
-  async openEdit() {
-    const edit = await this.modalController.create({ component: EditPage });
+  async openEdit(newId: any, newName: any, newInciTitle: any, newDate: any, newCategory: any, newDom: any, newPriority: any, newDesc: any) {
+    const edit = await this.modalController.create({ component: EditPage, componentProps: {ID: newId, Name: newName, IncidentTitle: newInciTitle, Date: newDate, Category: newCategory, Dom: newDom, Priority: newPriority, Desc: newDesc}});
     edit.present();
   }
+
+
 }
