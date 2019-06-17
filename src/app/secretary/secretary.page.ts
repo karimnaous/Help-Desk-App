@@ -1,13 +1,12 @@
 import { Component, OnInit, Input, EventEmitter, Pipe } from '@angular/core';
 
-import { ModalController } from '@ionic/angular';
+import { ModalController , ToastController } from '@ionic/angular';
 import { AssignModalPage } from '../secretary/assign-modal/assign-modal.page';
 
 import * as uuidv1 from 'uuid/v1';
 import * as _ from 'lodash';
 import { ViewModalPage } from './view-modal/view-modal.page';
 import { defaultComparator } from '@angular/common/src/pipes/keyvalue_pipe';
-
 
 @Component({
   selector: 'app-secretary',
@@ -23,7 +22,7 @@ export class SecretaryPage implements OnInit {
   public final_record: any;
   public switch_priority_order: boolean;
 
-  constructor(public modalController: ModalController) {
+  constructor(public modalController: ModalController,private toastController: ToastController) {
     this.switch_priority_order=false;
     // localStorage.setItem("ObjArray", JSON.stringify([
     //   {
@@ -144,7 +143,7 @@ getEmployeeArray(): Object[] {
   return employees;
 }
 
-savefromModal(record) {
+async savefromModal(record) {
   record = JSON.parse(record);
   var localStorageItem = JSON.parse(localStorage.getItem("ObjArray"));
   var old_record = localStorageItem.find(x => x.id == record.id);
@@ -152,6 +151,8 @@ savefromModal(record) {
   localStorageItem.splice(index, 1);
   window.localStorage.setItem("ObjArray", JSON.stringify(localStorageItem));
   this.incident_array = this.getIncidentArray();
+  const toast = await this.toastController.create({ message: 'Submitted Successfully', duration: 2000 }); toast.present();
+  
 }
 
 
