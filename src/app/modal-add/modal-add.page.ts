@@ -9,11 +9,18 @@ import { ModalController, NavParams } from '@ionic/angular';
 })
 export class ModalAddPage implements OnInit {
 
-  modalTitle:string;
-  modelId:number;
   arrayEmps: [any];
   ID: string; 
 
+  emp = {
+    name : "", 
+    gender : "", 
+    date : "",
+    department : "",  
+    maritalStatus : false, 
+    role : "",
+    notes : "",
+}
   public name = ""; 
   public gender = ""; 
   public date = "";
@@ -22,7 +29,13 @@ export class ModalAddPage implements OnInit {
   public role = "";
   public notes = "";
   public index = "";
-  
+
+  // Bound methods
+  saveEmployees;
+  departments;
+  saveDepartment;
+  readDepartment;
+
 
   constructor(
     private modalController: ModalController,
@@ -31,51 +44,31 @@ export class ModalAddPage implements OnInit {
 
   ngOnInit() {
     this.ID = this.navParams.data.ID;
+    this.departments = this.navParams.data.departments;
     this.arrayEmps = this.navParams.data.arrayEmps;
-    if (this.department == "Accounting") { 
-        this.departments[0]["isChecked"] = true;
-    }
-    if (this.department == "Engineering") {
-        this.departments[1]["isChecked"] = true;
-    }
-    if (this.department == "Human Resources") { 
-        this.departments[2]["isChecked"] = true;
-    }
-    if (this.department == "Information Technology") { 
-        this.departments[3]["isChecked"] = true;
-    }
-     
+    this.saveEmployees = this.navParams.data.saveEmployees;
+    this.saveDepartment = this.navParams.data.saveDepartment;  
+    this.readDepartment = this.navParams.data.saveDepartment;
+    // this.readDepartment();
   }
 
   async closeModal(save:boolean) {
     if (save == true) {
-        var i;
-        this.department = "";
-        for (i = 0; i < this.departments.length; i++) {
-            if (this.departments[i]["isChecked"]) {
-                if (this.department != "") {
-                  this.department = this.department + ", " + this.departments[i]["val"];
-                }
-                else { this.department = this.departments[i]["val"]; } 
-            }
-        }
+        this.department = this.saveDepartment(this.department);
         let married = "Single";
         if (this.maritalStatus) { married = "Married"; }
         let emp = {ID: this.ID, Name : this.name, Gender:this.gender, Birthdate : this.date, Role : this.role , Department : this.department, MaritalStatus : married, Notes:this.notes};
-        this.arrayEmps[this.arrayEmps.length] = emp;
-        const onClosedData: [any] = this.arrayEmps;
+        this.arrayEmps.push(emp);
+        this.saveEmployees(this.arrayEmps);
+        const onClosedData = null;
         await this.modalController.dismiss(onClosedData);
     }
     else {
-        const onClosedData: [any] = this.arrayEmps;
+        const onClosedData = null;
         await this.modalController.dismiss(onClosedData);
     }
   }
 
-public departments = [
-    {val: "Accounting", isChecked: false},
-    {val: "Engineering", isChecked: false},
-    {val: "Human Resources", isChecked: false},
-    {val: "Information Technology", isChecked: false},
-];
+
+
 }

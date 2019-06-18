@@ -9,11 +9,11 @@ import { empty } from 'rxjs';
 })
 export class ModalAdminPage implements OnInit {
 
-  modalTitle:string;
-  modelId:number;
   arrayEmps: [any];
   ID: string; 
-  findEmployeeBound;
+
+  // emp;
+
   public name : string; 
   public gender : string; 
   public date : string;
@@ -23,6 +23,13 @@ export class ModalAdminPage implements OnInit {
   public notes : string;
   public index : number;
   
+  readDepartment;
+  departments;
+  findEmployee;
+  saveEmployees;
+  saveDepartment; 
+  readEmployeeBound;
+
 
   constructor(
     private modalController: ModalController,
@@ -32,25 +39,22 @@ export class ModalAdminPage implements OnInit {
   ngOnInit() {
     this.ID = this.navParams.data.ID;
     this.arrayEmps = this.navParams.data.arrayEmps;
-    this.findEmployeeBound = this.navParams.data.findEmployee;
-    this.index = this.findEmployeeBound(this.ID);
-    this.readEmployee(this.arrayEmps[this.index]); 
-    if (this.department == "Accounting") { 
-        this.departments[0]["isChecked"] = true;
-    }
-    else if (this.department == "Engineering") {
-        this.departments[1]["isChecked"] = true;
-    }
-    else if (this.department == "Human Resources") { 
-        this.departments[2]["isChecked"] = true;
-    }
-    else { 
-        this.departments[3]["isChecked"] = true;
-    }
-     
+    this.findEmployee = this.navParams.data.findEmployee;
+    this.saveEmployees = this.navParams.data.saveEmployees;
+    this.departments = this.navParams.data.departments;
+    this.readDepartment = this.navParams.data.readDepartment;
+    this.saveDepartment = this.navParams.data.saveDepartment;
+    // this.readEmployeeBound = this.navParams.data.readEmployee; 
+    // this.emp = this.navParams.data.emp; 
+    this.index = this.findEmployee(this.ID);
+
+    this.readEmployee(this.arrayEmps[this.index]);
+    this.readDepartment(this.department);
+  
   }
 
   public readEmployee(emp : object) {
+      console.log("Inside readEmployee");
       this.name = emp["Name"];
       this.gender = emp["Gender"];
       this.date = emp["Birthdate"];
@@ -63,43 +67,19 @@ export class ModalAdminPage implements OnInit {
 
   async closeModal(save:boolean) {
     if (save == true) {
-        var i;
-        this.department = "";
-        for (i = 0; i < this.departments.length; i++) {
-            if (this.departments[i]["isChecked"]) {
-                if (this.department != "") {
-                  this.department = this.department + ", " + this.departments[i]["val"];
-                }
-                else { this.department = this.departments[i]["val"]; } 
-            }
-        }
+        this.department = this.saveDepartment();
         let married = "Single";
-        if (this.maritalStatus) { married = "Married"; }
+        if (this.maritalStatus) { let married = "Married"; }
         let emp = {ID: this.ID, Name : this.name, Gender:this.gender, Birthdate : this.date, Role : this.role , Department : this.department, MaritalStatus : married, Notes:this.notes};
         this.arrayEmps[this.index] = emp;
-        const onClosedData: [any] = this.arrayEmps;
+        this.saveEmployees(this.arrayEmps);
+        const onClosedData = null;
         await this.modalController.dismiss(onClosedData);
     }
     else {
-        const onClosedData: [any] = this.arrayEmps;
+        const onClosedData = null;;
         await this.modalController.dismiss(onClosedData);
     }
   }
 
-public departments = [
-    {val: "Accounting", isChecked: false},
-    {val: "Engineering", isChecked: false},
-    {val: "Human Resources", isChecked: false},
-    {val: "Information Technology", isChecked: false},
-];
-
-public findEmployee(ID: string) { 
-  for (let i = 0; i < this.arrayEmps.length; i++) {
-      if (this.arrayEmps[i]["ID"] == ID) {
-          return i; 
-      }    
-  }
-  // Entry not found
-  return -1;
-} 
 }

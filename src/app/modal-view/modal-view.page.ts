@@ -12,8 +12,9 @@ export class ModalViewPage implements OnInit {
   modalTitle:string;
   modelId:number;
   arrayEmps: [any];
-  
+  findEmployee; 
   ID: string; 
+  departments;
   public name : string; 
   public gender : string; 
   public date : string;
@@ -32,6 +33,8 @@ export class ModalViewPage implements OnInit {
   ngOnInit() {
     this.ID = this.navParams.data.ID;
     this.arrayEmps = this.navParams.data.arrayEmps;
+    this.findEmployee = this.navParams.data.findEmployee;
+    this.departments = this.navParams.data.departments;
     this.index = this.findEmployee(this.ID);
     this.readEmployee(this.arrayEmps[this.index]); 
     if (this.department == "Accounting") { 
@@ -79,25 +82,8 @@ export class ModalViewPage implements OnInit {
         await this.modalController.dismiss(onClosedData);
     }
     else {
-        const onClosedData: [any] = this.arrayEmps;
+        const onClosedData = null;
         await this.modalController.dismiss(onClosedData);
     }
   }
-
-public departments = [
-    {val: "Accounting", isChecked: false},
-    {val: "Engineering", isChecked: false},
-    {val: "Human Resources", isChecked: false},
-    {val: "Information Technology", isChecked: false},
-];
-
-public findEmployee(ID: string) { 
-  for (let i = 0; i < this.arrayEmps.length; i++) {
-      if (this.arrayEmps[i]["ID"] == ID) {
-          return i; 
-      }    
-  }
-  // Entry not found
-  return -1;
-} 
 }

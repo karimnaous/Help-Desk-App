@@ -6,6 +6,10 @@
     <ion-title>
       Administrator
     </ion-title>
+    <ion-fab-button size="small" slot="end" color="primary" (click)="openModalAdd()">
+        <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <!-- <ion-button slot="end" (click)="openModalAdd()">Add Employee</ion-button> -->
   </ion-toolbar>
 </ion-header>
 
@@ -21,8 +25,7 @@
       <ion-col class="hide-xs" style="background-color:silver" size="2" size-sm="2" size-md="2" size-lg="2"><strong>Department</strong></ion-col>
       <!-- <ion-col class="hide-xs hide-sm hide-md" style="background-color:silver" size="4" size-sm="2" size-md="2" size-lg="1"><strong>Marital Status</strong></ion-col> -->
       <!-- <ion-col size="1"><strong>Notes</strong></ion-col> -->
-      <ion-col text-center style="background-color:silver" size="2" size-xs="4" size-sm="2" size-md="1" size-lg="1"><strong>View</strong></ion-col>
-      <ion-col text-center style="background-color:silver" size="2" size-xs="4" size-sm="2" size-md="1" size-lg="1"><strong>Edit</strong></ion-col>
+      <ion-col text-center style="background-color:silver" size="4" size-xs="8" size-sm="4" size-md="2" size-lg="2"><strong>Actions</strong></ion-col>
     </ion-row>
     <ion-row *ngFor="let employee of employees; let i = index">
       <ion-col class="hide-xs hide-sm hide-md" size="2" size-sm="2" size-md="2" size-lg="2">{{employee.ID}}</ion-col>
@@ -33,17 +36,10 @@
       <ion-col class="hide-xs" size="2" size-sm="2" size-md="2" size-lg="2">{{employee.Department}}</ion-col>
       <!-- <ion-col class="hide-xs hide-sm hide-md" size="2" size-sm="2" size-md="2" size-lg="1">{{employee.MaritalStatus}}</ion-col> -->
       <!-- <ion-col size="1">{{employee.Notes}}</ion-col> -->
-      <ion-col text-center size="2" size-xs="4" size-sm="2" size-md="1" size-lg="1">
-        <ion-button (click)="openModalView(i)">View</ion-button>
+      <ion-col text-center size="4" size-xs="8" size-sm="4" size-md="2" size-lg="2">
+        <ion-button fill="clear" (click)="openModalView(i)">View</ion-button>
+        <ion-button fill="clear" (click)="openModal(i)">Edit</ion-button>
       </ion-col>
-      <ion-col text-center size="2" size-xs="4" size-sm="2" size-md="1" size-lg="1">
-        <ion-button (click)="openModal(i)">Edit</ion-button>
-      </ion-col>
-   </ion-row>
-   <ion-row>
-     <ion-col text-center> 
-      <ion-button (click)="openModalAdd()">Add Employee</ion-button>
-  </ion-col>
    </ion-row>
   </ion-grid>
   </ion-content>
