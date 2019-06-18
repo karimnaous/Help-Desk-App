@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AlertController, ModalController,ToastController } from '@ionic/angular';
 import { ActionSheetController } from '@ionic/angular';
 import { SecretaryPage } from '../secretary.page'
 import { NavParams } from '@ionic/angular';
@@ -23,7 +23,7 @@ export class AssignModalPage implements OnInit {
 
   private submit_and_delete: any;
 
-  constructor(private router: Router, private modalController: ModalController, private navParams: NavParams, private alertController: AlertController, private Actionsheet: ActionSheetController) {
+  constructor(private toastController:ToastController,private router: Router, private modalController: ModalController, private navParams: NavParams, private alertController: AlertController, private Actionsheet: ActionSheetController) {
 
 
 
@@ -32,28 +32,26 @@ export class AssignModalPage implements OnInit {
   }
   ngOnInit() {
 
-    console.log(this.navParams);
     this.record = JSON.parse(this.navParams.data.recordItem);
     this.priority = this.record.priority;
     this.date = this.record.date;
     this.emp = this.record.name;
-    console.log(this.record.checkBoxList);
     this.checkBoxList = JSON.parse(this.record.checkBoxList);
     this.submit_and_delete = this.navParams.data.submitAndRemoveFunc;
-    console.log(this.submit_and_delete);
-    this.incident_array = this.getIncidentArray();
-    this.employee_array=this.getEmployeeArray();
+    this.employee_array=this.navParams.data.employees_list;
   }
-  getIncidentArray(): Object[] {
-    var localStorageItem = JSON.parse(localStorage.getItem("ObjArray"));
-    return localStorageItem;
 
-  }
-  getEmployeeArray(): Object[] {
-    var localStorageItem = JSON.parse(localStorage.getItem("EmployeeArray"));
-    return localStorageItem;
 
-  }
+  // getIncidentArray(): Object[] {
+  //   var localStorageItem = JSON.parse(localStorage.getItem("ObjArray"));
+  //   return localStorageItem;
+
+  // }
+  // getEmployeeArray(): Object[] {
+  //   var localStorageItem = JSON.parse(localStorage.getItem("EmployeeArray"));
+  //   return localStorageItem;
+
+  // }
 
 
   checkEvent() {
@@ -99,10 +97,16 @@ export class AssignModalPage implements OnInit {
     current_record.date = this.date;
     current_record.checkBoxList = JSON.stringify(this.checkBoxList);
     current_record.name = this.emp;
+    if(current_record.name===undefined)
+    {
+      const toast = await this.toastController.create({ message: 'Please Choose an Employee', duration: 5000 }); toast.present();
+
+    }
+    else{
     this.modalController.dismiss();
-    
-  console.log(current_record);
+    console.log(current_record);
     this.submit_and_delete(current_record);
+    }
   }
 
 
