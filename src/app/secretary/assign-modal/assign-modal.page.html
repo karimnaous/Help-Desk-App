@@ -22,8 +22,8 @@
   </ion-item>
   <ion-list>
     <ion-radio-group [(ngModel)]="priority" value={{priority}}>
-      <h1>Priority
-      </h1>
+      <h6>Priority
+      </h6>
       <ion-item>
         <ion-label>Low</ion-label>
         <ion-radio value="low"></ion-radio>
@@ -43,7 +43,8 @@
 
     </ion-radio-group>
   </ion-list>
-
+  <h6>Domain
+  </h6>
   <ion-list>
     <ion-item *ngFor="let item of checkBoxList">
       <ion-label>{{item.value}}</ion-label>

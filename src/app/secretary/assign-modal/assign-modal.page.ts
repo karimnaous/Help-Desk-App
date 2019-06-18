@@ -42,22 +42,11 @@ export class AssignModalPage implements OnInit {
   }
 
 
-  // getIncidentArray(): Object[] {
-  //   var localStorageItem = JSON.parse(localStorage.getItem("ObjArray"));
-  //   return localStorageItem;
-
-  // }
-  // getEmployeeArray(): Object[] {
-  //   var localStorageItem = JSON.parse(localStorage.getItem("EmployeeArray"));
-  //   return localStorageItem;
-
-  // }
 
 
-  checkEvent() {
-    console.log(this.checkBoxList);
-  }
-
+/**
+ * Cancel alert
+ */
   async presentAlert() {
 
       const alert = await this.alertController.create({
@@ -68,9 +57,6 @@ export class AssignModalPage implements OnInit {
           text: "No",
           role: 'dontcancel',
           handler: () => {
-            console.log("closed");
-
-
 
           }
         }, {
@@ -78,16 +64,17 @@ export class AssignModalPage implements OnInit {
           role: 'cancel',
           handler: () => {
             this.modalController.dismiss();
-            console.log("Cancelled");
 
           }
         }
       ]
     });
-    console.log(this.priority,this.record.priority , this.date,this.record.date , JSON.stringify(this.checkBoxList),this.record.checkBoxList, this.emp,this.record.name);
-    if (this.priority!== this.record.priority || this.date!==this.record.date 
-      || JSON.stringify(this.checkBoxList)!==this.record.checkBoxList || this.emp!==this.record.name)
-    return await alert.present();
+    var changedForm = (this.priority!== this.record.priority ||  JSON.stringify(this.date) !== JSON.stringify(this.record.date)
+   || this.emp!==this.record.name || JSON.stringify(this.checkBoxList)!==JSON.stringify(JSON.parse(this.record.checkBoxList)));
+    if (changedForm)
+      return await alert.present();
+    
+   
     else return this.modalController.dismiss();
   }
 
