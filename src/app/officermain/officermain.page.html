@@ -1,5 +1,8 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+      </ion-buttons>
     <ion-title>Officer</ion-title>
     <ion-select [(ngModel)]="priority" text-right (ionChange)="onChange()" [interfaceOptions]="customActionSheetOptions"
       interface="action-sheet" placeholder="Filter by" slot="end">
@@ -13,7 +16,7 @@
 
 <ion-content>
   <ion-grid>
-    <ion-row>
+    <ion-row class="bottomRow">
       <ion-col size-lg="2" size-md="2" size-sm="2" size-xs="2">
         <strong>
           <ion-label>ID</ion-label>
@@ -43,7 +46,7 @@
     </ion-row>
 
     <ng-container *ngFor="let entry of task_filtered;">
-      <ion-row *ngIf="entry.username==myuser.user && entry.status!='Resolved'">
+      <ion-row *ngIf="entry.username==myuser.user && entry.status!='Resolved'" class="bottomRow">
         <ion-col size-lg="2" size-md="2" size-sm="2" size-xs="2">
           <ion-label>{{entry.id}}</ion-label>
         </ion-col>
@@ -57,11 +60,11 @@
           <ion-label>{{entry.domain}}</ion-label>
         </ion-col>
         <ion-col size-lg="2" size-md="2" size-sm="2" size-xs="3">
-          <ion-button expand="block" color="dark" (click)="presentModalReassign(findTaskIndex(entry.id))">Edit
+          <ion-button expand="block" fill="clear" (click)="presentModalReassign(findTaskIndex(entry.id))">Edit
           </ion-button>
         </ion-col>
         <ion-col size-lg="2" size-md="2" size-sm="2" size-xs="3">
-          <ion-button expand="block" color="dark" (click)="presentModalView(findTaskIndex(entry.id))">View
+          <ion-button expand="block" fill="clear" (click)="presentModalView(findTaskIndex(entry.id))">View
           </ion-button>
         </ion-col>
       </ion-row>
