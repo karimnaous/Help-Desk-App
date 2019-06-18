@@ -1,2 +1,15 @@
 // ion-button {padding: 5px 10px;}
 
+@media (max-width:  576px) {
+    .hide-sm {
+      display: none;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .hide-md {
+      display: none;
+    }
+}
+
