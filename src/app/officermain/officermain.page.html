@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar color="primary">
-      <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-      </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>Officer</ion-title>
     <ion-select [(ngModel)]="priority" text-right (ionChange)="onChange()" [interfaceOptions]="customActionSheetOptions"
       interface="action-sheet" placeholder="Filter by" slot="end">
@@ -16,7 +16,7 @@
 
 <ion-content>
   <ion-grid>
-    <ion-row class="bottomRow">
+    <ion-row class="bottomRow" color="light">
       <ion-col size-lg="2" size-md="2" size-sm="2" size-xs="2">
         <strong>
           <ion-label>ID</ion-label>
@@ -37,16 +37,15 @@
           <ion-label>Domain</ion-label>
         </strong>
       </ion-col>
-      <ion-col size-lg="2" size-md="2" size-sm="2" size-xs="3">
-        <ion-label></ion-label>
-      </ion-col>
-      <ion-col size-lg="2" size-md="2" size-sm="2" size-xs="3">
-        <ion-label></ion-label>
+      <ion-col size-lg="4" size-md="2" size-sm="2" size-xs="3" style="text-align:center;">
+        <strong>
+          <ion-label>Action</ion-label>
+        </strong>
       </ion-col>
     </ion-row>
 
     <ng-container *ngFor="let entry of task_filtered;">
-      <ion-row *ngIf="entry.username==myuser.user && entry.status!='Resolved'" class="bottomRow">
+      <ion-row *ngIf="entry.username==myuser.user && entry.status!='Resolved'" class="bottomRow1">
         <ion-col size-lg="2" size-md="2" size-sm="2" size-xs="2">
           <ion-label>{{entry.id}}</ion-label>
         </ion-col>
