@@ -15,7 +15,8 @@ const routes: Routes = [
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
   },
-  { path: 'employee', loadChildren: './employee/employee.module#EmployeePageModule' },  { path: 'view', loadChildren: './view/view.module#ViewPageModule' },
+  { path: 'employee', loadChildren: './employee/employee.module#EmployeePageModule' },
+  { path: 'view', loadChildren: './view/view.module#ViewPageModule' },
   { path: 'view', loadChildren: './employe/view/view.module#ViewPageModule' },
   { path: 'view', loadChildren: './employee/view/view.module#ViewPageModule' },
   { path: 'edit', loadChildren: './edit/edit.module#EditPageModule' },
