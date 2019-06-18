@@ -39,7 +39,7 @@
 
   <ion-list>
     <ion-label>Domain</ion-label>
-    <ion-item *ngFor="let entry of newform">
+    <ion-item *ngFor="let entry of form">
       <ion-label>{{entry.valueM}}</ion-label>
       <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" color="dark"></ion-checkbox>
     </ion-item>

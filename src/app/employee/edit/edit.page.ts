@@ -37,4 +37,12 @@ export class EditPage implements OnInit {
     this.modalController.dismiss();
   }
 
+  public form = [
+    { valueM: "IT", isChecked: false },
+    { valueM: "Accounting", isChecked: false },
+    { valueM: "Transportation", isChecked: false },
+    { valueM: "Architecture", isChecked: false },
+    { valueM: "Telecom", isChecked: false }
+  ];
+
 }
