@@ -81,6 +81,54 @@ export class ViewTasksPage implements OnInit {
     toast.present();
   }
 
+  // async areYouSureConfirm(id: any) {
+  //   const alert = await this.alertController.create({
+  //     header: 'Start',
+  //     message: 'Are you sure you want to start the task?',
+  //     buttons: [
+  //       {
+  //         text: 'Yes',
+  //         role: 'Yes',
+  //         cssClass: 'secondary',
+  //         handler: () => {
+  //           this.savetask(id);
+  //         }
+  //       }, {
+  //         text: 'No',
+  //         handler: () => {
+  //           console.log('No');
+  //         }
+  //       }
+  //     ]
+  //   });
+
+  //   await alert.present();
+  // }
+
+  // async areYouSureConfirm1(id: any) {
+  //   const alert = await this.alertController.create({
+  //     header: 'Start',
+  //     message: 'Are you sure you want to resolve the task?',
+  //     buttons: [
+  //       {
+  //         text: 'Yes',
+  //         role: 'Yes',
+  //         cssClass: 'secondary',
+  //         handler: () => {
+  //           this.savetask(id);
+  //         }
+  //       }, {
+  //         text: 'No',
+  //         handler: () => {
+  //           console.log('No');
+  //         }
+  //       }
+  //     ]
+  //   });
+
+  //   await alert.present();
+  // }
+
 
   ngOnInit() {
   }
