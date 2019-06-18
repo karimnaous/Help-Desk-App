@@ -191,8 +191,10 @@ export class SecretaryPage implements OnInit {
    * save changes
    * @param record this record argument is given from modal page after change 
    * is made
+   * 
    */
   async savefromModal(record) {
+    console.log(record);
     var localStorageItem = JSON.parse(localStorage.getItem("ObjArray"));
     var old_record = localStorageItem.find(x => x.id == record.id);
     var index = localStorageItem.indexOf(old_record);

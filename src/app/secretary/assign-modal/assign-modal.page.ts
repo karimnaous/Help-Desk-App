@@ -45,7 +45,7 @@ export class AssignModalPage implements OnInit {
 
 
 /**
- * Cancel alert
+ * Cancel alert in case cancel is pressed and changes were made
  */
   async presentAlert() {
 
@@ -78,7 +78,11 @@ export class AssignModalPage implements OnInit {
     else return this.modalController.dismiss();
   }
 
-  async SaveRecord() {
+/**
+ * Calls binded function of secretary page using new record
+ * as arguement
+ */
+  async doneEdit() {
     var current_record = this.record;
     current_record.priority = this.priority;
     current_record.date = this.date;
@@ -91,7 +95,6 @@ export class AssignModalPage implements OnInit {
     }
     else{
     this.modalController.dismiss();
-    console.log(current_record);
     this.submit_and_delete(current_record);
     }
   }
