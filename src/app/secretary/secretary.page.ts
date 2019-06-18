@@ -24,28 +24,27 @@ export class SecretaryPage implements OnInit {
 
   constructor(public modalController: ModalController,private toastController: ToastController) {
     this.switch_priority_order=false;
-    // localStorage.setItem("ObjArray", JSON.stringify([
-    //   {
-    //     "id": uuidv1(), "type": "txt1", "priority": "high", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
-    //       '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
-    //     "name": "name1"
-    //   },
-    //   {
-    //     "id": uuidv1(), "type": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
-    //       '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
-    //     "name": "name2"
-    //   },
-    //   {
-    //     "id": uuidv1(), "type": "txt1", "priority": "mod", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
-    //       '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
-    //     "name": "name3"
-    //   },
-    //   {
-    //     "id": uuidv1(), "type": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
-    //       '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
-    //     "name": "name4"
-    //   }
-    // ]))
+    localStorage.setItem("ObjArray", JSON.stringify([
+      {
+        "id": uuidv1(), "type": "txt1", "priority": "high", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
+          '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]'
+      },
+      {
+        "id": uuidv1(), "type": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
+          '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
+        "name": "name2"
+      },
+      {
+        "id": uuidv1(), "type": "txt1", "priority": "mod", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
+          '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
+        "name": "name3"
+      },
+      {
+        "id": uuidv1(), "type": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
+          '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]',
+        "name": "name4"
+      }
+    ]))
 
 
     // localStorage.setItem("EmployeeArray", JSON.stringify([{
@@ -112,7 +111,7 @@ ngOnInit() {
 
 async assignModal(id) {
   var record = JSON.stringify(JSON.parse(localStorage.getItem("ObjArray")).find(x => x.id == id));
-  var submit_removeFunc=this.savefromModal.bind(this,record);
+  var submit_removeFunc=this.savefromModal.bind(this);
   const modal = await this.modalController.create({
     component: AssignModalPage,
     componentProps: { recordItem: record, employees_list: this.employee_array, submitAndRemoveFunc: submit_removeFunc, }
@@ -144,7 +143,7 @@ getEmployeeArray(): Object[] {
 }
 
 async savefromModal(record) {
-  record = JSON.parse(record);
+  console.log(record);
   var localStorageItem = JSON.parse(localStorage.getItem("ObjArray"));
   var old_record = localStorageItem.find(x => x.id == record.id);
   var index = localStorageItem.indexOf(old_record);

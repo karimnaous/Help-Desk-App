@@ -100,6 +100,8 @@ export class AssignModalPage implements OnInit {
     current_record.checkBoxList = JSON.stringify(this.checkBoxList);
     current_record.name = this.emp;
     this.modalController.dismiss();
+    
+  console.log(current_record);
     this.submit_and_delete(current_record);
   }
 
