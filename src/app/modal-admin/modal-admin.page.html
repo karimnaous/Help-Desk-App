@@ -1,7 +1,7 @@
 
 <ion-header>
     <ion-toolbar text-center>
-      <ion-title>View</ion-title>
+      <ion-title>Edit</ion-title>
     </ion-toolbar>
 </ion-header>
   
@@ -11,7 +11,7 @@
 <ion-content>
   <ion-list>
       <ion-list-header>
-          <ion-label> <h1> View Employee </h1> </ion-label>
+          <ion-label> <h1> Edit Employee </h1> </ion-label>
       </ion-list-header>
       <ion-item>
           <ion-label>Name: </ion-label>
@@ -53,6 +53,9 @@
       <ion-item>
           <ion-label position="stacked">Notes</ion-label>
           <ion-input [(ngModel)]="notes" placeholder="Enter any notes."></ion-input>
+      </ion-item>
+      <ion-item>
+            <ion-label><strong>ID: </strong> {{ID}}</ion-label>
       </ion-item>
   </ion-list>
 </ion-content>

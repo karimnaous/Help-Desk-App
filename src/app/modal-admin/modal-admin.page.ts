@@ -12,8 +12,8 @@ export class ModalAdminPage implements OnInit {
   modalTitle:string;
   modelId:number;
   arrayEmps: [any];
-  
   ID: string; 
+  findEmployeeBound;
   public name : string; 
   public gender : string; 
   public date : string;
@@ -32,7 +32,8 @@ export class ModalAdminPage implements OnInit {
   ngOnInit() {
     this.ID = this.navParams.data.ID;
     this.arrayEmps = this.navParams.data.arrayEmps;
-    this.index = this.findEmployee(this.ID);
+    this.findEmployeeBound = this.navParams.data.findEmployee;
+    this.index = this.findEmployeeBound(this.ID);
     this.readEmployee(this.arrayEmps[this.index]); 
     if (this.department == "Accounting") { 
         this.departments[0]["isChecked"] = true;

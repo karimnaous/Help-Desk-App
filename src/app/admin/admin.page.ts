@@ -24,7 +24,7 @@ export class AdminPage implements OnInit {
   constructor(
     public modalController: ModalController
   ) {
-      localStorage.clear();
+      // localStorage.clear();
       if (localStorage.length <= 0 && this.getEmployees() != null) {
           let employee =  [
             {ID:Guid.create()["value"], Name:"Jason", Gender:"Male", Birthdate:"Jun-30-1999", Role:"Administrator" , Department:"Information Technology", MaritalStatus:"Married", Notes:"None"},
@@ -48,14 +48,14 @@ export class AdminPage implements OnInit {
       componentProps: {
         "arrayEmps" : this.getEmployees(),
         "ID" : this.getEmployees()[id]["ID"],
+        "findEmployee" : this.findEmployeeBound,
       }
     });
 
     modal.onDidDismiss().then((dataReturned) => {
       if (dataReturned !== null) {
-        this.dataReturned = dataReturned.data;
+        this.saveEmployees(this.dataReturned.data);
       }
-      this.saveEmployees(this.dataReturned);
     });
  
     return await modal.present();
@@ -72,9 +72,8 @@ export class AdminPage implements OnInit {
 
     modal.onDidDismiss().then((dataReturned) => {
       if (dataReturned !== null) {
-        this.dataReturned = dataReturned.data;
+        this.saveEmployees(this.dataReturned.data);
       }
-      this.saveEmployees(this.dataReturned);
     });
     return await modal.present();
   }
@@ -90,10 +89,8 @@ export class AdminPage implements OnInit {
 
     modal.onDidDismiss().then((dataReturned) => {
       if (dataReturned !== null) {
-        this.dataReturned = dataReturned.data;
+        this.saveEmployees(this.dataReturned.data);
       }
-      console.log(this.dataReturned);
-      this.saveEmployees(this.dataReturned);
     });
  
     return await modal.present();
@@ -114,6 +111,38 @@ export class AdminPage implements OnInit {
         return [];
       }
     }
+
+    // trying binding 
+
+    public findEmployee(ID: string) { 
+      for (let i = 0; i < this.employees.length; i++) {
+          if (this.employees[i]["ID"] == ID) {
+              return i; 
+          }    
+      }
+      // Entry not found
+      return -1;
+    } 
+
+    public findEmployeeBound = this.findEmployee.bind(this);
+
+
+    // public findEmp{ 
+    //     arrayEmps : [],
+    //     find : function(ID) {
+    //               console.log("in findEmployee")
+    //               for (let i = 0; i < this.arrayEmps.length; i++) {
+    //                 if (this.arrayEmps[i]["ID"] == ID) {
+    //                     return i; 
+    //                 }    
+    //               }
+    //               // Entry not found
+    //               return -1;
+    //     }
+    // }
+
+
+
 
 }
 
