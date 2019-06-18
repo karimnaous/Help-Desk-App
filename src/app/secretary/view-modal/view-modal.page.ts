@@ -30,7 +30,7 @@ export class ViewModalPage implements OnInit {
     this.date = this.record.date;
     this.emp = this.record.name;
     console.log(this.record.checkBoxList);
-    this.checkBoxList = JSON.parse(this.record.checkBoxList);
+    this.checkBoxList = this.record.checkBoxList;
  
   }
   close()

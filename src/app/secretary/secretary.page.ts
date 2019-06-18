@@ -27,19 +27,18 @@ export class SecretaryPage implements OnInit {
     localStorage.setItem("ObjArray", JSON.stringify([
       {
         "id": uuidv1(), "type": "txt1", "priority": "high", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
-          '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]'
+          [{ "value":"Transportation", "isChecked":true},{"value":"IT","isChecked":false},{"value":"Civil","isChecked":false},{"value":"Engineering","isChecked":false},{"value":"Accounting","isChecked":false}]
       },
       {
         "id": uuidv1(), "type": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
-          '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]'
-      },
+        [{ "value":"Transportation", "isChecked":true},{"value":"IT","isChecked":false},{"value":"Civil","isChecked":false},{"value":"Engineering","isChecked":false},{"value":"Accounting","isChecked":false}]      },
       {
         "id": uuidv1(), "type": "txt1", "priority": "mod", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
-          '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]'
-      },
+   
+        [{ "value":"Transportation", "isChecked":true},{"value":"IT","isChecked":false},{"value":"Civil","isChecked":false},{"value":"Engineering","isChecked":false},{"value":"Accounting","isChecked":false}]  },
       {
         "id": uuidv1(), "type": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
-          '[{ "value":"Transportation", "isChecked":"true"},{"value":"IT","isChecked":"false"},{"value":"Civil","isChecked":"false"},{"value":"Engineering","isChecked":"false"},{"value":"Accounting","isChecked":"false"}]'
+        [{ "value":"Transportation", "isChecked":true},{"value":"IT","isChecked":false},{"value":"Civil","isChecked":false},{"value":"Engineering","isChecked":false},{"value":"Accounting","isChecked":false}]
       }
     ]))
     // localStorage.setItem("EmployeeArray", JSON.stringify([{

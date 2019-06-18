@@ -31,12 +31,12 @@ export class AssignModalPage implements OnInit {
 
   }
   ngOnInit() {
-
     this.record = JSON.parse(this.navParams.data.recordItem);
     this.priority = this.record.priority;
     this.date = this.record.date;
     this.emp = this.record.name;
-    this.checkBoxList = JSON.parse(this.record.checkBoxList);
+    this.checkBoxList =JSON.parse(JSON.stringify(this.record.checkBoxList));
+    console.log(this.checkBoxList);
     this.submit_and_delete = this.navParams.data.submitAndRemoveFunc;
     this.employee_array=this.navParams.data.employees_list;
   }
@@ -70,7 +70,9 @@ export class AssignModalPage implements OnInit {
       ]
     });
     var changedForm = (this.priority!== this.record.priority ||  JSON.stringify(this.date) !== JSON.stringify(this.record.date)
-   || this.emp!==this.record.name || JSON.stringify(this.checkBoxList)!==JSON.stringify(JSON.parse(this.record.checkBoxList)));
+   || this.emp!==this.record.name || JSON.stringify(this.checkBoxList)!==JSON.stringify(this.record.checkBoxList));
+   console.log(JSON.stringify(this.checkBoxList),JSON.stringify(this.record.checkBoxList));
+   
     if (changedForm)
       return await alert.present();
     
@@ -86,7 +88,7 @@ export class AssignModalPage implements OnInit {
     var current_record = this.record;
     current_record.priority = this.priority;
     current_record.date = this.date;
-    current_record.checkBoxList = JSON.stringify(this.checkBoxList);
+    current_record.checkBoxList = this.checkBoxList;
     current_record.name = this.emp;
     if(current_record.name===undefined)
     {
