@@ -70,16 +70,15 @@
         </ion-list>
 
         <ion-fab slot="fixed" vertical="bottom">
-        <div *ngIf="change" >
+        <div *ngIf="change">
           <ion-button color="dark" (click)="savetask(id1)">Reassign</ion-button>
           <ion-button color="dark" (click)="presentAlertConfirm()">Cancel</ion-button>
         </div> 
         
-        <div *ngIf="!change" slot="fixed">
+        <div *ngIf="!change">
           <ion-button color="dark" (click)="savetask(id1)">Save</ion-button>
           <ion-button color="dark" (click)="presentAlertConfirm()">Cancel</ion-button>
         </div> 
       </ion-fab>
       
-
 </ion-content>
