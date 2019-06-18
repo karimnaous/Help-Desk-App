@@ -23,11 +23,6 @@ export class ModalPagePage implements OnInit {
   private savetask1: any = this.navParams.get('value1');
 
   constructor(public toastController: ToastController, public modalController: ModalController, public alertController: AlertController, public navParams: NavParams) { 
-    // localStorage.setItem('user1', JSON.stringify('Layal'));
-    // localStorage.setItem('user2', JSON.stringify('Alex'));
-    // localStorage.setItem('user3', JSON.stringify('Lynn'));
-    // localStorage.setItem('user4', JSON.stringify('Tala'));
-    //const id1: string = this.navParams.get('value');
     this.retreivetask(this.id1);
   }
 
@@ -49,11 +44,6 @@ export class ModalPagePage implements OnInit {
       }
     }
   }
-  
-  // public user1 = JSON.parse(localStorage.getItem('user1'));
-  // public user2 = JSON.parse(localStorage.getItem('user2'));
-  // public user3 = JSON.parse(localStorage.getItem('user3'));
-  // public user4 = JSON.parse(localStorage.getItem('user4'));
 
   public officer=JSON.parse(localStorage.getItem('officer'));
   public task=JSON.parse(localStorage.getItem('task'));
@@ -71,8 +61,6 @@ export class ModalPagePage implements OnInit {
     toast.present();
 
     this.modalController.dismiss();
-
-    //location.reload();
   }
   
   async retreivetask(id: any)

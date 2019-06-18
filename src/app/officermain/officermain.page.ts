@@ -86,15 +86,20 @@ export class OfficermainPage {
     }
   }
 
-  onChange() {
+  onChange() 
+  {
     this.task_filtered = this.data_filter();
   }
 
-  findTaskIndex(guid: any) {
+
+  findTaskIndex(guid: any) 
+  {
     var index = -1;
-    for (let entry of this.task) {
+    for (let entry of this.task)
+    {
       index++;
-      if (entry.id == guid) {
+      if (entry.id == guid)
+      {
         return index;
       }
     }
