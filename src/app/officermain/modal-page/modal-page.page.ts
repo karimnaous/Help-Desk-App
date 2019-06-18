@@ -20,6 +20,7 @@ export class ModalPagePage implements OnInit {
 
   // @Input() value: number;
   private id1: any = this.navParams.get('value');
+  private savetask1: any = this.navParams.get('value1');
 
   constructor(public toastController: ToastController, public modalController: ModalController, public alertController: AlertController, public navParams: NavParams) { 
     // localStorage.setItem('user1', JSON.stringify('Layal'));
@@ -39,6 +40,16 @@ export class ModalPagePage implements OnInit {
     { val: 'Telecom', isChecked: false }
   ];
   
+
+  public checked = [];
+  save(){
+    for (let entry of this.form) {
+      if (entry.isChecked == true) {
+        this.checked.push(entry.val);
+      }
+    }
+  }
+  
   // public user1 = JSON.parse(localStorage.getItem('user1'));
   // public user2 = JSON.parse(localStorage.getItem('user2'));
   // public user3 = JSON.parse(localStorage.getItem('user3'));
@@ -51,36 +62,18 @@ export class ModalPagePage implements OnInit {
 
   async savetask(id: any)
   {
-    //var myObj;
-    var checked =[];
-    for (let entry of this.form)
-    {
-      if(entry.isChecked==true)
-      {
-        checked.push(entry.val);
-      }
-    }
-
-    //myObj = {"username":this.username, "priority":this.priority, "date":this.date, "domain":checked};
-    this.task[id].username = this.username;
-    this.task[id].priority = this.priority;
-    this.task[id].date = this.date;
-    this.task[id].domain = checked;
-
-    localStorage.removeItem('task');
-    localStorage.setItem('task', JSON.stringify(this.task));
-    // const onClosedData = [this.username, this.priority, this.date, checked];
-    // await this.modalController.dismiss(onClosedData); 
-    this.modalController.dismiss();
-    //location.reload();
+    this.save();
+    this.savetask1(id, this.username, this.priority, this.date, this.checked);
 
     const toast = await this.toastController.create({
     message: 'Your edits have been saved.',
     duration: 2000});
     toast.present();
-  }
 
-  //public task1=JSON.parse(localStorage.getItem('task1'));
+    this.modalController.dismiss();
+
+    //location.reload();
+  }
   
   async retreivetask(id: any)
   {

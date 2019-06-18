@@ -25,34 +25,40 @@ export class OfficermainPage {
     // let myuser = {user: "Layal"};
 
     // localStorage.setItem('myuser', JSON.stringify(myuser));
-
   }
 
-  // ngOnInit() {
-  //   console.log('123');
-  //   this.randomFunc()
-  //   .then(function (ret) {
-  //     console.log('1st', ret);
-  //     this.randomFunc()
-  //     .then(function(ret) {
-  //       console.log('2nd', ret);
-  //     });
-  //   })
-  //   .catch(function (err) {
-  //     console.log('err', err);
-  //   });
-  //   console.log('321');
-  // }
+  savetask(id, username, priority, date, domain) {
 
+    this.task[id].username = username;
+    this.task[id].priority = priority;
+    this.task[id].date = date;
+    this.task[id].domain = domain;
+
+    localStorage.removeItem('task');
+    localStorage.setItem('task', JSON.stringify(this.task));
+  }
+
+  public form = [
+    { val: 'Project Management', isChecked: false },
+    { val: 'IT', isChecked: false },
+    { val: 'Architecture', isChecked: false },
+    { val: 'Civil', isChecked: false },
+    { val: 'Mechanical', isChecked: false },
+    { val: 'Telecom', isChecked: false }
+  ];
+  
   public task = JSON.parse(localStorage.getItem('task'));
+  private date: string;
+  private username: string;
 
   public myuser = JSON.parse(localStorage.getItem('myuser'));
-  private priority: string= "ViewAll";
+  private priority: string = "ViewAll";
   public task_filtered = this.data_filter();
- 
+
 
   async presentModalReassign(id: any) {
-    const modal = await this.modalController.create({ component: ModalPagePage, componentProps: { value: id } });
+    var sendFunc = this.savetask.bind(this);
+    const modal = await this.modalController.create({ component: ModalPagePage, componentProps: { value: id, value1: sendFunc } });
     await modal.present();
   }
 
@@ -61,33 +67,29 @@ export class OfficermainPage {
     await modal.present();
   }
 
-  data_filter(){
-    if(this.priority=="ViewAll")
-    {
+  data_filter() {
+    if (this.priority == "ViewAll") {
       return this.task;
     }
-    else{
-    return this.task.filter( element => element.priority == this.priority);
+    else {
+      return this.task.filter(element => element.priority == this.priority);
     }
-  } 
-
-  onChange(){
-      this.task_filtered = this.data_filter();
   }
 
-  findTaskIndex(guid:any)
-  {
-    var index=-1;
-   for(let entry of this.task)
-   {
-     index++;
-     if (entry.id==guid)
-     {
+  onChange() {
+    this.task_filtered = this.data_filter();
+  }
+
+  findTaskIndex(guid: any) {
+    var index = -1;
+    for (let entry of this.task) {
+      index++;
+      if (entry.id == guid) {
         return index;
-     }
-   }
-   
-}
+      }
+    }
+
+  }
 
 }
 
