@@ -8,20 +8,21 @@ import { ModalController, NavParams } from '@ionic/angular';
 })
 export class ViewPage implements OnInit {
 
-  public name: any = this.navParams.data.valueName;
-  public id: any = this.navParams.get("valueID");
-  public inciName: any = this.navParams.get("valueIncidentTitle")
-  public date: any = this.navParams.get("valueDate");
-  public inciCat: any = this.navParams.get("valueCategory");
-  public dom: any = this.navParams.get("valueDom");
-  public prior: any =  this.navParams.get("valuePriority");
-  public desc: any = this.navParams.get("valueDesc");
+  // public name: any = this.navParams.data.valueName;
+  public id: any = this.navParams.data.value.id;
+  public name: any = this.navParams.data.value.fullName;
+  public inciName: any = this.navParams.data.value.incidentTitle;
+  public date: any = this.navParams.data.value.date;
+  public inciCat: any = this.navParams.data.value.incidentCategory;
+  public dom: any = this.navParams.data.value.domain;
+  public prior: any = this.navParams.data.value.priority;
+  public desc: any = this.navParams.data.value.description;
 
   constructor(private modalController: ModalController, public navParams: NavParams) {
-
   }
 
   ngOnInit() {
+    console.log(this.navParams)
   }
 
   closeView() {

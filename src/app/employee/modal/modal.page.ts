@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
 import { Guid } from "guid-typescript";
 import { ValueAccessor } from '@ionic/angular/dist/directives/control-value-accessors/value-accessor';
 import { namespaceHTML } from '@angular/core/src/render3';
@@ -13,6 +13,8 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
 })
 export class ModalPage implements OnInit {
 
+  public newCreate: any = this.navParams.data.bindFunction;
+  public data;
   name: any;
   incidentTitle: any;
   date: any;
@@ -21,7 +23,7 @@ export class ModalPage implements OnInit {
   desc: any;
   public id: any;
 
-  constructor(private modalController: ModalController) {
+  constructor(private modalController: ModalController, private navParams: NavParams) {
 
   }
 
@@ -29,28 +31,34 @@ export class ModalPage implements OnInit {
 
   }
 
-  saveData() {
-    var checked = [];
-    var arr = [];
-
-    for (let entry of this.form) {
-      if (entry.isChecked == true) {
-        checked.push(entry.valueM)
-      }
-    }
-    this.id = Guid.create();
-    var obj = { "id": this.id.value, "Full Name": this.name, "Incident Title": this.incidentTitle, "Date": this.date, "Category": this.category, "Domain": checked, "Priority": this.priority, "Description": this.desc }
-    if (localStorage.length != 0) {
-      arr = JSON.parse(localStorage.getItem("Employees"));
-    }
-    arr.push(obj)
-    localStorage.setItem('Employees', JSON.stringify(arr));
-
-    arr = []
+  confirmCreate()
+  {
+    this.data = {"fullName": this.name, "incidentTitle": this.incidentTitle, "date": this.date, "category": this.category, "priority": this.priority, "descriprion": this.desc};
+    this.newCreate(this.data);
     this.modalController.dismiss();
-    location.reload();
-
   }
+  // saveData() {
+  //   var checked = [];
+  //   var arr = [];
+
+  //   for (let entry of this.form) {
+  //     if (entry.isChecked == true) {
+  //       checked.push(entry.valueM)
+  //     }
+  //   }
+  //   this.id = Guid.create();
+  //   var obj = { "id": this.id.value, "Full Name": this.name, "Incident Title": this.incidentTitle, "Date": this.date, "Category": this.category, "Domain": checked, "Priority": this.priority, "Description": this.desc }
+  //   if (localStorage.length != 0) {
+  //     arr = JSON.parse(localStorage.getItem("Employees"));
+  //   }
+  //   arr.push(obj)
+  //   localStorage.setItem('Employees', JSON.stringify(arr));
+
+  //   arr = []
+  //   this.modalController.dismiss();
+  //   location.reload();
+
+  // }
 
   closeModal() {
     this.modalController.dismiss();

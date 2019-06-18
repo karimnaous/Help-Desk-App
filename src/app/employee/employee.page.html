@@ -1,4 +1,9 @@
 <ion-header>
+    <ion-fab vertical="start" horizontal="end" slot="fixed">
+        <ion-fab-button color="dark" (click)="openModal()" expand="full" size = "small">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -7,43 +12,40 @@
       Employee
     </ion-title>
   </ion-toolbar>
+  
 </ion-header>
 
 <ion-content>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="dark" (click)="openModal()" expand="full">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  
 
   <div class="container">
     <ion-grid >
     
         <ion-row>
-          <ion-col size="1" class="hide-xs hide-sm">ID: </ion-col>
-          <ion-col size="1">Full Name: </ion-col>
-          <!-- <ion-col size="1">Incident Title: </ion-col> -->
+          <!-- <ion-col size="1" class="hide-xs hide-sm">ID: </ion-col> -->
+          <ion-col size="1">Full Name </ion-col>
+           <ion-col size="1">Incident Title: </ion-col> 
           <ion-col size="2" class="hide-xs hide-sm">Date: </ion-col>
           <!-- <ion-col size="1">Incident Category: </ion-col> -->
-          <ion-col size="2">Domain: </ion-col>
-          <ion-col size="2">Priority: </ion-col>
+          <ion-col size="2">Domain </ion-col>
+          <ion-col size="2">Priority </ion-col>
           <!-- <ion-col size="1">Description: </ion-col> -->
           <ion-col size="2"></ion-col>
           <ion-col size="2"> </ion-col>
         </ion-row>
 
-        <ion-row *ngFor="let info of information">
-          <ion-col size="1">{{ info.yourId }}</ion-col>
-          <ion-col size="1">{{ info.yourName}}</ion-col>
-          <!-- <ion-col size="1">{{ info.yourIncidentTitle }}</ion-col> -->
-          <ion-col size="2">{{ info.yourDate }}</ion-col>
-          <!-- <ion-col size="1">{{ info.yourCategory }}</ion-col> -->
-          <ion-col size="2">{{ info.yourDom }}</ion-col>
-          <ion-col size="2">{{ info.yourPrior }}</ion-col>
-          <!-- <ion-col size="1">{{ info.yourDesc }}</ion-col> -->
-          <ion-col size="2"><ion-button expand="block" color="dark" (click)="openView(info.yourId, info.yourName, info.yourIncidentTitle, info.yourDate, info.yourCategory, info.yourDom, info.yourCategory, info.yourDom, info.yourPrior, info.yourDesc)" >View</ion-button> </ion-col>
-          <ion-col size="2"><ion-button expand="block" color="dark" (click)="openEdit(info.yourId, info.yourName, info.yourIncidentTitle, info.yourDate, info.yourCategory, info.yourDom, info.yourCategory, info.yourDom, info.yourPrior, info.yourDesc)">Edit</ion-button>
+        <ion-row *ngFor="let task of tasks">
+          <!-- <ion-col size="1">{{ task.id }}</ion-col> -->
+          <ion-col size="1">{{ task.fullName}}</ion-col>
+           <ion-col size="1">{{ task.yourIncidentTitle }}</ion-col> 
+          <ion-col size="2"  class="hide-xs hide-sm">{{ task.date }}</ion-col>
+          <!-- <ion-col size="1">{{ task.yourCategory }}</ion-col> -->
+          <ion-col size="2">{{ task.domain }}</ion-col>
+          <ion-col size="2">{{ task.priority }}</ion-col>
+          <!-- <ion-col size="1">{{ task.yourDesc }}</ion-col> -->
+          <ion-col size="2"><ion-button expand="block" color="dark" (click)="openView(task.id)">View</ion-button> </ion-col>
+          <ion-col size="2"><ion-button expand="block" color="dark" (click)="openEdit(task.id)">Edit</ion-button>
              </ion-col>
         </ion-row>
 

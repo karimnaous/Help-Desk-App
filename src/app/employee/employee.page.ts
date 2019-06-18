@@ -5,6 +5,7 @@ import { ViewPage } from '../Employee/view/view.page';
 import { EditPage } from '../Employee/edit/edit.page';
 import { Guid } from "guid-typescript";
 import { viewAttached } from '@angular/core/src/render3/instructions';
+import * as _ from 'lodash';
 
 
 @Component({
@@ -26,74 +27,42 @@ export class EmployeePage implements OnInit {
   public dom: any;
   public id: any;
   public saving: any;
-  
 
-  public information = [
+
+  tasks = [
   ];
 
   ngOnInit() {
 
+    const me = this;
+    me.tasks = JSON.parse(localStorage.getItem("Employees"));
+    console.log('newTask', me.tasks);
+  }
 
-    var newEmployee = JSON.parse(localStorage.getItem("Employees"));
-    for (let i = 0; i < newEmployee.length; i++) {
-      this.name = newEmployee[i]["Full Name"];
-      this.incidentTitle = newEmployee[i]["Incident Title"];
-      this.date = newEmployee[i]["Date"];
-      this.category = newEmployee[i]["Category"];
-      this.dom = newEmployee[i]["Domain"];
-      this.priority = newEmployee[i]["Priority"];
-      this.desc = newEmployee[i]["Description"];
-      this.id = newEmployee[i]["id"];
-      this.information.push({ yourId: this.id, yourName: this.name, yourIncidentTitle: this.incidentTitle, yourDate: this.date, yourCategory: this.category, yourDom: this.dom, yourPrior: this.priority, yourDesc: this.desc });
-    }
-    
-    this.saving = {
-
-      saveEdit: function(id, name, incidentTitle, date, category, dom, priority, desc)
-      {
-        var checked = [];
-      var arr = [];
-      var index;
-      for (let entry of this.form) {
-        if (entry.isChecked == true) {
-          checked.push(entry.valueM)
-        }
-      }
-      var saved  =this.saving.saveEdit.bind()
-      var obj = { "id": id, "Full Name": name, "Incident Title": incidentTitle, "Date": date, "Category": category, "Domain": checked, "Priority": priority, "Description": desc }
-      arr = JSON.parse(localStorage.getItem("Employees"));
-      for (let i = 0; i < arr.length; i++) {
-        if (arr[i].id === this.otherId) {
-          index = i;
-          console.log(index);
-        }
-      }
-      arr.splice(index, 1, obj);
-      localStorage.setItem('Employees', JSON.stringify(arr));
-  
-      this.modalController.dismiss();
+  saveEdit(task: any) {
+    var checked = [];
+    var arr = [];
+    var index;
+    for (let entry of this.form) {
+      if (entry.isChecked == true) {
+        checked.push(entry.valueM)
       }
     }
-  
+    var obj = { "id": task.id, "fullName": task.fullName, "indcidentTitle": task.incidentTitle, "date": task.date, "category": task.category, "domain": task.checked, "priority": task.priority, "Description": task.description }
+    arr = JSON.parse(localStorage.getItem("Employees"));
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].id === task.id) {
+        index = i;
+        console.log(index);
+      }
+    }
+    arr.splice(index, 1, obj);
+    localStorage.setItem('Employees', JSON.stringify(arr));
+
+    this.modalController.dismiss();
   }
 
-  
-  async openModal() {
-    const modal = await this.modalController.create({ component: ModalPage });
-    modal.present();
-  }
-
-  async openView(newId: any, newName: any, newInciTitle: any, newDate: any, newCategory: any, newDom: any, newPriority: any, newDesc: any) {
-    const view = await this.modalController.create({ component: ViewPage, componentProps: { valueID: newId, valueName: newName, valueIncidentTitle: newInciTitle, valueDate: newDate, valueCategory: newCategory, valueDom: newDom, valuePriority: newPriority, valueDesc: newDesc } });
-    view.present();
-  }
-
-  async openEdit(newId: any, newName: any, newInciTitle: any, newDate: any, newCategory: any, newDom: any, newPriority: any, newDesc: any) {
-    const edit = await this.modalController.create({ component: EditPage, componentProps: { ID: newId, Name: newName, IncidentTitle: newInciTitle, Date: newDate, Category: newCategory, Dom: newDom, Priority: newPriority, Desc: newDesc, saveValue: this.saving.saveEdit.bind(this) } });
-    edit.present();
-  }
-
-  saveData() {
+  saveData(task: any) {
     var checked = [];
     var arr = [];
 
@@ -102,20 +71,55 @@ export class EmployeePage implements OnInit {
         checked.push(entry.valueM)
       }
     }
+    console.log(task);
     this.id = Guid.create();
-    var obj = { "id": this.id.value, "Full Name": this.name, "Incident Title": this.incidentTitle, "Date": this.date, "Category": this.category, "Domain": checked, "Priority": this.priority, "Description": this.desc }
+    var obj = {
+      "id": this.id.value,
+      "fullName": task.fullName,
+      "incidentTitle": task.incidentTitle,
+      "date": task.date,
+      "category": task.category,
+      "domain": task.checked,
+      "priority": task.priority,
+      "description": task.description
+
+    }
+
+    console.log(obj);
     if (localStorage.length != 0) {
       arr = JSON.parse(localStorage.getItem("Employees"));
     }
-    arr.push(obj)
+    arr.push(obj);
+   // this.tasks.push(obj);
     localStorage.setItem('Employees', JSON.stringify(arr));
-
-    arr = []
+    console.log(localStorage.getItem('Employees'));
     this.modalController.dismiss();
-    location.reload();
+   // location.reload();
 
   }
 
+
+  async openModal() {
+    var bindCreate = this.saveData.bind(this);
+    const modal = await this.modalController.create({ component: ModalPage, componentProps: {bindFunction: bindCreate} });
+    modal.present();
+  }
+
+  async openView(returnedId: any) {
+    const task = _.find(this.tasks, { id: returnedId });
+    const view = await this.modalController.create({ component: ViewPage, componentProps: { value: task}});
+    view.present();
+  }
+
+  async openEdit(returnedId: any) {
+    var bindEdit = this.saveEdit.bind(this);
+    const task = _.find(this.tasks, {id: returnedId});
+    console.log(task);
+    const edit = await this.modalController.create({ component: EditPage, componentProps: {value: task, bindedFunction: bindEdit} });
+    edit.present();
+  }
+
+  
   closeModal() {
     this.modalController.dismiss();
   }
