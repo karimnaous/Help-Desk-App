@@ -22,6 +22,7 @@ export class ViewTasksPage implements OnInit {
 
   // @Input() value: number;
    private id1: any = this.navParams.get('value');
+   private resolve1: any = this.navParams.get('value1');
 
   public form = [
     { val: 'Project Management', isChecked: false },
@@ -72,9 +73,7 @@ export class ViewTasksPage implements OnInit {
 
   async resolve(id: any)
   {
-    this.task[id].status="Resolved";
-    localStorage.setItem('task', JSON.stringify(this.task));
-    this.dismiss();
+    this.resolve1(id);
 
     const toast = await this.toastController.create({
     message: 'Task resolved successfully.',

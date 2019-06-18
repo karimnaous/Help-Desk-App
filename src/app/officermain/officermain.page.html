@@ -43,7 +43,7 @@
     </ion-row>
 
     <ng-container *ngFor="let entry of task_filtered;">
-      <ion-row *ngIf="entry.username==myuser.user">
+      <ion-row *ngIf="entry.username==myuser.user && entry.status!='Resolved'">
         <ion-col size-lg="2" size-md="2" size-sm="2" size-xs="2">
           <ion-label>{{entry.id}}</ion-label>
         </ion-col>

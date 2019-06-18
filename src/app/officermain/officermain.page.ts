@@ -38,6 +38,15 @@ export class OfficermainPage {
     localStorage.setItem('task', JSON.stringify(this.task));
   }
 
+
+  resolve(id)
+  {
+    this.task[id].status="Resolved";
+    localStorage.setItem('task', JSON.stringify(this.task));
+    this.modalController.dismiss();
+
+  }
+
   public form = [
     { val: 'Project Management', isChecked: false },
     { val: 'IT', isChecked: false },
@@ -63,7 +72,8 @@ export class OfficermainPage {
   }
 
   async presentModalView(id: any) {
-    const modal = await this.modalController.create({ component: ViewTasksPage, componentProps: { value: id } });
+    var sendResolve = this.resolve.bind(this);
+    const modal = await this.modalController.create({ component: ViewTasksPage, componentProps: { value: id, value1:sendResolve} });
     await modal.present();
   }
 
