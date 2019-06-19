@@ -17,6 +17,7 @@ export class ModalPagePage implements OnInit {
   private date: string;
   private change: boolean= false;
   private allChange1: boolean= false;
+  private comments: string;
 
   // @Input() value: number;
   private id1: any = this.navParams.get('value');
@@ -52,7 +53,7 @@ export class ModalPagePage implements OnInit {
   async savetaskReassign(id: any)
   {
     this.save();
-    this.savetask1(id, this.username, this.priority, this.date, this.checked);
+    this.savetask1(id, this.username, this.priority, this.date, this.checked, this.comments);
 
     const toast = await this.toastController.create({
     message: 'Task reassigned successfully.',
@@ -66,7 +67,7 @@ export class ModalPagePage implements OnInit {
   async savetaskEdit(id: any)
   {
     this.save();
-    this.savetask1(id, this.username, this.priority, this.date, this.checked);
+    this.savetask1(id, this.username, this.priority, this.date, this.checked, this.comments);
 
     const toast = await this.toastController.create({
     message: 'Your edits have been saved.',
@@ -81,6 +82,7 @@ export class ModalPagePage implements OnInit {
     this.username=this.task[id].username;
     this.priority=this.task[id].priority;
     this.date= this.task[id].date;
+    this.comments= this.task[id].comments;
 
     for(let entry of this.task[id].domain)
     {

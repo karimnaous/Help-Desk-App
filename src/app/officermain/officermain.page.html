@@ -15,7 +15,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid>
+  <ion-grid class="ion-no-padding">
     <ion-row class="bottomRow" color="light">
       <!-- <ion-col size-lg="2" size-md="2" size-sm="2" size-xs="2">
         <strong>
@@ -44,8 +44,8 @@
       </ion-col>
     </ion-row>
 
-    <ng-container *ngFor="let entry of task_filtered;">
-      <ion-row *ngIf="entry.username==myuser.user && entry.status!='Resolved'" class="bottomRow1">
+    <ng-container *ngFor="let entry of task_filtered; let i=index;" >
+      <ion-row *ngIf="entry.username==myuser.user && entry.status!='Resolved'" [ngClass] = "(i%2 == 0 )? 'even' : 'odd'" class="bottomRow1"  > 
         <!-- <ion-col size-lg="2" size-md="2" size-sm="2" size-xs="2">
           <ion-label>{{entry.id}}</ion-label>
         </ion-col> -->

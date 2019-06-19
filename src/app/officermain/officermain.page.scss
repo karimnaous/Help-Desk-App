@@ -19,13 +19,20 @@ ion-grid {
 
 .bottomRow
 {
-  margin-bottom: 20px;
-  background-color:#cccccc;
+  padding-bottom: 10px;
+  background-color:#6f9ee6;
   
 }
 
-.bottomRow1
-{
-  margin-bottom: 20px;
-}
 
+
+.even{
+  background-color: white;
+  }
+.odd{
+  background-color:rgb(226,242,248);
+  } 
+  .bottomRow1
+{
+  padding-bottom: 5px;
+}

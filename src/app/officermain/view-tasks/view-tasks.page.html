@@ -36,6 +36,12 @@
     <ion-label>Status</ion-label>
     <ion-label text-right color="danger">{{status}}</ion-label>
 </ion-item>
+
+<ion-item>
+    <ion-label>Comments</ion-label>
+    <ion-label text-right >{{comments}}</ion-label>
+</ion-item>
+
 <div *ngIf="task[id1].status=='Assigned'" >
     <ion-button fill="clear" (click)="dismiss()">Close</ion-button>
     <ion-button fill="clear" (click)="areYouSureStart(id1)">Start</ion-button>

@@ -18,6 +18,7 @@ export class ViewTasksPage implements OnInit {
   private domain: string;
   private status: string;
   private ID: string;
+  private comments: string;
   public splitted: string;
   //private id1: any = 0;
 
@@ -52,6 +53,7 @@ export class ViewTasksPage implements OnInit {
     this.date= this.splitted[0];
     this.domain= this.task[id].domain;
     this.status= this.task[id].status;
+    this.comments= this.task[id].comments;
   }
 
   async dismiss()

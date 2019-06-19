@@ -27,12 +27,13 @@ export class OfficermainPage {
     // localStorage.setItem('myuser', JSON.stringify(myuser));
   }
 
-  savetask(id, username, priority, date, domain) {
+  savetask(id, username, priority, date, domain, comments) {
 
     this.task[id].username = username;
     this.task[id].priority = priority;
     this.task[id].date = date;
     this.task[id].domain = domain;
+    this.task[id].comments = comments;
 
     localStorage.removeItem('task');
     localStorage.setItem('task', JSON.stringify(this.task));
@@ -59,6 +60,7 @@ export class OfficermainPage {
   public task = JSON.parse(localStorage.getItem('task'));
   private date: string;
   private username: string;
+  private comments: string;
 
   public myuser = JSON.parse(localStorage.getItem('myuser'));
   private priority: string = "ViewAll";
