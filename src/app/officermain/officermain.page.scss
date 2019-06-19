@@ -1,39 +1,34 @@
 // ion-button {padding: 5px 10px;}
 
 @media (max-width:  576px) {
-    .hide-sm {
-      display: none;
-    }
+  .hide-sm {
+    display: none;
+  }
 }
 
-
 @media (max-width: 768px) {
-    .hide-md {
-      display: none;
-    }
+  .hide-md {
+    display: none;
+  }
 }
 
 ion-grid {
---ion-grid-padding: 15px;
+  --ion-grid-padding: 15px;
 }
 
-.bottomRow
-{
-  padding-bottom: 10px;
+.bottomRow {
   background-color:#6f9ee6;
   color: white;
-  
 }
 
-
-
-.even{
+.even {
   background-color: white;
   }
-.odd{
+
+.odd {
   background-color:rgb(226,242,248);
-  } 
-  .bottomRow1
-{
-  padding-bottom: 5px;
-}
+} 
+  
+// .bottomRow1 {
+//   padding-bottom: 20px;
+// }

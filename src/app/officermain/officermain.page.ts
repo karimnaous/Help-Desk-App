@@ -10,16 +10,11 @@ import { Guid } from "guid-typescript";
   styleUrls: ['./officermain.page.scss'],
 })
 
-
-
-
-
 export class OfficermainPage {
 
   @ViewChild('sectionSelect') sectionSelect: any;
   doFilter(){
     this.sectionSelect.open();
-    console.log('hello')
  }
 
   constructor(public modalController: ModalController) {
