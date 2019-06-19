@@ -6,7 +6,7 @@
 </style>
 
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>View Task</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -37,17 +37,17 @@
     <ion-label text-right color="danger">{{status}}</ion-label>
 </ion-item>
 <div *ngIf="task[id1].status=='Assigned'" >
-    <ion-button color="dark" (click)="dismiss()">Close</ion-button>
-    <ion-button color="dark" (click)="start(id1)">Start</ion-button>
+    <ion-button fill="clear" (click)="dismiss()">Close</ion-button>
+    <ion-button fill="clear" (click)="areYouSureStart(id1)">Start</ion-button>
 </div>   
 
 <div *ngIf="task[id1].status=='In Progress'" >
-    <ion-button color="dark" (click)="dismiss()">Close</ion-button>
-    <ion-button color="dark" (click)="resolve(id1)">Resolve</ion-button>
+    <ion-button fill="clear" (click)="dismiss()">Close</ion-button>
+    <ion-button fill="clear" (click)="areYouSureResolve(id1)">Resolve</ion-button>
 </div> 
 
 <div *ngIf="task[id1].status=='Resolved'" >
-    <ion-button color="dark" (click)="dismiss()">Close</ion-button>
+    <ion-button fill="clear" (click)="dismiss()">Close</ion-button>
 </div> 
       
 </ion-content>

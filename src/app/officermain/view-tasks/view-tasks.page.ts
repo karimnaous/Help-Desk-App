@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { Input } from '@angular/core';
 import { NavParams } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-view-tasks',
@@ -34,7 +35,7 @@ export class ViewTasksPage implements OnInit {
   ];
 
 
-  constructor(public toastController: ToastController, public modalController: ModalController, public navParams: NavParams) {
+  constructor(public toastController: ToastController, public modalController: ModalController, public navParams: NavParams, public alertController: AlertController) {
     //const id1: string = this.navParams.get('value');
     this.retreivetask(this.id1);
    }
@@ -67,6 +68,7 @@ export class ViewTasksPage implements OnInit {
     const toast = await this.toastController.create({
     message: 'Task started successfully.',
     duration: 2000});
+    
     toast.present();
       
   }
@@ -81,53 +83,54 @@ export class ViewTasksPage implements OnInit {
     toast.present();
   }
 
-  // async areYouSureConfirm(id: any) {
-  //   const alert = await this.alertController.create({
-  //     header: 'Start',
-  //     message: 'Are you sure you want to start the task?',
-  //     buttons: [
-  //       {
-  //         text: 'Yes',
-  //         role: 'Yes',
-  //         cssClass: 'secondary',
-  //         handler: () => {
-  //           this.savetask(id);
-  //         }
-  //       }, {
-  //         text: 'No',
-  //         handler: () => {
-  //           console.log('No');
-  //         }
-  //       }
-  //     ]
-  //   });
 
-  //   await alert.present();
-  // }
+  async areYouSureStart(id: any) {
+    const alert = await this.alertController.create({
+      header: 'Start',
+      message: 'Are you sure you want to start the task?',
+      buttons: [
+        {
+          text: 'Yes',
+          role: 'Yes',
+          cssClass: 'secondary',
+          handler: () => {
+            this.start(id);
+          }
+        }, {
+          text: 'No',
+          handler: () => {
+            console.log('No');
+          }
+        }
+      ]
+    });
 
-  // async areYouSureConfirm1(id: any) {
-  //   const alert = await this.alertController.create({
-  //     header: 'Start',
-  //     message: 'Are you sure you want to resolve the task?',
-  //     buttons: [
-  //       {
-  //         text: 'Yes',
-  //         role: 'Yes',
-  //         cssClass: 'secondary',
-  //         handler: () => {
-  //           this.savetask(id);
-  //         }
-  //       }, {
-  //         text: 'No',
-  //         handler: () => {
-  //           console.log('No');
-  //         }
-  //       }
-  //     ]
-  //   });
+    await alert.present();
+  }
 
-  //   await alert.present();
-  // }
+  async areYouSureResolve(id: any) {
+    const alert = await this.alertController.create({
+      header: 'Start',
+      message: 'Are you sure you want to resolve the task?',
+      buttons: [
+        {
+          text: 'Yes',
+          role: 'Yes',
+          cssClass: 'secondary',
+          handler: () => {
+            this.resolve(id);
+          }
+        }, {
+          text: 'No',
+          handler: () => {
+            console.log('No');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 
 
   ngOnInit() {

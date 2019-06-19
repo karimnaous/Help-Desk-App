@@ -49,8 +49,21 @@ export class ModalPagePage implements OnInit {
   public task=JSON.parse(localStorage.getItem('task'));
   public user=JSON.parse(localStorage.getItem('myuser'));
 
+  async savetaskReassign(id: any)
+  {
+    this.save();
+    this.savetask1(id, this.username, this.priority, this.date, this.checked);
 
-  async savetask(id: any)
+    const toast = await this.toastController.create({
+    message: 'Task reassigned successfully.',
+    duration: 2000});
+    toast.present();
+
+    this.modalController.dismiss();
+  }
+
+
+  async savetaskEdit(id: any)
   {
     this.save();
     this.savetask1(id, this.username, this.priority, this.date, this.checked);
@@ -102,6 +115,7 @@ export class ModalPagePage implements OnInit {
         }
       ]
     });
+
 
     await alert.present();}
     else { this.modalController.dismiss();}
