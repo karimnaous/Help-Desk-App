@@ -52,11 +52,11 @@
 </ion-content>
 
 
-<table >
-  <td style="width:300px">
-    <ion-button  expand="block" (click)="presentAlert()">Cancel</ion-button>
-  </td>
-  <td style="width:300px">
-    <ion-button expand="block" (click)="doneEdit()">Save</ion-button>
-  </td>
-</table>
+<ion-content style="height:30px">
+<ion-fab vertical="bottom" horizontal="start" slot="fixed"  (click)="presentAlert()">
+    <ion-button  >Cancel</ion-button>
+  </ion-fab>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="doneEdit()">
+      <ion-button  >Save</ion-button>
+    </ion-fab>
+  </ion-content>
