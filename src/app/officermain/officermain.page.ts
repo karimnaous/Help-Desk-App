@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalPagePage } from '../officermain/modal-page/modal-page.page';
 import { ViewTasksPage } from '../officermain/view-tasks/view-tasks.page';
@@ -10,8 +10,17 @@ import { Guid } from "guid-typescript";
   styleUrls: ['./officermain.page.scss'],
 })
 
+
+
+
+
 export class OfficermainPage {
 
+  @ViewChild('sectionSelect') sectionSelect: any;
+  doFilter(){
+    this.sectionSelect.open();
+    console.log('hello')
+ }
 
   constructor(public modalController: ModalController) {
     // let task = [
