@@ -64,6 +64,7 @@ export class EmployeePage implements OnInit {
     this.category=task.category;
     this.priority=task.priority;
     this.description=task.description;
+
     var obj = {
       "id": task.id,
       "fullName": task.fullName,
@@ -79,7 +80,6 @@ export class EmployeePage implements OnInit {
     for (let i = 0; i < arr.length; i++) {
       if (arr[i].id === task.id) {
         index = i;
-        console.log(index);
       }
     }
     arr.splice(index, 1, obj);
@@ -100,12 +100,7 @@ export class EmployeePage implements OnInit {
         checked.push(entry.valueM)
       }
     }
-    this.name=task.fullName;
-    this.incidentTitle=task.incidentTitle;
-    this.date=task.date;
-    this.category=task.category;
-    this.priority=task.priority;
-    this.description=task.description;
+   
     this.id = Guid.create();
     var obj = {
       "id": this.id.value,

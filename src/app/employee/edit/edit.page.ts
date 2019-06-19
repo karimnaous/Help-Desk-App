@@ -41,6 +41,4 @@ export class EditPage implements OnInit {
     this.modalController.dismiss();
   }
 
-
-
 }
