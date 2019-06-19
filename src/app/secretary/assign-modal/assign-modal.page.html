@@ -4,12 +4,12 @@
   </ion-toolbar>
 </ion-header>
 
-  <ion-content>
+<ion-content>
 
   <ion-item>
     <ion-label>Employee Name</ion-label>
     <ion-select placeholder="Select Employee" [(ngModel)]="emp" id={{emp}} value={{emp}}>
-      <ion-select-option *ngFor="let row of employee_array" value={{row.name}} > {{row.name}}</ion-select-option>
+      <ion-select-option *ngFor="let row of employee_array" value={{row.name}}> {{row.name}}</ion-select-option>
     </ion-select>
   </ion-item>
 
@@ -50,13 +50,7 @@
   </ion-list>
 
 </ion-content>
-
-
-<ion-content style="height:30px">
-<ion-fab vertical="bottom" horizontal="start" slot="fixed"  (click)="presentAlert()">
-    <ion-button  >Cancel</ion-button>
-  </ion-fab>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="doneEdit()">
-      <ion-button  >Save</ion-button>
-    </ion-fab>
-  </ion-content>
+<ion-footer>
+  <ion-button fill="clear" float-right (click)="presentAlert()">Cancel</ion-button>
+  <ion-button fill="clear"  float-right (click)="doneEdit()">Save</ion-button>
+</ion-footer>
