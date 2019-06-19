@@ -13,7 +13,7 @@ export class ViewPage implements OnInit {
   public name: any = this.navParams.data.value.fullName;
   public inciName: any = this.navParams.data.value.incidentTitle;
   public date: any = this.navParams.data.value.date;
-  public inciCat: any = this.navParams.data.value.incidentCategory;
+  public inciCat: any = this.navParams.data.value.category;
   public dom: any = this.navParams.data.value.domain;
   public prior: any = this.navParams.data.value.priority;
   public desc: any = this.navParams.data.value.description;
@@ -22,7 +22,7 @@ export class ViewPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.navParams)
+    console.log(this.dom)
   }
 
   closeView() {

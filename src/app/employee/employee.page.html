@@ -1,14 +1,14 @@
 <ion-header>
     <ion-fab vertical="start" horizontal="end" slot="fixed">
-        <ion-fab-button color="dark" (click)="openModal()" expand="full" size = "small">
+        <ion-fab-button class = "buttonsColor" (click)="openModal()" expand="full" size = "small">
           <ion-icon name="add"></ion-icon>
         </ion-fab-button>
       </ion-fab>
-  <ion-toolbar>
+  <ion-toolbar  color = "primary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>
+    <ion-title color = "light" >
       Employee
     </ion-title>
   </ion-toolbar>
@@ -20,32 +20,33 @@
   
 
   <div class="container">
-    <ion-grid >
+    <ion-grid class  ="ion-no-padding">
     
-        <ion-row>
+        <ion-row style="text-align:center;background:#6f9ee6;color:aliceblue" >
           <!-- <ion-col size="1" class="hide-xs hide-sm">ID: </ion-col> -->
-          <ion-col size="1">Full Name </ion-col>
-           <ion-col size="1">Incident Title: </ion-col> 
-          <ion-col size="2" class="hide-xs hide-sm">Date: </ion-col>
+          <ion-col size="2">Full Name </ion-col>
+           <ion-col size="2">Incident Title: </ion-col> 
+          <ion-col size="3" class="hide-xs hide-sm">Date </ion-col>
           <!-- <ion-col size="1">Incident Category: </ion-col> -->
-          <ion-col size="2">Domain </ion-col>
+          <!-- <ion-col size="2">Domain </ion-col> -->
           <ion-col size="2">Priority </ion-col>
           <!-- <ion-col size="1">Description: </ion-col> -->
-          <ion-col size="2"></ion-col>
-          <ion-col size="2"> </ion-col>
+          <ion-col size="1"></ion-col>
+          <ion-col size="1"> </ion-col>
         </ion-row>
 
-        <ion-row *ngFor="let task of tasks">
+        <ion-row *ngFor="let task of tasks; let i = index"
+        [ngClass] = "(i%2) == 0 ? 'even' : 'odd'" style="text-align:center">
           <!-- <ion-col size="1">{{ task.id }}</ion-col> -->
-          <ion-col size="1">{{ task.fullName}}</ion-col>
-           <ion-col size="1">{{ task.yourIncidentTitle }}</ion-col> 
-          <ion-col size="2"  class="hide-xs hide-sm">{{ task.date }}</ion-col>
-          <!-- <ion-col size="1">{{ task.yourCategory }}</ion-col> -->
-          <ion-col size="2">{{ task.domain }}</ion-col>
+          <ion-col size="2" >{{ task.fullName}}</ion-col>
+           <ion-col size="2">{{ task.incidentTitle }}</ion-col> 
+          <ion-col size="3"  class="hide-xs hide-sm">{{ task.date | date : 'shortDate' }}</ion-col>
+          <!-- <ion-col size="1">{{ task.category }}</ion-col> -->
+          <!-- <ion-col size="2">{{ task.domain }}</ion-col> -->
           <ion-col size="2">{{ task.priority }}</ion-col>
-          <!-- <ion-col size="1">{{ task.yourDesc }}</ion-col> -->
-          <ion-col size="2"><ion-button expand="block" color="dark" (click)="openView(task.id)">View</ion-button> </ion-col>
-          <ion-col size="2"><ion-button expand="block" color="dark" (click)="openEdit(task.id)">Edit</ion-button>
+          <!-- <ion-col size="1">{{ task.description }}</ion-col> -->
+          <ion-col size="1"><a expand="block" color="primary" (click)="openView(task.id)" >View</a> </ion-col>
+          <ion-col size="1"><a  expand="block" color="primary" (click)="openEdit(task.id)">Edit</a>
              </ion-col>
         </ion-row>
 

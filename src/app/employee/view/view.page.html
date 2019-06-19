@@ -33,7 +33,9 @@
 
   <ion-item>
     <ion-label>Domain: </ion-label>
-    <ion-input value={{dom}} disabled="true"></ion-input>
+    <div *ngFor="let entry of dom;">
+        <p [hidden]="!entry.isChecked" >{{entry.valueM}}</p>
+    </div>
   </ion-item>
 
   <ion-item>
@@ -46,10 +48,13 @@
     <ion-input value={{desc}} disabled="true"></ion-input>
   </ion-item>
 
-  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
-      <ion-fab-button color="dark" (click) = "closeView()" expand="full">
-        <ion-icon name="close"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+  
 
 </ion-content>
+<ion-footer style="text-align:center;">
+    <ion-toolbar class="footer-center">
+    <div>
+    <ion-button fill="clear" (click)="closeView()" >close</ion-button> 
+    </div>
+    </ion-toolbar>
+    </ion-footer> 

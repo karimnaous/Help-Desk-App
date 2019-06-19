@@ -41,7 +41,7 @@
     <ion-label>Domain</ion-label>
     <ion-item *ngFor="let entry of form">
       <ion-label>{{entry.valueM}}</ion-label>
-      <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" color="dark"></ion-checkbox>
+      <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" ></ion-checkbox>
     </ion-item>
   </ion-list>
 
@@ -53,36 +53,33 @@
 
       <ion-item>
         <ion-label [(ngModel)]="newPriority">High</ion-label>
-        <ion-radio slot="start" color="dark" value="High"></ion-radio>
+        <ion-radio slot="start"  value="High"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label [(ngModel)]="newPriority">Meduim</ion-label>
-        <ion-radio slot="start" color="dark" checked value="Meduim"></ion-radio>
+        <ion-radio slot="start"  value="Meduim"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label [(ngModel)]="newPriority">Low</ion-label>
-        <ion-radio slot="start" color="dark" value="Low"></ion-radio>
+        <ion-radio slot="start"  value="Low"></ion-radio>
       </ion-item>
     </ion-radio-group>
   </ion-list>
 
   <ion-item>
-    <ion-label position="stacked" color="dark">Incident Description</ion-label>
+    <ion-label position="stacked" >Incident Description</ion-label>
     <ion-textarea placeholder="Describe your incident here " [(ngModel)]="newDesc">
     </ion-textarea>
   </ion-item>
-
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="dark" (click)="confirmSave()" expand="full">
-      <ion-icon name="checkmark"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-
-  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
-    <ion-fab-button color="dark" (click)="closeEdit()" expand="full">
-      <ion-icon name="close"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 </ion-content>
+
+<ion-footer style="text-align:center;">
+    <ion-toolbar class="footer-center">
+    <div>
+    <ion-button fill="clear" (click)="closeEdit()" >cancel</ion-button> 
+    <ion-button fill="clear" (click)="confirmSave()">save</ion-button>
+    </div>
+    </ion-toolbar>
+    </ion-footer> 

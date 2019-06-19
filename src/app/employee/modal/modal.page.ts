@@ -13,57 +13,6 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
 })
 export class ModalPage implements OnInit {
 
-  public newCreate: any = this.navParams.data.bindFunction;
-  public data;
-  name: any;
-  incidentTitle: any;
-  date: any;
-  category: any;
-  priority: any;
-  desc: any;
-  public id: any;
-
-  constructor(private modalController: ModalController, private navParams: NavParams) {
-
-  }
-
-  ngOnInit() {
-
-  }
-
-  confirmCreate()
-  {
-    this.data = {"fullName": this.name, "incidentTitle": this.incidentTitle, "date": this.date, "category": this.category, "priority": this.priority, "descriprion": this.desc};
-    this.newCreate(this.data);
-    this.modalController.dismiss();
-  }
-  // saveData() {
-  //   var checked = [];
-  //   var arr = [];
-
-  //   for (let entry of this.form) {
-  //     if (entry.isChecked == true) {
-  //       checked.push(entry.valueM)
-  //     }
-  //   }
-  //   this.id = Guid.create();
-  //   var obj = { "id": this.id.value, "Full Name": this.name, "Incident Title": this.incidentTitle, "Date": this.date, "Category": this.category, "Domain": checked, "Priority": this.priority, "Description": this.desc }
-  //   if (localStorage.length != 0) {
-  //     arr = JSON.parse(localStorage.getItem("Employees"));
-  //   }
-  //   arr.push(obj)
-  //   localStorage.setItem('Employees', JSON.stringify(arr));
-
-  //   arr = []
-  //   this.modalController.dismiss();
-  //   location.reload();
-
-  // }
-
-  closeModal() {
-    this.modalController.dismiss();
-  }
-
   public form = [
     { valueM: "IT", isChecked: false },
     { valueM: "Accounting", isChecked: false },
@@ -71,6 +20,38 @@ export class ModalPage implements OnInit {
     { valueM: "Architecture", isChecked: false },
     { valueM: "Telecom", isChecked: false }
   ];
+  public newCreate: any = this.navParams.data.bindFunction;
+  public data;
+  name: any;
+  incidentTitle: any;
+  date: any;
+  category: any;
+  priority: any;
+  public description: any;
+  public id: any;
+
+  constructor(private modalController: ModalController, private navParams: NavParams) {
+
+  }
+
+  ngOnInit() {
+    console.log(this.form);
+
+  }
+
+  confirmCreate()
+  {
+    console.log(this.description);
+    this.data = {"fullName": this.name, "incidentTitle": this.incidentTitle, "date": this.date, "category": this.category, "domain": this.form,  "priority": this.priority, "description": this.description};
+    this.newCreate(this.data);
+    this.modalController.dismiss();
+  }
+  
+  closeModal() {
+    this.modalController.dismiss();
+  }
+
+  
 
 
 

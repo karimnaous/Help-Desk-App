@@ -22,23 +22,16 @@ export class EditPage implements OnInit {
   public newDesc: any = this.navParams.data.value.description;
   public editTasks;
 
-  form = [
-    { valueM: "IT", isChecked: false },
-    { valueM: "Accounting", isChecked: false },
-    { valueM: "Transportation", isChecked: false },
-    { valueM: "Architecture", isChecked: false },
-    { valueM: "Telecom", isChecked: false }
-  ];
+  form = this.newDomain;
   
   constructor(private modalController: ModalController, public navParams: NavParams) { }
 
   ngOnInit() {
-    // console.log(this.task, this.otherName);
   }
 
   confirmSave()
   {
-    this.editTasks = {"id": this.otherId, "fullName": this.newName, "incidentTitle": this.newIncidentTitle, "date": this.newDate, "category": this.newCategory, "domain": this.newDomain, "priority": this.newPriority, "descriprion": this.newDesc   };
+    this.editTasks = {"id": this.otherId, "fullName": this.newName, "incidentTitle": this.newIncidentTitle, "date": this.newDate, "category": this.newCategory, "domain": this.newDomain, "priority": this.newPriority, "descriprion": this.newDesc};
     this.newSave(this.editTasks);
     this.modalController.dismiss();
   }
