@@ -1,44 +1,45 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
       Administrator
     </ion-title>
-    <ion-fab-button size="small" slot="end" color="primary" (click)="openModalAdd()">
+    <ion-fab-button size="small" translucent="true" slot="end" color="primary" (click)="openModalAdd()">
         <ion-icon name="add"></ion-icon>
     </ion-fab-button>
-    <!-- <ion-button slot="end" (click)="openModalAdd()">Add Employee</ion-button> -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-grid id="nav">
-    <ion-row>
-      <ion-col class="hide-xs hide-sm hide-md" style="background-color:silver" size="2" size-sm="2" size-md="2" size-lg="2"><strong>ID</strong></ion-col>
-      <ion-col style="background-color:silver" size="2" size-xs="4" size-sm="2" size-md="2" size-lg="2"><strong>Name</strong></ion-col>
-      <ion-col class="hide-xs hide-sm" style="background-color:silver" size="2" size-sm="2" size-md="2" size-lg="1"><strong>Gender</strong></ion-col>
-      <ion-col class="hide-xs" style="background-color:silver" size="2" size-sm="2" size-md="2" size-lg="1"><strong>Date of Birth</strong></ion-col>
-      <ion-col class="hide-xs" style="background-color:silver" size="2" size-sm="2" size-md="2" size-lg="2"><strong>Role</strong></ion-col>
-      <ion-col class="hide-xs" style="background-color:silver" size="2" size-sm="2" size-md="2" size-lg="2"><strong>Department</strong></ion-col>
-      <!-- <ion-col class="hide-xs hide-sm hide-md" style="background-color:silver" size="4" size-sm="2" size-md="2" size-lg="1"><strong>Marital Status</strong></ion-col> -->
+  <ion-grid no-padding>
+    <ion-row style="text-align:center;background:#6f9ee6;color:white" >
+      <ion-col class="hide-xs hide-sm hide-md" size="2" size-sm="2" size-md="2" size-lg="2"><strong>ID</strong></ion-col>
+      <ion-col size="2" size-xs="4" size-sm="2" size-md="2" size-lg="2"><strong>Name</strong></ion-col>
+      <ion-col class="hide-xs hide-sm" size="2" size-sm="2" size-md="2" size-lg="1"><strong>Gender</strong></ion-col>
+      <ion-col class="hide-xs" size="2" size-sm="2" size-md="2" size-lg="1"><strong>Date of Birth</strong></ion-col>
+      <ion-col class="hide-xs" size="2" size-sm="2" size-md="2" size-lg="2"><strong>Role</strong></ion-col>
+      <ion-col class="hide-xs" size="2" size-sm="2" size-md="2" size-lg="2"><strong>Department</strong></ion-col>
+      <!-- <ion-col class="hide-xs hide-sm hide-md" size="4" size-sm="2" size-md="2" size-lg="1"><strong>Marital Status</strong></ion-col> -->
       <!-- <ion-col size="1"><strong>Notes</strong></ion-col> -->
-      <ion-col text-center style="background-color:silver" size="4" size-xs="8" size-sm="4" size-md="2" size-lg="2"><strong>Actions</strong></ion-col>
+      <ion-col text-center size="4" size-xs="8" size-sm="4" size-md="2" size-lg="2"><strong>Actions</strong></ion-col>
     </ion-row>
-    <ion-row *ngFor="let employee of employees; let i = index">
+    <ion-row *ngFor="let employee of employees; let i = index" [attr.data-index]="i" [ngClass]="(i%2==0) ? 'even' : 'odd'" style="text-align:center">
       <ion-col class="hide-xs hide-sm hide-md" size="2" size-sm="2" size-md="2" size-lg="2">{{employee.ID}}</ion-col>
       <ion-col size="4" size-xs="4" size-sm="2" size-md="2" size-lg="2">{{employee.Name}}</ion-col>
       <ion-col class="hide-xs hide-sm" size="2" size-sm="2" size-md="2" size-lg="1">{{employee.Gender}}</ion-col>
-      <ion-col class="hide-xs" size="2" size-sm="2" size-md="2" size-lg="1">{{employee.Birthdate}}</ion-col>
+      <ion-col class="hide-xs" size="2" size-sm="2" size-md="2" size-lg="1" >{{employee.Birthdate}}</ion-col>
       <ion-col class="hide-xs" size="2" size-sm="2" size-md="2" size-lg="2">{{employee.Role}}</ion-col>
       <ion-col class="hide-xs" size="2" size-sm="2" size-md="2" size-lg="2">{{employee.Department}}</ion-col>
       <!-- <ion-col class="hide-xs hide-sm hide-md" size="2" size-sm="2" size-md="2" size-lg="1">{{employee.MaritalStatus}}</ion-col> -->
       <!-- <ion-col size="1">{{employee.Notes}}</ion-col> -->
-      <ion-col text-center size="4" size-xs="8" size-sm="4" size-md="2" size-lg="2">
-        <ion-button fill="clear" (click)="openModalView(i)">View</ion-button>
-        <ion-button fill="clear" (click)="openModal(i)">Edit</ion-button>
+      <ion-col text-center size="2" size-xs="4" size-sm="2" size-md="1" size-lg="1">
+        <ion-button fill="clear" (click)="openModalView(employee.ID)">View</ion-button>
+      </ion-col>
+      <ion-col text-center size="2" size-xs="4" size-sm="2" size-md="1" size-lg="1">
+          <ion-button fill="clear" (click)="openModal(employee.ID)">Edit</ion-button>
       </ion-col>
    </ion-row>
   </ion-grid>

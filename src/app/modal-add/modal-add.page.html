@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar text-center>
+  <ion-toolbar text-center color="primary">
     <ion-title>Add</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -27,18 +27,50 @@
       <ion-datetime [(ngModel)]="date" placeholder="Click to enter date." slot="end"
         display-format="MMM DD, YYYY HH:mm"></ion-datetime>
     </ion-item>
-    <ion-item>
-      <ion-label>Department</ion-label>
+    <!-- <ion-item> -->
+      <!-- <ion-label>Department</ion-label>
       <ion-list>
         <ion-item *ngFor="let entry of departments">
           <ion-label>{{entry.val}}</ion-label>
           <ion-checkbox slot="end" [(ngModel)]="entry.isChecked"></ion-checkbox>
         </ion-item>
       </ion-list>
+      <ion-select [(ngModel)]="department" value="Select One" okText="Ok" cancelText="Dismiss">
+          <ion-select-option value="Accounting">Accounting</ion-select-option>
+          <ion-select-option value="Engineering">Engineering</ion-select-option>
+          <ion-select-option value="Human Resources">Human Resources</ion-select-option>
+          <ion-select-option value="Information Technology">I.T.</ion-select-option>
+      </ion-select>
+    </ion-item> -->
+    <ion-item>
+        <ion-label>Department</ion-label>
+        <ion-list>
+            <ion-radio-group [(ngModel)]="department" >
+              <ion-item>
+                <ion-label>Accounting</ion-label>
+                <ion-radio value="Accounting"></ion-radio>
+              </ion-item>
+          
+              <ion-item>
+                <ion-label>Engineering</ion-label>
+                <ion-radio value="Engineering"></ion-radio>
+              </ion-item>
+          
+              <ion-item>
+                <ion-label>Human Resources</ion-label>
+                <ion-radio value="Human Resources"></ion-radio>
+              </ion-item>
+          
+              <ion-item>
+                <ion-label>Information Technology</ion-label>
+                <ion-radio value="Information Technology"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Married (check if yes)</ion-label>
-      <ion-radio [(ngModel)]="maritalStatus" slot="end" value="bliff" checked={{this.maritalStatus}}></ion-radio>
+      <ion-checkbox slot="end" [(ngModel)]="maritalStatus">Married</ion-checkbox>
     </ion-item>
     <ion-item>
       <ion-label>Role</ion-label>
@@ -51,11 +83,11 @@
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Notes</ion-label>
-      <ion-input [(ngModel)]="notes" placeholder="Enter any notes."></ion-input>
+      <ion-textarea [(ngModel)]="notes" placeholder="Enter any notes."></ion-textarea>
     </ion-item>
   </ion-list>
 </ion-content>
-<ion-item>
-  <ion-button slot="start" color="primary" (click)="closeModal(false)">Cancel</ion-button>
-  <ion-button slot="end" color="primary" (click)="closeModal(true)">Save</ion-button>
-</ion-item>
+<ion-footer>
+    <ion-button class="custom-button" slot="start" color="primary" fill="clear" (click)="closeModal(false)">Cancel</ion-button>
+    <ion-button class="custom-button" float-right slot="fixed" color="primary" fill="clear" (click)="closeModal(true)">Save</ion-button>
+</ion-footer>

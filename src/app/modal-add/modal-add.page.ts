@@ -54,7 +54,7 @@ export class ModalAddPage implements OnInit {
 
   async closeModal(save:boolean) {
     if (save == true) {
-        this.department = this.saveDepartment(this.department);
+        // this.department = this.saveDepartment(this.department);
         let married = "Single";
         if (this.maritalStatus) { married = "Married"; }
         let emp = {ID: this.ID, Name : this.name, Gender:this.gender, Birthdate : this.date, Role : this.role , Department : this.department, MaritalStatus : married, Notes:this.notes};

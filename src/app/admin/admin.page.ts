@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { ModalAdminPage } from '../modal-admin/modal-admin.page'
 import { ModalAddPage } from '../modal-add/modal-add.page'
 import { ModalViewPage } from '../modal-view/modal-view.page'
@@ -24,8 +25,9 @@ export class AdminPage implements OnInit {
 
 
   constructor(
-    public modalController: ModalController, public toastController: ToastController
+    public modalController: ModalController, public toastController: ToastController, public alertController: AlertController
   ) {
+    localStorage.clear();
     if (localStorage.length <= 0 && this.getEmployees() != null) {
       let employee = [
         { ID: Guid.create()["value"], Name: "Jason", Gender: "Male", Birthdate: "Jun-30-1999", Role: "Administrator", Department: "Information Technology", MaritalStatus: "Married", Notes: "None" },
@@ -39,12 +41,12 @@ export class AdminPage implements OnInit {
   }
 
 
-  async openModal(id: number) {
+  async openModal(id: string) {
     const modal = await this.modalController.create({
       component: ModalAdminPage,
       componentProps: {
         "arrayEmps": this.getEmployees(),
-        "ID": this.getEmployees()[id]["ID"],
+        "ID": id,
         "findEmployee": this.findEmployeeBound,
         "saveEmployees": this.saveEmployeesBound,
         "departments": this.departments,
@@ -60,6 +62,7 @@ export class AdminPage implements OnInit {
         this.dataReturned = dataReturned.data;
         // this.saveEmployees(this.dataReturned);
       }
+      this.presentAlertMultipleButtons()
     });
     return await modal.present();
   }
@@ -88,12 +91,12 @@ export class AdminPage implements OnInit {
   }
 
 
-  async openModalView(id: number) {
+  async openModalView(id: string) {
     const modal = await this.modalController.create({
       component: ModalViewPage,
       componentProps: {
         "arrayEmps": this.getEmployees(),
-        "ID": this.getEmployees()[id]["ID"],
+        "ID": id,
         "findEmployee": this.findEmployeeBound,
         "saveEmployees": this.saveEmployeesBound,
         "departments": this.departments,
@@ -103,6 +106,15 @@ export class AdminPage implements OnInit {
     });
 
     modal.onDidDismiss().then((dataReturned) => {
+      try {
+        if (dataReturned !== null) {
+          this.dataReturned = dataReturned.data; 
+          if (this.dataReturned.clicked) {
+              this.openModal(this.dataReturned.id);
+          }
+        }
+      }
+      catch(e) {}
     });
     // const toast = await this.toastController.create({
     //   message: 'Added Employee.',
@@ -115,7 +127,7 @@ export class AdminPage implements OnInit {
 
   public getEmployees(): Object {
     if (localStorage.length > 0) {
-      let myJSON = localStorage.getItem('employee');
+      let myJSON = localStorage.getItem('Employees');
       let myObj = JSON.parse(myJSON);
       return myObj;
     }
@@ -140,7 +152,7 @@ export class AdminPage implements OnInit {
 
   public saveEmployees(emps: object) {
     this.employees = emps;
-    localStorage.setItem("employee", JSON.stringify(emps))
+    localStorage.setItem("Employees", JSON.stringify(emps))
   }
   public saveEmployeesBound = this.saveEmployees.bind(this);
 
@@ -187,6 +199,20 @@ export class AdminPage implements OnInit {
     else { this.departments[3]["isChecked"] = false; }
   }
   public readDepartmentBound = this.readDepartment.bind(this);
+
+  async presentAlertMultipleButtons() {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      subHeader: 'Subtitle',
+      message: 'This is an alert message.',
+      buttons: ['Cancel', 'Open Modal', 'Delete']
+    });
+
+    await alert.present();
+  }
+  // public displayDate(DOB: string) {
+  //     date = new Date(DOB);
+  // }
 
 
   // emp = {

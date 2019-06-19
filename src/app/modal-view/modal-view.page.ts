@@ -62,28 +62,9 @@ export class ModalViewPage implements OnInit {
       this.notes = emp["Notes"];
   } 
 
-  async closeModal(save:boolean) {
-    if (save == true) {
-        var i;
-        this.department = "";
-        for (i = 0; i < this.departments.length; i++) {
-            if (this.departments[i]["isChecked"]) {
-                if (this.department != "") {
-                  this.department = this.department + ", " + this.departments[i]["val"];
-                }
-                else { this.department = this.departments[i]["val"]; } 
-            }
-        }
-        let married = "Single";
-        if (this.maritalStatus) { married = "Married"; }
-        let emp = {ID: this.ID, Name : this.name, Gender:this.gender, Birthdate : this.date, Role : this.role , Department : this.department, MaritalStatus : married, Notes:this.notes};
-        this.arrayEmps[this.index] = emp;
-        const onClosedData: [any] = this.arrayEmps;
-        await this.modalController.dismiss(onClosedData);
-    }
-    else {
-        const onClosedData = null;
-        await this.modalController.dismiss(onClosedData);
-    }
+  async closeModal(edit:boolean) {
+    // if edit == true, it means user clicked the edit button
+    const onClosedData = {clicked: edit, id: this.ID};
+    await this.modalController.dismiss(onClosedData);
   }
 }

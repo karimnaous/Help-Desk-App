@@ -49,17 +49,17 @@ export class ModalAdminPage implements OnInit {
     this.index = this.findEmployee(this.ID);
 
     this.readEmployee(this.arrayEmps[this.index]);
-    this.readDepartment(this.department);
-  
+    // this.readDepartment(this.department);
+
   }
 
   public readEmployee(emp : object) {
-      console.log("Inside readEmployee");
+      // console.log("Inside readEmployee");
       this.name = emp["Name"];
       this.gender = emp["Gender"];
       this.date = emp["Birthdate"];
       this.department = emp["Department"];
-      if (emp["MaritalStatus"] == "Married") { this.maritalStatus = true; } 
+      if (emp["MaritalStatus"] == "Married") { this.maritalStatus = true; }
       else { this.maritalStatus = false; }
       this.role = emp["Role"];
       this.notes = emp["Notes"];
@@ -67,9 +67,9 @@ export class ModalAdminPage implements OnInit {
 
   async closeModal(save:boolean) {
     if (save == true) {
-        this.department = this.saveDepartment();
+        // this.department = this.saveDepartment();
         let married = "Single";
-        if (this.maritalStatus) { let married = "Married"; }
+        if (this.maritalStatus == true) { married = "Married"; }
         let emp = {ID: this.ID, Name : this.name, Gender:this.gender, Birthdate : this.date, Role : this.role , Department : this.department, MaritalStatus : married, Notes:this.notes};
         this.arrayEmps[this.index] = emp;
         this.saveEmployees(this.arrayEmps);

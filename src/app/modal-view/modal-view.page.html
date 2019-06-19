@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar text-center>
+  <ion-toolbar text-center color="primary">
     <ion-title>View</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -32,11 +32,14 @@
     <ion-item>
       <ion-label><strong>Notes: </strong> {{notes}}</ion-label>
     </ion-item>
-    <ion-item>
+    <!-- <ion-item>
         <ion-label><strong>ID: </strong> {{ID}}</ion-label>
-    </ion-item>
+    </ion-item> -->
   </ion-list>
 </ion-content>
-  <ion-item>
-    <ion-button slot="end" color="primary" (click)="closeModal(false)">Done</ion-button>
-  </ion-item>
+<!-- <ion-button class="custom-button" slot="fixed" color="light" (click)="closeModal(true)">Edit</ion-button>
+ -->
+ <ion-footer>
+    <ion-button class="custom-button" slot="start" color="primary" fill="clear" (click)="closeModal(false)">Close</ion-button>
+    <ion-button class="custom-button" float-right slot="fixed" color="primary" fill="clear" (click)="closeModal(true)">Edit</ion-button>
+</ion-footer>

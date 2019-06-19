@@ -17,8 +17,20 @@
     }
 }
 
+.even { 
+    text-align:center;
+    background-color: rgb(226, 242, 248); 
+}
 
+.odd { 
+    text-align:center;
+    background-color: white;
+}
 
+ion-grid { 
+    margin-left:0 !important;
+    margin-right:0 !important;
+}
 
 // #nav ion-grid ion-row ion-col {
 //     color: #900;
