@@ -27,12 +27,12 @@ export class ViewTasksPage implements OnInit {
    private resolve1: any = this.navParams.get('value1');
 
   public form = [
-    { val: 'Project Management', isChecked: false },
     { val: 'IT', isChecked: false },
-    { val: 'Architecture', isChecked: false },
+    { val: 'Accounting', isChecked: false },
+    { val: 'Transportation', isChecked: false },
     { val: 'Civil', isChecked: false },
-    { val: 'Mechanical', isChecked: false },
-    { val: 'Telecom', isChecked: false }
+    { val: 'Telecom', isChecked: false },
+    { val: 'Architecture', isChecked: false }
   ];
 
 
