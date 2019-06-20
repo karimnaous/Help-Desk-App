@@ -24,67 +24,67 @@ export class SecretaryPage implements OnInit {
  
   constructor(public modalController: ModalController, private toastController: ToastController) {
 
-    localStorage.setItem("Incidents", JSON.stringify([
-      {
-        "id": uuidv1(), "category": "txt1", "priority": "high", "date": "2007-01-01T00:00:00+02:00", "domain":
-        [
-          { "val": 'IT', isChecked:true},
-          { "val": 'Accounting', isChecked: false },
-          { "val": 'Transportation', isChecked: false },
-          { "val": 'Civil', isChecked: false },
-          { "val": 'Telecom', isChecked: false },
-          { "val": 'Architecture', isChecked: false }
-          ] ,    "fullName":"nameA"
-      },
-      {
-        "id": uuidv1(), "category": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "domain":
-        [
-          { "val": 'IT', isChecked:true},
-          { "val": 'Accounting', isChecked: false },
-          { "val": 'Transportation', isChecked: false },
-          { "val": 'Civil', isChecked: false },
-          { "val": 'Telecom', isChecked: false },
-          { "val": 'Architecture', isChecked: false }
-          ] ,  "fullName":"nameB"      },
-      {
-        "id": uuidv1(), "category": "txt1", "priority": "mod", "date": "2007-01-01T00:00:00+02:00","domain":
+    // localStorage.setItem("Incidents", JSON.stringify([
+    //   {
+    //     "id": uuidv1(), "category": "txt1", "priority": "high", "date": "2007-01-01T00:00:00+02:00", "domain":
+    //     [
+    //       { "val": 'IT', isChecked:true},
+    //       { "val": 'Accounting', isChecked: false },
+    //       { "val": 'Transportation', isChecked: false },
+    //       { "val": 'Civil', isChecked: false },
+    //       { "val": 'Telecom', isChecked: false },
+    //       { "val": 'Architecture', isChecked: false }
+    //       ] ,    "fullName":"nameA"
+    //   },
+    //   {
+    //     "id": uuidv1(), "category": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "domain":
+    //     [
+    //       { "val": 'IT', isChecked:true},
+    //       { "val": 'Accounting', isChecked: false },
+    //       { "val": 'Transportation', isChecked: false },
+    //       { "val": 'Civil', isChecked: false },
+    //       { "val": 'Telecom', isChecked: false },
+    //       { "val": 'Architecture', isChecked: false }
+    //       ] ,  "fullName":"nameB"      },
+    //   {
+    //     "id": uuidv1(), "category": "txt1", "priority": "mod", "date": "2007-01-01T00:00:00+02:00","domain":
    
-        [
-          { "val": 'IT', isChecked: false },
-          { "val": 'Accounting', isChecked: false },
-          { "val": 'Transportation', isChecked: false },
-          { "val": 'Civil', isChecked:true},
-          { "val": 'Telecom', isChecked: false },
-          { "val": 'Architecture', isChecked: false }
-          ] ,  "fullName":"nameC" },
-      {
-        "id": uuidv1(), "category": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "domain":
-        [
-          { "val": 'IT', isChecked: false },
-          { "val": 'Accounting', isChecked: false },
-          { "val": 'Transportation', isChecked: false },
-          { "val": 'Civil', isChecked: false },
-          { "val": 'Telecom', isChecked:true},
-          { "val": 'Architecture', isChecked: false }
-          ] ,  "fullName":"nameD"}
-    ]))
-    localStorage.setItem("Employees", JSON.stringify([{
-      "ID": uuidv1(), "Role": "Officer","Name":"Tala"
+    //     [
+    //       { "val": 'IT', isChecked: false },
+    //       { "val": 'Accounting', isChecked: false },
+    //       { "val": 'Transportation', isChecked: false },
+    //       { "val": 'Civil', isChecked:true},
+    //       { "val": 'Telecom', isChecked: false },
+    //       { "val": 'Architecture', isChecked: false }
+    //       ] ,  "fullName":"nameC" },
+    //   {
+    //     "id": uuidv1(), "category": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "domain":
+    //     [
+    //       { "val": 'IT', isChecked: false },
+    //       { "val": 'Accounting', isChecked: false },
+    //       { "val": 'Transportation', isChecked: false },
+    //       { "val": 'Civil', isChecked: false },
+    //       { "val": 'Telecom', isChecked:true},
+    //       { "val": 'Architecture', isChecked: false }
+    //       ] ,  "fullName":"nameD"}
+    // ]))
+    // localStorage.setItem("Employees", JSON.stringify([{
+    //   "ID": uuidv1(), "Role": "Officer","Name":"Tala"
 
-    }, {
-      "ID": uuidv1(), "Role": "Admin","Name":"Karim"
+    // }, {
+    //   "ID": uuidv1(), "Role": "Admin","Name":"Karim"
 
-    }, {
-      "ID": uuidv1(), "Role": "Officer","Name":"Alex"
+    // }, {
+    //   "ID": uuidv1(), "Role": "Officer","Name":"Alex"
 
-    }, {
-      "ID": uuidv1(), "Role": "User","Name":"Sam"
+    // }, {
+    //   "ID": uuidv1(), "Role": "User","Name":"Sam"
 
-    }
-      , {
-      "ID": uuidv1(), "Role": "Officer","Name":"Layal"
+    // }
+    //   , {
+    //   "ID": uuidv1(), "Role": "Officer","Name":"Layal"
 
-    }]));
+    // }]));
 
     //console.log(_.groupBy(this.incident_array, this.groupbyPriority));
 

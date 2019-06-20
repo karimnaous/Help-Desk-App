@@ -76,7 +76,7 @@ export class AssignModalPage implements OnInit {
       ]
     });
     var changedForm = (this.priority!== this.record.priority ||  JSON.stringify(this.date) !== JSON.stringify(this.record.date)
-    || JSON.stringify(this.domain)!==JSON.stringify(this.record.domain));
+    || JSON.stringify(this.domain)!==JSON.stringify(this.record.domain) || this.emp!==undefined);
    console.log(JSON.stringify(this.domain)===JSON.stringify(this.record.domain));
    
     if (changedForm)
