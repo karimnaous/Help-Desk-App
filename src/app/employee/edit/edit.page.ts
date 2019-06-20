@@ -30,7 +30,8 @@ export class EditPage implements OnInit {
   }
 
   confirmSave() {
-    this.editTasks = { "id": this.otherId, "fullName": this.newName, "incidentTitle": this.newIncidentTitle, "date": this.newDate, "category": this.newCategory, "domain": this.newDomain, "priority": this.newPriority, "description": this.newDesc };
+    this.editTasks = { "id": this.otherId, "fullName": this.newName, "incidentTitle": this.newIncidentTitle, "date": this.newDate, "category": this.newCategory, "domain": this.newDomain, "priority": this.newPriority, "description": this.newDesc,
+    "status":"initiated"};
     this.newSave(this.editTasks);
     this.modalController.dismiss();
   }

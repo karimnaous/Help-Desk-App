@@ -42,7 +42,8 @@ export class ModalPage implements OnInit {
 
   confirmCreate()
   {
-    this.data = {"fullName": this.name, "incidentTitle": this.incidentTitle, "date": this.date, "category": this.category, "domain": this.form,  "priority": this.priority, "description": this.description};
+    this.data = {"fullName": this.name, "incidentTitle": this.incidentTitle, "date": this.date, "category": this.category, "domain": this.form,  "priority": this.priority, "description": this.description,
+    "status":"initiated"};
     this.newCreate(this.data);
     this.modalController.dismiss();
   }

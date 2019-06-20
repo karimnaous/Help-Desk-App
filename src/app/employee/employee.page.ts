@@ -42,9 +42,9 @@ export class EmployeePage implements OnInit {
 
     const me = this;
     this.tasks = [];
-    var localStorageIncidents=localStorage.getItem("Incidents")
-    if (localStorageIncidents===null) {
-      me.tasks = JSON.parse(localStorageIncidents);
+    var localStoragetask=localStorage.getItem("task")
+    if (localStoragetask!==null) {
+      me.tasks = JSON.parse(localStoragetask);
     }
 
     console.log('newTask', me.tasks);
@@ -76,10 +76,11 @@ export class EmployeePage implements OnInit {
       "category": task.category,
       "domain": task.domain,
       "priority": task.priority,
-      "description": task.description
+      "description": task.description,
+      "status":"initiated"
     }
     
-    arr = JSON.parse(localStorage.getItem("Incidents"));
+    arr = JSON.parse(localStorage.getItem("task"));
     for (let i = 0; i < arr.length; i++) {
       if (arr[i].id === task.id) {
         index = i;
@@ -87,7 +88,7 @@ export class EmployeePage implements OnInit {
     }
     arr.splice(index, 1, obj);
     this.tasks = arr;
-    localStorage.setItem('Incidents', JSON.stringify(arr));
+    localStorage.setItem('task', JSON.stringify(arr));
 
     this.presentToast("Task successfully edited.")
     this.closeModal()
@@ -113,19 +114,20 @@ export class EmployeePage implements OnInit {
       "category": task.category,
       "domain": task.domain,
       "priority": task.priority,
-      "description": task.description
+      "description": task.description,
+      "status":"initiated"
     }
 
-    var localStorageIncidents=localStorage.getItem("Incidents")
-    if (localStorageIncidents!==null) {
-      arr = JSON.parse(localStorageIncidents);
+    var localStoragetask=localStorage.getItem("task")
+    if (localStoragetask!==null) {
+      arr = JSON.parse(localStoragetask);
     }
 
     arr.push(obj);
     this.tasks=arr;
 
 
-    localStorage.setItem('Incidents', JSON.stringify(arr));
+    localStorage.setItem('task', JSON.stringify(arr));
 
     this.presentToast("Task successfully saved.")
     this.closeModal();
