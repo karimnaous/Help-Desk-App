@@ -8,17 +8,10 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-<<<<<<< HEAD
 import { IonicStorageModule } from '@ionic/storage';
-=======
 import { ModalAdminPageModule } from './modal-admin/modal-admin.module';
 import { ModalAddPageModule } from './modal-add/modal-add.module';
 import { ModalViewPageModule } from './modal-view/modal-view.module';
-
-
-
-
->>>>>>> 183be03eec1ca451185ff6a6e356bed9dbe90dfc
 
 @NgModule({
   declarations: [AppComponent],

@@ -29,7 +29,7 @@ export class AppComponent {
     { 
       title: 'Admin',
       url: '/admin',
-      icon: 'person-add'
+      icon: 'fas fa-user-plus'
 
     }
   ];
