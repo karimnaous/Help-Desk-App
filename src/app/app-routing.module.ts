@@ -11,10 +11,6 @@ const routes: Routes = [
     path: 'home',
     loadChildren: './home/home.module#HomePageModule'
   },
-  {
-    path: 'list',
-    loadChildren: './list/list.module#ListPageModule'
-  },
   { path: 'officermain', loadChildren: './officermain/officermain.module#OfficermainPageModule' },
   //{ path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' },
   //{ path: 'view-tasks', loadChildren: './officermain/view-tasks/view-tasks.module#ViewTasksPageModule' },
