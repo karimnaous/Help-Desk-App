@@ -55,23 +55,30 @@ export class AdminPage implements OnInit {
         "departments": this.departments,
         "readDepartment": this.readDepartment,
         "saveDepartment": this.saveDepartmentBound,
-        // "emp": this.emp,
         "readEmployee": this.readEmployeeBound,
       }
     });
-
+    // const toast = await this.toastController.create({
+    //   message: 'Employee details updated.',
+    //   duration: 2000
+    // });
     modal.onDidDismiss().then((dataReturned) => {
       if (dataReturned !== null) {
         this.dataReturned = dataReturned.data;
         // this.saveEmployees(this.dataReturned);
       }
       // this.presentAlertMultipleButtons()
+      // toast.present();
     });
     return await modal.present();
   }
 
 
   async openModalAdd() {
+    // const toast = await this.toastController.create({
+    //   message: 'Added Employee.',
+    //   duration: 2000
+    // });
     const modal = await this.modalController.create({
       component: ModalAddPage,
       componentProps: {
@@ -89,12 +96,14 @@ export class AdminPage implements OnInit {
       if (dataReturned !== null) {
         this.dataReturned = dataReturned.data;
       }
+      // toast.present();
     });
     return await modal.present();
   }
 
 
   async openModalView(id: string) {
+
     const modal = await this.modalController.create({
       component: ModalViewPage,
       componentProps: {
@@ -115,14 +124,12 @@ export class AdminPage implements OnInit {
               this.openModal(this.dataReturned.id);
           }
         }
+
       }
       catch(e) {}
     });
-    // const toast = await this.toastController.create({
-    //   message: 'Added Employee.',
-    //   duration: 2000
-    // });
-    // toast.present();
+
+    
     return await modal.present();
   }
 
@@ -222,9 +229,14 @@ export class AdminPage implements OnInit {
 
     await alert.present();
   }
-  // public displayDate(DOB: string) {
-  //     date = new Date(DOB);
-  // }
+
+  public displayDate(employee) {
+      if(employee["Birthdate"] == "") {
+          return "";
+      }
+      let date = new Date(employee["Birthdate"]);
+      return date;
+  }
 
 
   emp: any = {}
