@@ -25,8 +25,8 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   providers:[],
-  declarations: [SecretaryPage,ViewModalPage,AssignModalPage],
-  entryComponents: [ViewModalPage,AssignModalPage],
+  declarations: [SecretaryPage],
+  entryComponents: [],
   exports:[]
 })
 export class SecretaryPageModule {}

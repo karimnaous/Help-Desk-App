@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-//import { user-edit} from "@fortawesome/fontawesome-free";
 
 
 @Component({
@@ -16,12 +15,6 @@ export class AppComponent {
       title: 'Home',
       url: '/home',
       icon: 'fas fa-home'
-    },
-    {
-      title: 'Employee',
-      url: '/employee',
-      icon: 'fas fa-users'
-     
     },
     {
       title: 'Officer',

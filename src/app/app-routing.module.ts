@@ -13,12 +13,6 @@ const routes: Routes = [
     path: 'home',
     loadChildren: './home/home.module#HomePageModule'
   },
-  { path: 'employee', loadChildren: './employee/employee.module#EmployeePageModule' },
-  { path: 'view', loadChildren: './view/view.module#ViewPageModule' },
-  { path: 'view', loadChildren: './employee/view/view.module#ViewPageModule' },
-  { path: 'edit', loadChildren: './edit/edit.module#EditPageModule' },
-  { path: 'employee', loadChildren: './edit/employee/employee.module#EmployeePageModule' },
-  { path: 'edit', loadChildren: './employee/edit/edit.module#EditPageModule' },
   { path: 'officermain', loadChildren: './officermain/officermain.module#OfficermainPageModule' },
   { path: 'secretary', loadChildren: './secretary/secretary.module#SecretaryPageModule' },
   { path: 'assign-modal', loadChildren: './secretary/assign-modal/assign-modal.module#AssignModalPageModule' },
