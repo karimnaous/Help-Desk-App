@@ -28,7 +28,7 @@ export class SecretaryPage implements OnInit {
       {
         "id": uuidv1(), "category": "txt1", "priority": "high", "date": "2007-01-01T00:00:00+02:00", "domain":
         [
-          { "val": 'IT', isChecked: false },
+          { "val": 'IT', isChecked:true},
           { "val": 'Accounting', isChecked: false },
           { "val": 'Transportation', isChecked: false },
           { "val": 'Civil', isChecked: false },
