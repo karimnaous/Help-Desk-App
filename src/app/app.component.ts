@@ -17,9 +17,16 @@ export class AppComponent {
       icon: 'fas fa-home'
     },
     {
+
       title: 'Secretary',
       url: '/secretary',
       icon: 'fas fa-tty'
+    },
+    { 
+      title: 'Admin',
+      url: '/admin',
+      icon: 'person-add'
+
     }
   ];
 
