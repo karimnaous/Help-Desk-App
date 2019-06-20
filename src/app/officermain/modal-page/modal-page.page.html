@@ -18,7 +18,9 @@
       <ion-label>Officer</ion-label>
       <ion-select (ionChange)="onChange()" [(ngModel)]="username" [interfaceOptions]="customActionSheetOptions"
         interface="action-sheet" placeholder="Select One">
-        <ion-select-option *ngFor="let name of officer" value={{name.username}}>{{name.username}}</ion-select-option>
+        <div *ngFor="let entry of officer">
+        <ion-select-option *ngIf="entry.Role=='Officer'"  value={{entry.Name}}>{{entry.Name}}</ion-select-option>
+        </div>
       </ion-select>
     </ion-item>
 

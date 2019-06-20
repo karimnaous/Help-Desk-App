@@ -18,6 +18,7 @@ export class ModalPagePage implements OnInit {
   private change: boolean= false;
   private allChange1: boolean= false;
   private comments: string;
+  officer;
 
   // @Input() value: number;
   private id1: any = this.navParams.get('value');
@@ -46,9 +47,8 @@ export class ModalPagePage implements OnInit {
     }
   }
 
-  public officer=JSON.parse(localStorage.getItem('officer'));
-  public task=JSON.parse(localStorage.getItem('task'));
-  public user=JSON.parse(localStorage.getItem('myuser'));
+  public task = JSON.parse(localStorage.getItem('task'));
+  public user = JSON.parse(localStorage.getItem('myuser'));
 
   async savetaskReassign(id: any)
   {
@@ -138,5 +138,7 @@ export class ModalPagePage implements OnInit {
   }
 
   ngOnInit() {
+    this.officer = JSON.parse(localStorage.getItem('Employees'));
+    console.log('this.officer', this.officer);
   }
 }
