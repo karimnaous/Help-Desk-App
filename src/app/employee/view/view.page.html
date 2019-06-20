@@ -6,10 +6,6 @@
 
 <ion-content>
 
-  <ion-item>
-    <ion-label>Request ID: </ion-label>
-    <ion-input value={{id}} disabled="true"> </ion-input>
-  </ion-item>
 
   <ion-item>
     <ion-label>Full Name</ion-label>
@@ -34,7 +30,7 @@
   <ion-item>
     <ion-label>Domain: </ion-label>
     <div *ngFor="let entry of dom;">
-        <p [hidden]="!entry.isChecked" >{{entry.valueM}}</p>
+      <p [hidden]="!entry.isChecked">{{entry.value}}</p>
     </div>
   </ion-item>
 
@@ -48,13 +44,13 @@
     <ion-input value={{desc}} disabled="true"></ion-input>
   </ion-item>
 
-  
+
 
 </ion-content>
 <ion-footer style="text-align:center;">
-    <ion-toolbar class="footer-center">
+  <ion-toolbar class="footer-center">
     <div>
-    <ion-button fill="clear" (click)="closeView()" >close</ion-button> 
+      <ion-button fill="clear" (click)="closeView()">close</ion-button>
     </div>
-    </ion-toolbar>
-    </ion-footer> 
+  </ion-toolbar>
+</ion-footer>

@@ -6,14 +6,10 @@
 
 <ion-content>
 
-  <ion-item>
-    <ion-label>Request ID: </ion-label>
-    <ion-input value={{otherId}} disabled="true"> </ion-input>
-  </ion-item>
 
   <ion-item>
     <ion-label>Full Name</ion-label>
-    <ion-input value={{newName}} [(ngModel)]="newName" > </ion-input>
+    <ion-input value={{newName}} [(ngModel)]="newName"> </ion-input>
   </ion-item>
 
   <ion-item>
@@ -25,7 +21,7 @@
     <ion-label>
       Incident Date
     </ion-label>
-    <ion-datetime placeholder="Date" display-format="MMM DD, YYYY" [(ngModel)]="newDate" value = "newDate"></ion-datetime>
+    <ion-datetime placeholder="Date" display-format="MMM DD, YYYY" [(ngModel)]="newDate" value="newDate"></ion-datetime>
   </ion-item>
 
   <ion-item>
@@ -41,7 +37,7 @@
     <ion-label>Domain</ion-label>
     <ion-item *ngFor="let entry of form">
       <ion-label>{{entry.valueM}}</ion-label>
-      <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" ></ion-checkbox>
+      <ion-checkbox slot="end" [(ngModel)]="entry.isChecked"></ion-checkbox>
     </ion-item>
   </ion-list>
 
@@ -53,33 +49,33 @@
 
       <ion-item>
         <ion-label [(ngModel)]="newPriority">High</ion-label>
-        <ion-radio slot="start"  value="High"></ion-radio>
+        <ion-radio slot="start" value="High"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label [(ngModel)]="newPriority">Meduim</ion-label>
-        <ion-radio slot="start"  value="Meduim"></ion-radio>
+        <ion-radio slot="start" value="Meduim"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label [(ngModel)]="newPriority">Low</ion-label>
-        <ion-radio slot="start"  value="Low"></ion-radio>
+        <ion-radio slot="start" value="Low"></ion-radio>
       </ion-item>
     </ion-radio-group>
   </ion-list>
 
   <ion-item>
-    <ion-label position="stacked" >Incident Description</ion-label>
+    <ion-label position="stacked">Incident Description</ion-label>
     <ion-textarea placeholder="Describe your incident here " [(ngModel)]="newDesc">
     </ion-textarea>
   </ion-item>
 </ion-content>
 
 <ion-footer style="text-align:center;">
-    <ion-toolbar class="footer-center">
+  <ion-toolbar class="footer-center">
     <div>
-    <ion-button fill="clear" (click)="closeEdit()" >cancel</ion-button> 
-    <ion-button fill="clear" (click)="confirmSave()">save</ion-button>
+      <ion-button fill="clear" (click)="closeEdit()">cancel</ion-button>
+      <ion-button fill="clear" (click)="confirmSave()">save</ion-button>
     </div>
-    </ion-toolbar>
-    </ion-footer> 
+  </ion-toolbar>
+</ion-footer>

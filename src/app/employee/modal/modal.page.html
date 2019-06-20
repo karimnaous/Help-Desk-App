@@ -34,7 +34,7 @@
   <ion-list>
     <ion-label>Domain</ion-label>
     <ion-item *ngFor="let entry of form">
-      <ion-label>{{entry.valueM}}</ion-label>
+      <ion-label>{{entry.value}}</ion-label>
       <ion-checkbox slot="end" [(ngModel)]="entry.isChecked"></ion-checkbox>
     </ion-item>
   </ion-list>

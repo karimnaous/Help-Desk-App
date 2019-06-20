@@ -1,57 +1,56 @@
 <ion-header>
-    <ion-fab vertical="start" horizontal="end" slot="fixed">
-        <ion-fab-button class = "buttonsColor" (click)="openModal()" expand="full" size = "small">
-          <ion-icon name="add"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
-  <ion-toolbar  color = "primary">
+  <ion-fab vertical="start" horizontal="end" slot="fixed">
+    <ion-fab-button class="buttonsColor" (click)="openModal()" expand="full" size="small">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title color = "light" >
+    <ion-title color="light">
       Employee
     </ion-title>
   </ion-toolbar>
-  
 </ion-header>
 
 <ion-content>
 
-  
+
 
   <div class="container">
-    <ion-grid class  ="ion-no-padding">
-    
-        <ion-row style="text-align:center;background:#6f9ee6;color:aliceblue" >
-          <!-- <ion-col size="1" class="hide-xs hide-sm">ID: </ion-col> -->
-          <ion-col size="2">Full Name </ion-col>
-           <ion-col size="2">Incident Title </ion-col> 
-          <ion-col size="3" class="hide-xs hide-sm">Date </ion-col>
-          <!-- <ion-col size="1">Incident Category: </ion-col> -->
-          <!-- <ion-col size="2">Domain </ion-col> -->
-          <ion-col size="2">Priority </ion-col>
-          <!-- <ion-col size="1">Description: </ion-col> -->
-          <ion-col size="auto"></ion-col>
-          <ion-col size="auto"> </ion-col>
-        </ion-row>
+    <ion-grid class="ion-no-padding">
 
-        <ion-row *ngFor="let task of tasks; let i = index"
-        [ngClass] = "(i%2) == 0 ? 'even' : 'odd'" style="text-align:center">
-          <!-- <ion-col size="1">{{ task.id }}</ion-col> -->
-          <ion-col size="2" >{{ task.fullName}}</ion-col>
-           <ion-col size="2">{{ task.incidentTitle }}</ion-col> 
-          <ion-col size="3"  class="hide-xs hide-sm">{{ task.date | date : 'shortDate' }}</ion-col>
-          <!-- <ion-col size="1">{{ task.category }}</ion-col> -->
-          <!-- <ion-col size="2">{{ task.domain }}</ion-col> -->
-          <ion-col size="2">{{ task.priority }}</ion-col>
-          <!-- <ion-col size="1">{{ task.description }}</ion-col> -->
-          <ion-col size = "auto"><a expand="block" color="primary" (click)="openView(task.id)" >View</a> </ion-col>
-          <ion-col size="auto"><a  expand="block" color="primary" (click)="openEdit(task.id)">Edit</a>
-             </ion-col>
-        </ion-row>
+      <ion-row style="text-align:center;background:#6f9ee6;color:aliceblue">
+        <!-- <ion-col size="1" class="hide-xs hide-sm">ID: </ion-col> -->
+        <ion-col size="2">Full Name </ion-col>
+        <ion-col size="2">Incident Title </ion-col>
+        <ion-col size="3" class="hide-xs hide-sm">Date </ion-col>
+        <!-- <ion-col size="1">Incident Category: </ion-col> -->
+        <!-- <ion-col size="2">Domain </ion-col> -->
+        <ion-col size="2">Priority </ion-col>
+        <!-- <ion-col size="1">Description: </ion-col> -->
+        <ion-col size="auto"></ion-col>
+        <ion-col size="auto"> </ion-col>
+      </ion-row>
+
+      <ion-row *ngFor="let task of tasks; let i = index" [ngClass]="(i%2) == 0 ? 'even' : 'odd'"
+        style="text-align:center">
+        <!-- <ion-col size="1">{{ task.id }}</ion-col> -->
+        <ion-col size="2">{{ task.fullName}}</ion-col>
+        <ion-col size="2">{{ task.incidentTitle }}</ion-col>
+        <ion-col size="3" class="hide-xs hide-sm">{{ task.date | date : 'shortDate' }}</ion-col>
+        <!-- <ion-col size="1">{{ task.category }}</ion-col> -->
+        <!-- <ion-col size="2">{{ task.domain }}</ion-col> -->
+        <ion-col size="2">{{ task.priority }}</ion-col>
+        <!-- <ion-col size="1">{{ task.description }}</ion-col> -->
+        <ion-col size="auto"><a expand="block" color="primary" (click)="openView(task.id)">View</a> </ion-col>
+        <ion-col size="auto"><a expand="block" color="primary" (click)="openEdit(task.id)">Edit</a>
+        </ion-col>
+      </ion-row>
 
     </ion-grid>
   </div>
 
-  
+
 </ion-content>

@@ -14,11 +14,12 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
 export class ModalPage implements OnInit {
 
   public form = [
-    { valueM: "IT", isChecked: false },
-    { valueM: "Accounting", isChecked: false },
-    { valueM: "Transportation", isChecked: false },
-    { valueM: "Architecture", isChecked: false },
-    { valueM: "Telecom", isChecked: false }
+    { value: "IT", isChecked: false },
+    { value: "Accounting", isChecked: false },
+    { value: "Transportation", isChecked: false },
+    { value: "Civil", isChecked: false },
+    { value: "Telecom", isChecked: false },
+    { value: "Architecture", isChecked: false }
   ];
   public newCreate: any = this.navParams.data.bindFunction;
   public data;
@@ -41,7 +42,6 @@ export class ModalPage implements OnInit {
 
   confirmCreate()
   {
-    console.log(this.description);
     this.data = {"fullName": this.name, "incidentTitle": this.incidentTitle, "date": this.date, "category": this.category, "domain": this.form,  "priority": this.priority, "description": this.description};
     this.newCreate(this.data);
     this.modalController.dismiss();

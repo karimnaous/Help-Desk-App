@@ -18,7 +18,7 @@ import * as _ from 'lodash';
 export class EmployeePage implements OnInit {
 
 
-  constructor(private modalController: ModalController, public toastController: ToastController ) { }
+  constructor(private modalController: ModalController, public toastController: ToastController) { }
   name: any;
   incidentTitle: any;
   date: any;
@@ -29,11 +29,12 @@ export class EmployeePage implements OnInit {
   public id: any;
   public saving: any;
   public form = [
-    { valueM: "IT", isChecked: false },
-    { valueM: "Accounting", isChecked: false },
-    { valueM: "Transportation", isChecked: false },
-    { valueM: "Architecture", isChecked: false },
-    { valueM: "Telecom", isChecked: false }
+    { value: "IT", isChecked: false },
+    { value: "Accounting", isChecked: false },
+    { value: "Transportation", isChecked: false },
+    { value: "Civil", isChecked: false },
+    { value: "Telecom", isChecked: false },
+    { value: "Architecture", isChecked: false }
   ];
   tasks = [];
 
@@ -42,9 +43,9 @@ export class EmployeePage implements OnInit {
     const me = this;
     this.tasks = [];
     if (localStorage.length != 0) {
-      me.tasks = JSON.parse(localStorage.getItem("Employees"));
+      me.tasks = JSON.parse(localStorage.getItem("Incidents"));
     }
-    
+
     console.log('newTask', me.tasks);
   }
 
@@ -55,15 +56,15 @@ export class EmployeePage implements OnInit {
     var index;
     for (let entry of this.form) {
       if (entry.isChecked == true) {
-        checked.push(entry.valueM)
+        checked.push(entry.value)
       }
     }
-    this.name=task.fullName;
-    this.incidentTitle=task.incidentTitle;
-    this.date=task.date;
-    this.category=task.category;
-    this.priority=task.priority;
-    this.description=task.description;
+    this.name = task.fullName;
+    this.incidentTitle = task.incidentTitle;
+    this.date = task.date;
+    this.category = task.category;
+    this.priority = task.priority;
+    this.description = task.description;
 
     var obj = {
       "id": task.id,
@@ -76,15 +77,15 @@ export class EmployeePage implements OnInit {
       "description": task.description
     }
 
-    arr = JSON.parse(localStorage.getItem("Employees"));
+    arr = JSON.parse(localStorage.getItem("Incidents"));
     for (let i = 0; i < arr.length; i++) {
       if (arr[i].id === task.id) {
         index = i;
       }
     }
     arr.splice(index, 1, obj);
-    this.tasks=arr;
-    localStorage.setItem('Employees', JSON.stringify(arr));
+    this.tasks = arr;
+    localStorage.setItem('Incidents', JSON.stringify(arr));
 
     this.presentToast("Task successfully edited.")
     this.closeModal()
@@ -97,14 +98,14 @@ export class EmployeePage implements OnInit {
 
     for (let entry of this.form) {
       if (entry.isChecked == true) {
-        checked.push(entry.valueM)
+        checked.push(entry.value)
       }
     }
-   
+
     this.id = Guid.create();
     var obj = {
       "id": this.id.value,
-      "fullName":  task.fullName,
+      "fullName": task.fullName,
       "incidentTitle": task.incidentTitle,
       "date": task.date,
       "category": task.category,
@@ -112,16 +113,15 @@ export class EmployeePage implements OnInit {
       "priority": task.priority,
       "description": task.description
     }
-    console.log(obj);
     if (localStorage.length != 0) {
-      arr = JSON.parse(localStorage.getItem("Employees"));
+      arr = JSON.parse(localStorage.getItem("Incidents"));
     }
-      arr.push(obj);
-      console.log(this.tasks);
-      this.tasks.push(obj);
-    
+    arr.push(obj);
+    console.log(this.tasks);
+    this.tasks.push(obj);
 
-    localStorage.setItem('Employees', JSON.stringify(arr));
+
+    localStorage.setItem('Incidents', JSON.stringify(arr));
 
     this.presentToast("Task successfully saved.")
     this.closeModal();
@@ -154,7 +154,7 @@ export class EmployeePage implements OnInit {
   }
 
   async presentToast(msg) {
-    const toast = await this.toastController.create({message: msg, duration: 1000});
+    const toast = await this.toastController.create({ message: msg, duration: 1000 });
     toast.present();
   }
 }

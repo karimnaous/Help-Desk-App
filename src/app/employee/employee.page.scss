@@ -1,21 +1,11 @@
-@media (max-width: 576px) {
-    .hide-xs {
-      display: none;
-    }
-}
- 
-@media (min-width: 576px) and (max-width: 768px) {
-    .hide-sm {
-      display: none;
-    }
-}
+
 
 .new-background-color{
   --background: #0692f0;
 }
 
 .buttonsColor{
- color: #a0bdcc;
+ color: rgb(226, 242, 248);
 }
 
 .odd{
