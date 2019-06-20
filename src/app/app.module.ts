@@ -10,6 +10,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PopoverPageModule } from './employee/popover/popover.module';
 import { ModalPageModule } from './employee/modal/modal.module';
+// import { IonicStorageModule } from '@ionic/storage';
+import { ModalAdminPageModule } from './modal-admin/modal-admin.module';
+import { ModalAddPageModule } from './modal-add/modal-add.module';
+import { ModalViewPageModule } from './modal-view/modal-view.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +24,10 @@ import { ModalPageModule } from './employee/modal/modal.module';
     AppRoutingModule,
     PopoverPageModule, 
     ModalPageModule,
-    HttpClientModule
+    HttpClientModule,
+    ModalAdminPageModule,
+    ModalAddPageModule,
+    ModalViewPageModule,
   ],
   providers: [
     StatusBar,

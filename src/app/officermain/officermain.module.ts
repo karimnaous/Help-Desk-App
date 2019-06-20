@@ -5,15 +5,14 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SecretaryPage } from './secretary.page';
-import { AssignModalPage } from './assign-modal/assign-modal.page';
-import { ViewModalPage } from './view-modal/view-modal.page';
-// import { jsonParse } from '../json-parse.pipe';
+import { OfficermainPage } from './officermain.page';
+import { ModalPagePage } from '../officermain/modal-page/modal-page.page';
+import { ViewTasksPage } from '../officermain/view-tasks/view-tasks.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: SecretaryPage
+    component: OfficermainPage
   }
 ];
 
@@ -24,9 +23,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  providers:[],
-  declarations: [SecretaryPage],
-  entryComponents: [],
-  exports:[]
+  declarations: [OfficermainPage, ModalPagePage, ViewTasksPage],
+  entryComponents: [ModalPagePage, ViewTasksPage]
 })
-export class SecretaryPageModule {}
+export class OfficermainPageModule {}

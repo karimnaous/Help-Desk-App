@@ -5,15 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SecretaryPage } from './secretary.page';
-import { AssignModalPage } from './assign-modal/assign-modal.page';
-import { ViewModalPage } from './view-modal/view-modal.page';
-// import { jsonParse } from '../json-parse.pipe';
+import { ModalViewPage } from './modal-view.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: SecretaryPage
+    component: ModalViewPage
   }
 ];
 
@@ -24,9 +21,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  providers:[],
-  declarations: [SecretaryPage],
-  entryComponents: [],
-  exports:[]
+  declarations: [ModalViewPage]
 })
-export class SecretaryPageModule {}
+export class ModalViewPageModule {}

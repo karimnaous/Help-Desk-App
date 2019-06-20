@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Officer</ion-title>
+    <span [hidden]='true'>
+      <ion-select #sectionSelect [(ngModel)]="priority" text-right (ionChange)="onChange()"
+        [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Filter by" slot="end">
+        <ion-select-option value="ViewAll">View All</ion-select-option>
+        <ion-select-option value="Low">Low</ion-select-option>
+        <ion-select-option value="Medium">Medium</ion-select-option>
+        <ion-select-option value="High">High</ion-select-option>
+      </ion-select>
+    </span>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-no-padding">
+    <ion-row class="bottomRow" color="light">
+      <!-- <ion-col size-lg="2" size-md="2" size-sm="2" size-xs="2">
+        <strong>
+          <ion-label>ID</ion-label>
+        </strong>
+      </ion-col> -->
+      <ion-col size-lg="3" size-md="3" size-sm="3" size-xs="3" style="text-align:center;">
+        <strong>
+          <ion-label style="margin-right: 5px">Priority</ion-label>
+          <i size="2x" (click)="doFilter()" class="fas fa-filter"></i>
+          <!-- <ion-icon name="funnel" (click)="doFilter()"></ion-icon> -->
+        </strong>
+      </ion-col>
+      <ion-col size-lg="3" size-md="3" class="hide-sm" style="text-align:center;">
+        <strong>
+          <ion-label>Date</ion-label>
+        </strong>
+      </ion-col>
+      <ion-col size-lg="3" size-md="3" class="hide-sm hide-md" style="text-align:center;">
+        <strong>
+          <ion-label>Domain</ion-label>
+        </strong>
+      </ion-col>
+      <ion-col size-lg="3" size-md="3" size-sm="4" size-xs="6" style="text-align:center;">
+        <strong>
+          <ion-label>Action</ion-label>
+        </strong>
+      </ion-col>
+    </ion-row>
+
+    <ng-container *ngFor="let entry of task_filtered; let i=index;">
+      <ion-row *ngIf="entry.username==myuser.user && entry.status!='Resolved'" [ngClass] = "(i%2==0 )? 'even'
+        : 'odd'" class=" bottomRow1">
+        <!-- <ion-col size-lg="2" size-md="2" size-sm="2" size-xs="2">
+          <ion-label>{{entry.id}}</ion-label>
+        </ion-col> -->
+        <ion-col size-lg="3" size-md="3" size-sm="3" size-xs="3" style="text-align:center;">
+          <ion-label>{{entry.priority}}</ion-label>
+        </ion-col>
+        <ion-col size-lg="3" size-md="3" class="hide-sm" style="text-align:center;">
+          <ion-label>{{entry.date.split("T",1)}}</ion-label>
+        </ion-col>
+        <ion-col size-lg="3" size-md="3" class="hide-sm hide-md" style="text-align:center;">
+          <ion-label>{{entry.domain}}</ion-label>
+        </ion-col>
+        <ion-col size-lg="1.5" size-md="1.5" size-sm="2" size-xs="3">
+          <ion-button expand="block" fill="clear" (click)="presentModalReassign(findTaskIndex(entry.id))">Edit
+          </ion-button>
+        </ion-col>
+        <ion-col size-lg="1.5" size-md="1.5" size-sm="2" size-xs="3">
+          <ion-button expand="block" fill="clear" (click)="presentModalView(findTaskIndex(entry.id))">View
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+  </ion-grid>
+</ion-content>

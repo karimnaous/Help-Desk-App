@@ -24,9 +24,20 @@ export class AppComponent {
      
     },
     {
-      title: 'Secretary',
+      title: 'Officer',
+      url: '/officermain',
+      icon: 'fas fa-user-cog'
+    },
+
+    {title: 'Secretary',
       url: '/secretary',
       icon: 'fas fa-tty'
+    },
+    { 
+      title: 'Admin',
+      url: '/admin',
+      icon: 'fas fa-user-plus'
+
     }
   ];
 
@@ -36,6 +47,7 @@ export class AppComponent {
     private statusBar: StatusBar
   ) {
     this.initializeApp();
+    
   }
 
   initializeApp() {
