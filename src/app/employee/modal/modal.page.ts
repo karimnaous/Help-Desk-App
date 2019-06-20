@@ -14,12 +14,12 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
 export class ModalPage implements OnInit {
 
   public form = [
-    { value: "IT", isChecked: false },
-    { value: "Accounting", isChecked: false },
-    { value: "Transportation", isChecked: false },
-    { value: "Civil", isChecked: false },
-    { value: "Telecom", isChecked: false },
-    { value: "Architecture", isChecked: false }
+    { val: "IT", isChecked: false },
+    { val: "Accounting", isChecked: false },
+    { val: "Transportation", isChecked: false },
+    { val: "Civil", isChecked: false },
+    { val: "Telecom", isChecked: false },
+    { val: "Architecture", isChecked: false }
   ];
   public newCreate: any = this.navParams.data.bindFunction;
   public data;

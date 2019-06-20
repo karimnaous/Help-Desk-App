@@ -29,12 +29,12 @@ export class EmployeePage implements OnInit {
   public id: any;
   public saving: any;
   public form = [
-    { value: "IT", isChecked: false },
-    { value: "Accounting", isChecked: false },
-    { value: "Transportation", isChecked: false },
-    { value: "Civil", isChecked: false },
-    { value: "Telecom", isChecked: false },
-    { value: "Architecture", isChecked: false }
+    { val: "IT", isChecked: false },
+    { val: "Accounting", isChecked: false },
+    { val: "Transportation", isChecked: false },
+    { val: "Civil", isChecked: false },
+    { val: "Telecom", isChecked: false },
+    { val: "Architecture", isChecked: false }
   ];
   tasks = [];
 
@@ -56,9 +56,10 @@ export class EmployeePage implements OnInit {
     var index;
     for (let entry of this.form) {
       if (entry.isChecked == true) {
-        checked.push(entry.value)
+        checked.push(entry.val)
       }
     }
+
     this.name = task.fullName;
     this.incidentTitle = task.incidentTitle;
     this.date = task.date;
@@ -76,7 +77,7 @@ export class EmployeePage implements OnInit {
       "priority": task.priority,
       "description": task.description
     }
-
+    
     arr = JSON.parse(localStorage.getItem("Incidents"));
     for (let i = 0; i < arr.length; i++) {
       if (arr[i].id === task.id) {
@@ -98,7 +99,7 @@ export class EmployeePage implements OnInit {
 
     for (let entry of this.form) {
       if (entry.isChecked == true) {
-        checked.push(entry.value)
+        checked.push(entry.val)
       }
     }
 
@@ -113,11 +114,11 @@ export class EmployeePage implements OnInit {
       "priority": task.priority,
       "description": task.description
     }
+    console.log(task.description);
     if (localStorage.length != 0) {
       arr = JSON.parse(localStorage.getItem("Incidents"));
     }
     arr.push(obj);
-    console.log(this.tasks);
     this.tasks.push(obj);
 
 
@@ -144,7 +145,6 @@ export class EmployeePage implements OnInit {
   async openEdit(returnedId: any) {
     var bindEdit = this.saveEdit.bind(this);
     const task = _.find(this.tasks, { id: returnedId });
-    console.log(task);
     const edit = await this.modalController.create({ component: EditPage, componentProps: { value: task, bindedFunction: bindEdit } });
     edit.present();
   }
