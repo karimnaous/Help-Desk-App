@@ -1,98 +1,86 @@
-
 <ion-header>
     <ion-toolbar text-center color="primary">
-      <ion-title>Edit</ion-title>
+        <ion-title>Edit</ion-title>
     </ion-toolbar>
 </ion-header>
-  
 
-
-<!-- List of Text Items -->
 <ion-content>
-  <ion-list>
-      <ion-list-header>
-          <ion-label> <h1> Edit Employee </h1> </ion-label>
-      </ion-list-header>
-      <ion-item>
-          <ion-label>Name: </ion-label>
-          <ion-input [(ngModel)]="name"></ion-input>
-      </ion-item>
-      <ion-item>
-          <ion-label>Gender</ion-label>
-          <ion-select [(ngModel)]="gender" value="Select One." okText="Okay" cancelText="Dismiss">
-            <ion-select-option value="Male">Male</ion-select-option>
-            <ion-select-option value="Female">Female</ion-select-option>
-          </ion-select>
-      </ion-item>
-      <ion-item>
-          <ion-label>Date of Birth</ion-label>
-          <ion-datetime [(ngModel)]="date" placeholder="Click to enter date." slot="end" display-format="MMM DD, YYYY"></ion-datetime>
-      </ion-item>
-      <!-- <ion-item>
+    <ion-list>
+        <ion-list-header>
+            <ion-label>
+                <h1> Edit Employee </h1>
+            </ion-label>
+        </ion-list-header>
+        <ion-item>
+            <ion-label>Name: </ion-label>
+            <ion-input [(ngModel)]="emp.Name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Gender</ion-label>
+            <ion-select [(ngModel)]="emp.Gender" value="Select One." okText="Okay" cancelText="Dismiss">
+                <ion-select-option value="Male">Male</ion-select-option>
+                <ion-select-option value="Female">Female</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Date of Birth</ion-label>
+            <ion-datetime [(ngModel)]="emp.Birthdate" placeholder="Click to enter date." slot="end"
+                display-format="MMM DD, YYYY"></ion-datetime>
+        </ion-item>
+        <!-- <ion-item>
         <ion-label>Department</ion-label>
-                <ion-item *ngFor="let entry of departments">
-                    <ion-label>{{entry.val}}</ion-label>
-                    <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" value="bliff"></ion-checkbox> -->
-                    <!-- <ion-label>{{entry.val}}</ion-label>
-                    <ion-radio [(ngModel)]="entry.isChecked" checked={{entry.isChecked}></ion-radio> -->
-                    <!-- <ion-select [(ngModel)]="department" value="Select One" okText="Ok" cancelText="Dismiss">
-                            <ion-select-option value="Accounting">Accounting</ion-select-option>
-                            <ion-select-option value="Engineering">Engineering</ion-select-option>
-                            <ion-select-option value="Human Resources">Human Resources</ion-select-option>
-                            <ion-select-option value="Information Technology">I.T.</ion-select-option>
-                    </ion-select>
-      </ion-item> -->
-    <ion-item>
-        <ion-label>Department</ion-label>
-        <ion-list>
-            <ion-radio-group [(ngModel)]="department" >
-                <ion-item>
-                <ion-label>Accounting</ion-label>
-                <ion-radio value="Accounting"></ion-radio>
-                </ion-item>
-            
-                <ion-item>
-                <ion-label>Engineering</ion-label>
-                <ion-radio value="Engineering"></ion-radio>
-                </ion-item>
-            
-                <ion-item>
-                <ion-label>Human Resources</ion-label>
-                <ion-radio value="Human Resources"></ion-radio>
-                </ion-item>
-            
-                <ion-item>
-                <ion-label>Information Technology</ion-label>
-                <ion-radio value="Information Technology"></ion-radio>
-                </ion-item>
-            </ion-radio-group>
+        <ion-item *ngFor="let entry of departments">
+            <ion-label>{{entry.val}}</ion-label>
+            <ion-radio [(ngModel)]="entry.isChecked" checked={{entry.isChecked}></ion-radio>
+        </ion-item> -->
+        <ion-item>
+            <ion-label>Department</ion-label>
+            <ion-list>
+                <ion-radio-group [(ngModel)]="emp.Department">
+                    <ion-item>
+                        <ion-label>Accounting</ion-label>
+                        <ion-radio value="Accounting"></ion-radio>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label>Engineering</ion-label>
+                        <ion-radio value="Engineering"></ion-radio>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label>Human Resources</ion-label>
+                        <ion-radio value="Human Resources"></ion-radio>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label>Information Technology</ion-label>
+                        <ion-radio value="Information Technology"></ion-radio>
+                    </ion-item>
+                </ion-radio-group>
             </ion-list>
-    </ion-item>
-      <ion-item>
-          <!-- <ion-label position="stacked">Married (check if yes)</ion-label>
-          <ion-radio [(ngModel)]="maritalStatus" slot="end" value="bliff" checked={{this.maritalStatus}}></ion-radio> -->
-          <ion-label>Married? </ion-label>
-          <ion-checkbox slot="end" [(ngModel)]="maritalStatus">Married</ion-checkbox>
-      </ion-item>
-      <ion-item>
-          <ion-label>Role</ion-label>
-          <ion-select [(ngModel)]="role" value="Select One" okText="Okay" cancelText="Dismiss">
-            <ion-select-option value="Administrator">Administrator</ion-select-option>
-            <ion-select-option value="Officer">Officer</ion-select-option>
-            <ion-select-option value="Secretary">Secretary</ion-select-option>
-            <ion-select-option value="Employee">Employee</ion-select-option>
-          </ion-select>
-      </ion-item>
-      <ion-item>
-          <ion-label position="stacked">Notes</ion-label>
-          <ion-textarea [(ngModel)]="notes" placeholder="Enter any notes."></ion-textarea>
-      </ion-item>
-      <!-- <ion-item>
-            <ion-label><strong>ID: </strong> {{ID}}</ion-label>
-      </ion-item> -->
-  </ion-list>
+        </ion-item>
+        <ion-item>
+            <ion-label>Married? </ion-label>
+            <ion-checkbox slot="end" [(ngModel)]="maritalStatus">Married</ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>Role</ion-label>
+            <ion-select [(ngModel)]="emp.Role" value="Select One" okText="Okay" cancelText="Dismiss">
+                <ion-select-option value="Administrator">Administrator</ion-select-option>
+                <ion-select-option value="Officer">Officer</ion-select-option>
+                <ion-select-option value="Secretary">Secretary</ion-select-option>
+                <ion-select-option value="Employee">Employee</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">Notes</ion-label>
+            <ion-textarea [(ngModel)]="emp.Notes" placeholder="Enter any notes."></ion-textarea>
+        </ion-item>
+    </ion-list>
 </ion-content>
-    <ion-footer>
-            <ion-button class="custom-button" slot="start" color="primary" fill="clear" (click)="closeModal(false)">Cancel</ion-button>
-            <ion-button class="custom-button" float-right slot="fixed" color="primary" fill="clear" (click)="closeModal(true)">Save</ion-button>
-    </ion-footer>
+<ion-footer>
+    <ion-button class="custom-button" slot="start" color="primary" fill="clear" (click)="closeModal(false)">Cancel
+    </ion-button>
+    <ion-button class="custom-button" float-right slot="fixed" color="primary" fill="clear" (click)="closeModal(true)">
+        Save</ion-button>
+</ion-footer>

@@ -46,14 +46,17 @@ export class AdminPage implements OnInit {
       component: ModalAdminPage,
       componentProps: {
         "arrayEmps": this.getEmployees(),
+        "emp" : this.readEmployee(this.getEmployees()[this.findEmployee(id)]),
+        "maritalStatus" : this.maritalStatus,
         "ID": id,
         "findEmployee": this.findEmployeeBound,
         "saveEmployees": this.saveEmployeesBound,
+        // "saveEmployee": this.saveEmployeeBound,
         "departments": this.departments,
         "readDepartment": this.readDepartment,
         "saveDepartment": this.saveDepartmentBound,
         // "emp": this.emp,
-        // "readEmployee": this.readEmployeeBound,
+        "readEmployee": this.readEmployeeBound,
       }
     });
 
@@ -62,7 +65,7 @@ export class AdminPage implements OnInit {
         this.dataReturned = dataReturned.data;
         // this.saveEmployees(this.dataReturned);
       }
-      this.presentAlertMultipleButtons()
+      // this.presentAlertMultipleButtons()
     });
     return await modal.present();
   }
@@ -96,12 +99,11 @@ export class AdminPage implements OnInit {
       component: ModalViewPage,
       componentProps: {
         "arrayEmps": this.getEmployees(),
+        "emp" : this.readEmployee(this.getEmployees()[this.findEmployee(id)]),
         "ID": id,
         "findEmployee": this.findEmployeeBound,
         "saveEmployees": this.saveEmployeesBound,
-        "departments": this.departments,
-        "readDepartment": this.readDepartment,
-        "saveDepartment": this.saveDepartmentBound,
+        "readEmployee": this.readEmployeeBound,
       }
     });
 
@@ -155,6 +157,16 @@ export class AdminPage implements OnInit {
     localStorage.setItem("Employees", JSON.stringify(emps))
   }
   public saveEmployeesBound = this.saveEmployees.bind(this);
+
+
+  // public saveEmployee(emp: {}, index: number) {
+  //   console.log("inside saveEmployee");
+  //   let employees = this.getEmployees();
+  //   console.log(employees);
+  //   employees[index] = this.emp;
+  //   localStorage.setItem("Employees", JSON.stringify(employees))
+  // }
+  // public saveEmployeeBound = this.saveEmployees.bind(this);
 
 
   public saveDepartment() {
@@ -215,26 +227,22 @@ export class AdminPage implements OnInit {
   // }
 
 
-  // emp = {
-  //   name : "", 
-  //   gender : "", 
-  //   date : "",
-  //   department : "",  
-  //   maritalStatus : false, 
-  //   role : "",
-  //   notes : "",
-  // }
-  // public readEmployee(employee : object) {
-  //   this.emp.name = employee["Name"];
-  //   this.emp.gender = employee["Gender"];
-  //   this.emp.date = employee["Birthdate"];
-  //   this.emp.department = employee["Department"];
-  //   if (employee["MaritalStatus"] == "Married") { this.emp.maritalStatus = true; } 
-  //   else { this.emp.maritalStatus = false; }
-  //   this.emp.role = employee["Role"];
-  //   this.emp.notes = employee["Notes"];
-  // } 
-  // public readEmployeeBound = this.readEmployee.bind(this);
+  emp: any = {}
+  maritalStatus;
+  public readEmployee(emp : object) {
+    // console.log("Inside readEmployee");
+    this.emp['Name'] = emp["Name"];
+    this.emp['Gender'] = emp["Gender"];
+    this.emp['Birthdate'] = emp["Birthdate"];
+    this.emp['Department'] = emp["Department"];
+    if (emp["MaritalStatus"] == "Married") { this.maritalStatus = true; this.emp['MaritalStatus'] = "Married"; }
+    else { this.maritalStatus = false; this.emp['MaritalStatus'] = "Single";}
+    this.emp['Role'] = emp["Role"];
+    this.emp['Notes'] = emp["Notes"];
+    return emp;
+  }
+  public readEmployeeBound = this.readEmployee.bind(this);
+
 
 }
 

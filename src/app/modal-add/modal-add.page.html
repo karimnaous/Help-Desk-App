@@ -13,39 +13,24 @@
     </ion-list-header>
     <ion-item>
       <ion-label>Name: </ion-label>
-      <ion-input [(ngModel)]="name" placeholder=" Enter Name"></ion-input>
+      <ion-input [(ngModel)]="emp.Name" placeholder=" Enter Name"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Gender</ion-label>
-      <ion-select [(ngModel)]="gender" value="Select One." okText="Okay" cancelText="Dismiss">
+      <ion-select [(ngModel)]="emp.Gender" value="Select One." okText="Okay" cancelText="Dismiss">
         <ion-select-option value="Male">Male</ion-select-option>
         <ion-select-option value="Female">Female</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Date of Birth</ion-label>
-      <ion-datetime [(ngModel)]="date" placeholder="Click to enter date." slot="end"
+      <ion-datetime [(ngModel)]="emp.Birthdate" placeholder="Click to enter date." slot="end"
         display-format="MMM DD, YYYY HH:mm"></ion-datetime>
     </ion-item>
-    <!-- <ion-item> -->
-      <!-- <ion-label>Department</ion-label>
-      <ion-list>
-        <ion-item *ngFor="let entry of departments">
-          <ion-label>{{entry.val}}</ion-label>
-          <ion-checkbox slot="end" [(ngModel)]="entry.isChecked"></ion-checkbox>
-        </ion-item>
-      </ion-list>
-      <ion-select [(ngModel)]="department" value="Select One" okText="Ok" cancelText="Dismiss">
-          <ion-select-option value="Accounting">Accounting</ion-select-option>
-          <ion-select-option value="Engineering">Engineering</ion-select-option>
-          <ion-select-option value="Human Resources">Human Resources</ion-select-option>
-          <ion-select-option value="Information Technology">I.T.</ion-select-option>
-      </ion-select>
-    </ion-item> -->
     <ion-item>
         <ion-label>Department</ion-label>
         <ion-list>
-            <ion-radio-group [(ngModel)]="department" >
+            <ion-radio-group [(ngModel)]="emp.Department" >
               <ion-item>
                 <ion-label>Accounting</ion-label>
                 <ion-radio value="Accounting"></ion-radio>
@@ -70,11 +55,11 @@
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Married (check if yes)</ion-label>
-      <ion-checkbox slot="end" [(ngModel)]="maritalStatus">Married</ion-checkbox>
+      <ion-checkbox slot="end" [(ngModel)]="emp.MaritalStatus">Married</ion-checkbox>
     </ion-item>
     <ion-item>
       <ion-label>Role</ion-label>
-      <ion-select [(ngModel)]="role" value="Select One" okText="Okay" cancelText="Dismiss">
+      <ion-select [(ngModel)]="emp.Role" value="Select One" okText="Okay" cancelText="Dismiss">
         <ion-select-option value="Administrator">Administrator</ion-select-option>
         <ion-select-option value="Officer">Officer</ion-select-option>
         <ion-select-option value="Secretary">Secretary</ion-select-option>
@@ -83,7 +68,7 @@
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Notes</ion-label>
-      <ion-textarea [(ngModel)]="notes" placeholder="Enter any notes."></ion-textarea>
+      <ion-textarea [(ngModel)]="emp.Notes" placeholder="Enter any notes."></ion-textarea>
     </ion-item>
   </ion-list>
 </ion-content>

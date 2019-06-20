@@ -9,33 +9,21 @@ import { ModalController, NavParams } from '@ionic/angular';
 })
 export class ModalAddPage implements OnInit {
 
-  arrayEmps: [any];
-  ID: string; 
+  arrayEmps: [any]; 
 
   emp = {
-    name : "", 
-    gender : "", 
-    date : "",
-    department : "",  
-    maritalStatus : false, 
-    role : "",
-    notes : "",
-}
-  public name = ""; 
-  public gender = ""; 
-  public date = "";
-  public department = "";  
-  public maritalStatus = false; 
-  public role = "";
-  public notes = "";
-  public index = "";
+    ID : "",
+    Name : "", 
+    Gender : "", 
+    Birthdate : "",
+    Department : "",  
+    MaritalStatus : "", 
+    Role : "",
+    Notes : "",
+  }
 
   // Bound methods
   saveEmployees;
-  departments;
-  saveDepartment;
-  readDepartment;
-
 
   constructor(
     private modalController: ModalController,
@@ -43,22 +31,18 @@ export class ModalAddPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.ID = this.navParams.data.ID;
-    this.departments = this.navParams.data.departments;
+    this.emp.ID = this.navParams.data.ID;
     this.arrayEmps = this.navParams.data.arrayEmps;
     this.saveEmployees = this.navParams.data.saveEmployees;
-    this.saveDepartment = this.navParams.data.saveDepartment;  
-    this.readDepartment = this.navParams.data.saveDepartment;
-    // this.readDepartment();
   }
 
   async closeModal(save:boolean) {
     if (save == true) {
-        // this.department = this.saveDepartment(this.department);
         let married = "Single";
-        if (this.maritalStatus) { married = "Married"; }
-        let emp = {ID: this.ID, Name : this.name, Gender:this.gender, Birthdate : this.date, Role : this.role , Department : this.department, MaritalStatus : married, Notes:this.notes};
-        this.arrayEmps.push(emp);
+        if (this.emp.MaritalStatus) { married = "Married"; }
+        this.emp.MaritalStatus = married;
+        console.log(this.emp);
+        this.arrayEmps.push(this.emp);
         this.saveEmployees(this.arrayEmps);
         const onClosedData = null;
         await this.modalController.dismiss(onClosedData);
@@ -68,7 +52,5 @@ export class ModalAddPage implements OnInit {
         await this.modalController.dismiss(onClosedData);
     }
   }
-
-
 
 }

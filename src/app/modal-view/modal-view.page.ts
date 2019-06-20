@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
-import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-modal-view',
@@ -9,21 +8,12 @@ import { empty } from 'rxjs';
 })
 export class ModalViewPage implements OnInit {
 
-  modalTitle:string;
-  modelId:number;
   arrayEmps: [any];
+  emp;
+  ID;
+  index : number;
   findEmployee; 
-  ID: string; 
-  departments;
-  public name : string; 
-  public gender : string; 
-  public date : string;
-  public department : string;  
-  public maritalStatus : string; 
-  public role : string;
-  public notes : string;
-  public index : number;
-  
+  readEmployeeBound;
 
   constructor(
     private modalController: ModalController,
@@ -31,39 +21,16 @@ export class ModalViewPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.readEmployeeBound = this.navParams.data.readEmployee;
     this.ID = this.navParams.data.ID;
     this.arrayEmps = this.navParams.data.arrayEmps;
     this.findEmployee = this.navParams.data.findEmployee;
-    this.departments = this.navParams.data.departments;
     this.index = this.findEmployee(this.ID);
-    this.readEmployee(this.arrayEmps[this.index]); 
-    if (this.department == "Accounting") { 
-        this.departments[0]["isChecked"] = true;
-    }
-    else if (this.department == "Engineering") {
-        this.departments[1]["isChecked"] = true;
-    }
-    else if (this.department == "Human Resources") { 
-        this.departments[2]["isChecked"] = true;
-    }
-    else { 
-        this.departments[3]["isChecked"] = true;
-    }
-     
+    this.readEmployeeBound(this.arrayEmps[this.index]);
+    this.emp = this.navParams.data.emp; 
   }
 
-  public readEmployee(emp : object) {
-      this.name = emp["Name"];
-      this.gender = emp["Gender"];
-      this.date = emp["Birthdate"];
-      this.department = emp["Department"];
-      this.maritalStatus = emp["MaritalStatus"];
-      this.role = emp["Role"];
-      this.notes = emp["Notes"];
-  } 
-
   async closeModal(edit:boolean) {
-    // if edit == true, it means user clicked the edit button
     const onClosedData = {clicked: edit, id: this.ID};
     await this.modalController.dismiss(onClosedData);
   }
