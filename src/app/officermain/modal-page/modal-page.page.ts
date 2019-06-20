@@ -42,7 +42,7 @@ export class ModalPagePage implements OnInit {
   save(){
     for (let entry of this.form) {
       if (entry.isChecked == true) {
-        this.checked.push(entry.val);
+        this.checked.push(entry);
       }
     }
   }
@@ -83,17 +83,8 @@ export class ModalPagePage implements OnInit {
     this.priority=this.task[id].priority;
     this.date= this.task[id].date;
     this.comments= this.task[id].comments;
+    this.form = this.task[id].domain;
 
-    for(let entry of this.task[id].domain)
-    {
-      for(let entry1 of this.form)
-      {
-        if(entry==entry1.val)
-        {
-          entry1.isChecked=true;
-        }
-      }
-    }
   }
 
   async presentAlertConfirm() {
