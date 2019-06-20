@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Pipe } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 
 import { ModalController, ToastController } from '@ionic/angular';
 import { AssignModalPage } from '../secretary/assign-modal/assign-modal.page';
@@ -6,7 +6,6 @@ import { AssignModalPage } from '../secretary/assign-modal/assign-modal.page';
 import * as uuidv1 from 'uuid/v1';
 import * as _ from 'lodash';
 import { ViewModalPage } from './view-modal/view-modal.page';
-import { defaultComparator } from '@angular/common/src/pipes/keyvalue_pipe';
 
 @Component({
   selector: 'app-secretary',

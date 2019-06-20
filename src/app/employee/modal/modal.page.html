@@ -40,23 +40,23 @@
   </ion-list>
 
   <ion-list>
-    <ion-radio-group [(ngModel)]="priority">
+    <ion-radio-group [(ngModel)]="priority" >
       <ion-list-header>
         <ion-label>Priority</ion-label>
       </ion-list-header>
 
       <ion-item>
-        <ion-label [(ngModel)]="priority">High</ion-label>
+        <ion-label>High</ion-label>
         <ion-radio slot="start" value="High"></ion-radio>
       </ion-item>
 
       <ion-item>
-        <ion-label [(ngModel)]="priority">Meduim</ion-label>
-        <ion-radio slot="start" checked value="Meduim"></ion-radio>
+        <ion-label >Medium</ion-label>
+        <ion-radio slot="start" checked value="Medium"></ion-radio>
       </ion-item>
 
       <ion-item>
-        <ion-label [(ngModel)]="priority">Low</ion-label>
+        <ion-label >Low</ion-label>
         <ion-radio slot="start" value="Low"></ion-radio>
       </ion-item>
     </ion-radio-group>
@@ -68,13 +68,7 @@
   <ion-textarea placeholder="Describe your incident here " value={{description}} [(ngModel)]="description">
     </ion-textarea>
   </ion-item>
-  <!-- <ion-item>
-      <ion-label position="fixed" placeholder="Text here">Incident Title</ion-label>
-      <ion-input [(ngModel)]="description" value={{description}}></ion-input>
-    </ion-item>
-     <ion-item>
-<ion-label>{{name}}</ion-label>
-</ion-item> --> 
+
 
 </ion-content>
 

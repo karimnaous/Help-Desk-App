@@ -8,7 +8,7 @@
 
   <ion-item>
     <ion-label>Officer Name</ion-label>
-    <ion-select placeholder="Select Officer" [(ngModel)]="emp" id={{emp}} value={{emp}}>
+    <ion-select placeholder="Select Officer" [(ngModel)]="officer" id={{officer}} value={{officer}}>
       <ion-select-option *ngFor="let row of officer_array" value={{row.Name}}> {{row.Name}}</ion-select-option>
     </ion-select>
   </ion-item>
@@ -18,45 +18,30 @@
     <ion-datetime display-format="MMM DD, YYYY" [(ngModel)]="date"></ion-datetime>
   </ion-item>
 
-<ion-item>
-  <ion-label>Priority</ion-label>
-
-    <ion-radio-group [(ngModel)]="priority" value={{priority}}>
-   <ion-list>
-      <ion-item>
-        <ion-label>Low</ion-label>
-        <ion-radio value="Low"></ion-radio>
-      </ion-item>
-
-
-      <ion-item>
-        <ion-label>Mod</ion-label>
-        <ion-radio value="Medium"></ion-radio>
-      </ion-item>
-
-
-      <ion-item>
-        <ion-label>High</ion-label>
-        <ion-radio value="High"></ion-radio>
-      </ion-item>
-    </ion-list>
-    
-  </ion-radio-group>
-  </ion-item> 
 
   <ion-item>
-    <ion-label>Domain</ion-label>
-
-  <ion-list>
-    <ion-item *ngFor="let item of domain">
-      <ion-label>{{item.val}}</ion-label>
-      <ion-checkbox slot="start" [(ngModel)]="item.isChecked"></ion-checkbox>
-    </ion-item>
-  </ion-list>
+    <ion-label>Priority</ion-label>
+    <ion-select [(ngModel)]="priority" value={{priority}} okText="OK" cancelText="Cancel">
+      <ion-select-option value="Low">Low</ion-select-option>
+      <ion-select-option value="Medium">Medium</ion-select-option>
+      <ion-select-option value="High">High</ion-select-option>
+  </ion-select>
   </ion-item>
+  
+  <ion-item>
+      <ion-label>Domain</ion-label>
+  
+    <ion-list>
+      <ion-item *ngFor="let item of domain">
+        <ion-label>{{item.val}}</ion-label>
+        <ion-checkbox slot="start" [(ngModel)]="item.isChecked"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+    </ion-item> 
+
 
 </ion-content>
 <ion-footer>
   <ion-button fill="clear" float-right (click)="presentAlert()">Cancel</ion-button>
-  <ion-button fill="clear"  float-right (click)="doneEdit()">Save</ion-button>
+  <ion-button fill="clear"  float-right (click)="doneEdit()">Assign</ion-button>
 </ion-footer>

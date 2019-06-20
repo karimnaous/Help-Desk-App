@@ -27,7 +27,7 @@ export class ModalPage implements OnInit {
   incidentTitle: any;
   date: any;
   category: any;
-  priority: any;
+  public priority: any;
   public description: any;
   public id: any;
 
