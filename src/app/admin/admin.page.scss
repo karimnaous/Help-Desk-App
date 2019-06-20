@@ -1,0 +1,64 @@
+
+@media (max-width: 576px) {
+    .hide-xs {
+      display: none;
+    }
+}
+ 
+@media (min-width: 576px) and (max-width: 768px) {
+    .hide-sm {
+      display: none;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .hide-md {
+      display: none;
+    }
+}
+
+.even { 
+    text-align:center;
+    background-color: rgb(226, 242, 248); 
+}
+
+.odd { 
+    text-align:center;
+    background-color: white;
+}
+
+ion-grid { 
+    margin-left:0 !important;
+    margin-right:0 !important;
+}
+
+// #nav ion-grid ion-row ion-col {
+//     color: #900;
+//     text-decoration: none;
+//     padding: 3px 0; 
+//     display: block;
+// }
+ 
+// // @media all and (min-width: 1001px) {
+// // #nav ion-grid ion-row ion-col:after {
+// //     content: " (" attr(data-email) ")";
+// //     font-size: 11px;
+// //     font-style: italic;
+// //     color: #666;
+// // }
+// // }
+
+// // @media all and (max-width: 1000px) and (min-width: 700px) {
+// // #nav ion-grid ion-row ion-col:before {
+// //     content: "Email: ";
+// //     font-style: italic;
+// //     color: #666;
+// // }
+// // }
+
+// // @media all and (max-width: 699px) and (min-width: 520px), (min-width: 1151px) {
+// // #nav ion-grid ion-row ion-col {
+// //     padding-left: 21px;
+// //     background: url(../images/email.png) left center no-repeat;
+// // }
+// // }
