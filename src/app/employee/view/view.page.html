@@ -28,9 +28,9 @@
   </ion-item>
 
   <ion-item>
-    <ion-label style="margin-right: 10px;">Domain: </ion-label>
+    <ion-label >Domain: </ion-label>
     <div *ngFor="let entry of dom;">
-      <p [hidden]="!entry.isChecked">{{entry.val}} </p>
+      <p [hidden]="!entry.isChecked" style="margin-right: 10px;">{{entry.val}} </p>
     </div>
   </ion-item>
 

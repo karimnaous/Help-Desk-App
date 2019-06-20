@@ -40,10 +40,11 @@ export class EmployeePage implements OnInit {
 
   ngOnInit() {
 
+    
     const me = this;
     this.tasks = [];
     var localStorageIncidents=localStorage.getItem("Incidents")
-    if (localStorageIncidents===null) {
+    if (localStorageIncidents!==null) {
       me.tasks = JSON.parse(localStorageIncidents);
     }
 
