@@ -23,7 +23,7 @@ export class AdminPage implements OnInit {
   ngOnInit() {
   }
 
-
+  
   constructor(
     public modalController: ModalController, public toastController: ToastController, public alertController: AlertController
   ) {

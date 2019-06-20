@@ -23,69 +23,6 @@ export class SecretaryPage implements OnInit {
  
   constructor(public modalController: ModalController, private toastController: ToastController) {
 
-    // localStorage.setItem("task", JSON.stringify([
-    //   {
-    //     "id": uuidv1(), "category": "txt1", "priority": "high", "date": "2007-01-01T00:00:00+02:00", "domain":
-    //     [
-    //       { "val": 'IT', isChecked:true},
-    //       { "val": 'Accounting', isChecked: false },
-    //       { "val": 'Transportation', isChecked: false },
-    //       { "val": 'Civil', isChecked: false },
-    //       { "val": 'Telecom', isChecked: false },
-    //       { "val": 'Architecture', isChecked: false }
-    //       ] ,    "fullName":"nameA", "status":"initiated"
-    //   },
-    //   {
-    //     "id": uuidv1(), "category": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "domain":
-    //     [
-    //       { "val": 'IT', isChecked:true},
-    //       { "val": 'Accounting', isChecked: false },
-    //       { "val": 'Transportation', isChecked: false },
-    //       { "val": 'Civil', isChecked: false },
-    //       { "val": 'Telecom', isChecked: false },
-    //       { "val": 'Architecture', isChecked: false }
-    //       ] ,  "fullName":"nameB"  , "status":"Assigned"    },
-    //   {
-    //     "id": uuidv1(), "category": "txt1", "priority": "mod", "date": "2007-01-01T00:00:00+02:00","domain":
-   
-    //     [
-    //       { "val": 'IT', isChecked: false },
-    //       { "val": 'Accounting', isChecked: false },
-    //       { "val": 'Transportation', isChecked: false },
-    //       { "val": 'Civil', isChecked:true},
-    //       { "val": 'Telecom', isChecked: false },
-    //       { "val": 'Architecture', isChecked: false }
-    //       ] ,  "fullName":"nameC" , "status":"initiated"},
-    //   {
-    //     "id": uuidv1(), "category": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "domain":
-    //     [
-    //       { "val": 'IT', isChecked: false },
-    //       { "val": 'Accounting', isChecked: false },
-    //       { "val": 'Transportation', isChecked: false },
-    //       { "val": 'Civil', isChecked: false },
-    //       { "val": 'Telecom', isChecked:true},
-    //       { "val": 'Architecture', isChecked: false }
-    //       ] ,  "fullName":"nameD", "status":"initiated"}
-    // ]))
-    // localStorage.setItem("Employees", JSON.stringify([{
-    //   "ID": uuidv1(), "Role": "Officer","Name":"Tala"
-
-    // }, {
-    //   "ID": uuidv1(), "Role": "Admin","Name":"Karim"
-
-    // }, {
-    //   "ID": uuidv1(), "Role": "Officer","Name":"Alex"
-
-    // }, {
-    //   "ID": uuidv1(), "Role": "User","Name":"Sam"
-
-    // }
-    //   , {
-    //   "ID": uuidv1(), "Role": "Officer","Name":"Layal"
-
-    // }]));
-
-    //console.log(_.groupBy(this.incident_array, this.groupbyPriority));
 
   }
   ngOnInit() {
@@ -105,10 +42,10 @@ export class SecretaryPage implements OnInit {
    * 
    */
   priorityascComparator(a, b) {
-    if (a === 'low' || b === "high")
+    if (a.priority === 'Low' || b.priority === "High")
       return -1
 
-    if (a === 'high' || b === "low")
+    if (a.priority === 'High' || b.priority === "Low")
       return 1
     else return 0
   }
@@ -120,9 +57,9 @@ export class SecretaryPage implements OnInit {
    * used in sortbydescPriority() as a comparator in array.sort
    */
   prioritydescComparator(a, b) {
-    if (a === 'low' || b === "high")
+    if (a.priority === 'Low' || b.priority === "High")
       return 1
-    if (a === 'high' || b === "low")
+    if (a.priority === 'High' || b.priority === "Low")
       return -1
     else return 0
   }
@@ -134,7 +71,7 @@ export class SecretaryPage implements OnInit {
    */
   sortbyascPriority() {
     this.switch_priority_order = !this.switch_priority_order;
-    this.incident_array.sort((a, b) => this.priorityascComparator(a.priority, b.priority));
+    this.incident_array.sort((a, b) => this.priorityascComparator(a, b));
   }
   /**
     * Sorts by descending order of priority when ion-chip Priority is clicked
@@ -142,7 +79,7 @@ export class SecretaryPage implements OnInit {
     */
   sortbydescPriority() {
     this.switch_priority_order = !this.switch_priority_order;
-    this.incident_array.sort((a, b) => this.prioritydescComparator(a.priority, b.priority));
+    this.incident_array.sort((a, b) => this.prioritydescComparator(a, b));
   }
 
   /**
