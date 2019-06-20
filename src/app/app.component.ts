@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 //import { user-edit} from "@fortawesome/fontawesome-free";
 
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
@@ -20,6 +21,12 @@ export class AppComponent {
       title: 'Employee',
       url: '/employee',
       icon: 'fas fa-users'
+     
+    },
+    {
+      title: 'Secretary',
+      url: '/secretary',
+      icon: 'fas fa-tty'
     }
   ];
 

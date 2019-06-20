@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Assign to</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label>Employee Name</ion-label>
+    <ion-select placeholder="Select Employee" [(ngModel)]="emp" id={{emp}} value={{emp}}>
+      <ion-select-option *ngFor="let row of officer_array" value={{row.Name}}> {{row.Name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Date</ion-label>
+    <ion-datetime display-format="MMM DD, YYYY" [(ngModel)]="date"></ion-datetime>
+  </ion-item>
+  <ion-list>
+    <ion-radio-group [(ngModel)]="priority" value={{priority}}>
+      <h6>Priority
+      </h6>
+      <ion-item>
+        <ion-label>Low</ion-label>
+        <ion-radio value="low"></ion-radio>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label>Mod</ion-label>
+        <ion-radio value="mod"></ion-radio>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label>High</ion-label>
+        <ion-radio value="high"></ion-radio>
+      </ion-item>
+
+    </ion-radio-group>
+  </ion-list>
+  <h6>Domain
+  </h6>
+  <ion-list>
+    <ion-item *ngFor="let item of domain">
+      <ion-label>{{item.val}}</ion-label>
+      <ion-checkbox slot="start" [(ngModel)]="item.isChecked"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+<ion-footer>
+  <ion-button fill="clear" float-right (click)="presentAlert()">Cancel</ion-button>
+  <ion-button fill="clear"  float-right (click)="doneEdit()">Save</ion-button>
+</ion-footer>
