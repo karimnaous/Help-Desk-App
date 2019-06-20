@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-toolbar>
+  <ion-toolbar color="primary">
       <ion-title>View</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -8,7 +8,7 @@
 
    
     <ion-item>
-      <ion-label>Employee Name</ion-label>
+      <ion-label>Officer Name</ion-label>
       <ion-select placeholder={{emp}}  [disabled]="true">
       </ion-select>
     </ion-item>
@@ -17,39 +17,44 @@
       <ion-label>Date</ion-label>
       <ion-datetime display-format="MMM DD, YYYY" [(ngModel)]="date" disabled="true"></ion-datetime>
     </ion-item>
-    <ion-list>
-      <ion-radio-group [(ngModel)]="priority" value={{priority}} disabled="true">
-        <h6>Priority
-        </h6>
-        <ion-item>
-          <ion-label>Low</ion-label>
-          <ion-radio value="low"  disabled="true"></ion-radio>
-        </ion-item>
-  
-  
-        <ion-item>
-          <ion-label>Mod</ion-label>
-          <ion-radio value="mod"  disabled="true"></ion-radio>
-        </ion-item>
-  
-  
-        <ion-item>
-          <ion-label>High</ion-label>
-          <ion-radio value="high"  disabled="true"></ion-radio>
-        </ion-item>
-  
+
+    <ion-item>
+      <ion-label>Priority</ion-label>
+    
+        <ion-radio-group [(ngModel)]="priority" value={{priority}} >
+       <ion-list>
+          <ion-item>
+            <ion-label>Low</ion-label>
+            <ion-radio value="Low" disabled="true"></ion-radio>
+          </ion-item>
+    
+    
+          <ion-item>
+            <ion-label>Mod</ion-label>
+            <ion-radio value="Medium" disabled="true"></ion-radio>
+          </ion-item>
+    
+    
+          <ion-item>
+            <ion-label>High</ion-label>
+            <ion-radio value="High" disabled="true"></ion-radio>
+          </ion-item>
+        </ion-list>
+        
       </ion-radio-group>
-    </ion-list>
-    <h6>Domain
-    </h6>
-    <ion-list>
-      <ion-item *ngFor="let item of domain" disabled="true"> 
-        <ion-label>{{item.val}}</ion-label>
-        <ion-checkbox slot="start" [(ngModel)]="item.isChecked"></ion-checkbox>
+      </ion-item> 
+    
+      <ion-item>
+        <ion-label>Domain</ion-label>
+    
+      <ion-list>
+        <ion-item *ngFor="let item of domain" disabled="true">
+          <ion-label>{{item.val}}</ion-label>
+          <ion-checkbox slot="start" [(ngModel)]="item.isChecked"></ion-checkbox>
+        </ion-item>
+      </ion-list>
       </ion-item>
-    </ion-list>
-  
-    <button></button>
+    
   </ion-content>
   <ion-footer>
       <ion-button fill="clear" float-right (click)="close()">Cancel</ion-button>

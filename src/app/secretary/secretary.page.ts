@@ -24,7 +24,7 @@ export class SecretaryPage implements OnInit {
  
   constructor(public modalController: ModalController, private toastController: ToastController) {
 
-    // localStorage.setItem("Incidents", JSON.stringify([
+    // localStorage.setItem("task", JSON.stringify([
     //   {
     //     "id": uuidv1(), "category": "txt1", "priority": "high", "date": "2007-01-01T00:00:00+02:00", "domain":
     //     [
@@ -34,7 +34,7 @@ export class SecretaryPage implements OnInit {
     //       { "val": 'Civil', isChecked: false },
     //       { "val": 'Telecom', isChecked: false },
     //       { "val": 'Architecture', isChecked: false }
-    //       ] ,    "fullName":"nameA"
+    //       ] ,    "fullName":"nameA", "status":"initiated"
     //   },
     //   {
     //     "id": uuidv1(), "category": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "domain":
@@ -45,7 +45,7 @@ export class SecretaryPage implements OnInit {
     //       { "val": 'Civil', isChecked: false },
     //       { "val": 'Telecom', isChecked: false },
     //       { "val": 'Architecture', isChecked: false }
-    //       ] ,  "fullName":"nameB"      },
+    //       ] ,  "fullName":"nameB"  , "status":"Assigned"    },
     //   {
     //     "id": uuidv1(), "category": "txt1", "priority": "mod", "date": "2007-01-01T00:00:00+02:00","domain":
    
@@ -56,7 +56,7 @@ export class SecretaryPage implements OnInit {
     //       { "val": 'Civil', isChecked:true},
     //       { "val": 'Telecom', isChecked: false },
     //       { "val": 'Architecture', isChecked: false }
-    //       ] ,  "fullName":"nameC" },
+    //       ] ,  "fullName":"nameC" , "status":"initiated"},
     //   {
     //     "id": uuidv1(), "category": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "domain":
     //     [
@@ -66,7 +66,7 @@ export class SecretaryPage implements OnInit {
     //       { "val": 'Civil', isChecked: false },
     //       { "val": 'Telecom', isChecked:true},
     //       { "val": 'Architecture', isChecked: false }
-    //       ] ,  "fullName":"nameD"}
+    //       ] ,  "fullName":"nameD", "status":"initiated"}
     // ]))
     // localStorage.setItem("Employees", JSON.stringify([{
     //   "ID": uuidv1(), "Role": "Officer","Name":"Tala"
@@ -165,7 +165,7 @@ export class SecretaryPage implements OnInit {
    * in componentProps
    */
   async assignModal(id) {
-    var record = JSON.stringify(JSON.parse(localStorage.getItem("Incidents")).find(x => x.id == id));
+    var record = JSON.stringify(JSON.parse(localStorage.getItem("task")).find(x => x.id == id));
     var submit_removeFunc = this.savefromModal.bind(this);
     const modal = await this.modalController.create({
       component: AssignModalPage,
@@ -184,7 +184,7 @@ export class SecretaryPage implements OnInit {
    * Sends the object having this id as a record in componentProps
    */
   async viewModal(id) {
-    var record = JSON.stringify(JSON.parse(localStorage.getItem("Incidents")).find(x => x.id == id));
+    var record = JSON.stringify(JSON.parse(localStorage.getItem("task")).find(x => x.id == id));
     const modal = await this.modalController.create({
       component: ViewModalPage,
       componentProps: { recordItem: record }
@@ -200,8 +200,9 @@ export class SecretaryPage implements OnInit {
    * 
    */
   getIncidentArray(): Object[] {
-    var localStorageItem = JSON.parse(localStorage.getItem("Incidents"));
-    return localStorageItem;
+    var localStorageItem = JSON.parse(localStorage.getItem("task"));
+    var incidents = _.filter(localStorageItem, { status: "initiated" });
+    return incidents;
 
   }
   /**
@@ -222,19 +223,19 @@ export class SecretaryPage implements OnInit {
    */
   async savefromModal(record) {
     console.log(record);
-    var localStorageItem = JSON.parse(localStorage.getItem("Incidents"));
+    var localStorageItem = JSON.parse(localStorage.getItem("task"));
     var old_record = localStorageItem.find(x => x.id == record.id);
     var index = localStorageItem.indexOf(old_record);
-    localStorageItem.splice(index, 1);
-    window.localStorage.setItem("Incidents", JSON.stringify(localStorageItem));
+    localStorageItem.splice(index, 1,record);
+    window.localStorage.setItem("task", JSON.stringify(localStorageItem));
     this.incident_array = this.getIncidentArray();
     const toast = await this.toastController.create({ message: 'Submitted Successfully', duration: 2000 }); toast.present();
-    var taskString=localStorage.getItem("task");
-    var task=[];
-    if(taskString!==null)
-    task=JSON.parse(taskString);
-    task.push(record);
-    window.localStorage.setItem("task", JSON.stringify(task));
+    // var taskString=localStorage.getItem("task");
+    // var task=[];
+    // if(taskString!==null)
+    // task=JSON.parse(taskString);
+    // task.push(record);
+    // window.localStorage.setItem("task", JSON.stringify(task));
 
 
   }

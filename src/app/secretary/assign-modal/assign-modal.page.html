@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>Assign to</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -7,8 +7,8 @@
 <ion-content>
 
   <ion-item>
-    <ion-label>Employee Name</ion-label>
-    <ion-select placeholder="Select Employee" [(ngModel)]="emp" id={{emp}} value={{emp}}>
+    <ion-label>Officer Name</ion-label>
+    <ion-select placeholder="Select Officer" [(ngModel)]="emp" id={{emp}} value={{emp}}>
       <ion-select-option *ngFor="let row of officer_array" value={{row.Name}}> {{row.Name}}</ion-select-option>
     </ion-select>
   </ion-item>
@@ -17,37 +17,43 @@
     <ion-label>Date</ion-label>
     <ion-datetime display-format="MMM DD, YYYY" [(ngModel)]="date"></ion-datetime>
   </ion-item>
-  <ion-list>
+
+<ion-item>
+  <ion-label>Priority</ion-label>
+
     <ion-radio-group [(ngModel)]="priority" value={{priority}}>
-      <h6>Priority
-      </h6>
+   <ion-list>
       <ion-item>
         <ion-label>Low</ion-label>
-        <ion-radio value="low"></ion-radio>
+        <ion-radio value="Low"></ion-radio>
       </ion-item>
 
 
       <ion-item>
         <ion-label>Mod</ion-label>
-        <ion-radio value="mod"></ion-radio>
+        <ion-radio value="Medium"></ion-radio>
       </ion-item>
 
 
       <ion-item>
         <ion-label>High</ion-label>
-        <ion-radio value="high"></ion-radio>
+        <ion-radio value="High"></ion-radio>
       </ion-item>
+    </ion-list>
+    
+  </ion-radio-group>
+  </ion-item> 
 
-    </ion-radio-group>
-  </ion-list>
-  <h6>Domain
-  </h6>
+  <ion-item>
+    <ion-label>Domain</ion-label>
+
   <ion-list>
     <ion-item *ngFor="let item of domain">
       <ion-label>{{item.val}}</ion-label>
       <ion-checkbox slot="start" [(ngModel)]="item.isChecked"></ion-checkbox>
     </ion-item>
   </ion-list>
+  </ion-item>
 
 </ion-content>
 <ion-footer>

@@ -27,11 +27,7 @@ export class AdminPage implements OnInit {
   constructor(
     public modalController: ModalController, public toastController: ToastController, public alertController: AlertController
   ) {
-<<<<<<< HEAD
     //localStorage.clear();
-=======
-    // localStorage.clear();
->>>>>>> b411226098769e7843a1fa6e268b24e381de50e2
     if (localStorage.length <= 0 && this.getEmployees() != null) {
       let employee = [
         { ID: Guid.create()["value"], Name: "Jason", Gender: "Male", Birthdate: "Jun-30-1999", Role: "Administrator", Department: "Information Technology", MaritalStatus: "Married", Notes: "None" },
