@@ -24,6 +24,10 @@ const routes: Routes = [
 
   //{ path: 'modal-page', loadChildren: './modal-page/modal-page.module#ModalPagePageModule' }
 
+  { path: 'secretary', loadChildren: './secretary/secretary.module#SecretaryPageModule' },
+  { path: 'assign-modal', loadChildren: './secretary/assign-modal/assign-modal.module#AssignModalPageModule' },
+  { path: 'view-modal', loadChildren: './secretary/view-modal/view-modal.module#ViewModalPageModule' },
+
 ];
 
 @NgModule({
