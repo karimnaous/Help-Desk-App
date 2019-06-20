@@ -14,12 +14,19 @@ import { Router } from "@angular/router";
 export class AssignModalPage implements OnInit {
   public record: any;
   public incident_array: any[];
-  public employee_array: any[];
+  public officer_array: any[];
   public priority: "";
   public date: "";
   public current_id: "";
   public emp: "";
-  checkBoxList: any;
+  public domain = [
+    { val: 'IT', isChecked: false },
+    { val: 'Accounting', isChecked: false },
+    { val: 'Transportation', isChecked: false },
+    { val: 'Civil', isChecked: false },
+    { val: 'Telecom', isChecked: false },
+    { val: 'Architecture', isChecked: false }
+    ]; 
 
   private submit_and_delete: any;
 
@@ -34,11 +41,10 @@ export class AssignModalPage implements OnInit {
     this.record = JSON.parse(this.navParams.data.recordItem);
     this.priority = this.record.priority;
     this.date = this.record.date;
-    this.emp = this.record.name;
-    this.checkBoxList =JSON.parse(JSON.stringify(this.record.checkBoxList));
-    console.log(this.checkBoxList);
+    this.domain =JSON.parse(JSON.stringify(this.record.domain));
+    console.log(this.domain);
     this.submit_and_delete = this.navParams.data.submitAndRemoveFunc;
-    this.employee_array=this.navParams.data.employees_list;
+    this.officer_array=this.navParams.data.officer_list;
   }
 
 
@@ -70,8 +76,8 @@ export class AssignModalPage implements OnInit {
       ]
     });
     var changedForm = (this.priority!== this.record.priority ||  JSON.stringify(this.date) !== JSON.stringify(this.record.date)
-   || this.emp!==this.record.name || JSON.stringify(this.checkBoxList)!==JSON.stringify(this.record.checkBoxList));
-   console.log(JSON.stringify(this.checkBoxList),JSON.stringify(this.record.checkBoxList));
+    || JSON.stringify(this.domain)!==JSON.stringify(this.record.domain));
+   console.log(JSON.stringify(this.domain)===JSON.stringify(this.record.domain));
    
     if (changedForm)
       return await alert.present();
@@ -88,9 +94,10 @@ export class AssignModalPage implements OnInit {
     var current_record = this.record;
     current_record.priority = this.priority;
     current_record.date = this.date;
-    current_record.checkBoxList = this.checkBoxList;
-    current_record.name = this.emp;
-    if(current_record.name===undefined)
+    current_record.domain = this.domain;
+    current_record.username = this.emp;
+    current_record.status= "Assigned";
+    if(current_record.username===undefined)
     {
       const toast = await this.toastController.create({ message: 'Please Choose an Employee', duration: 5000 }); toast.present();
 

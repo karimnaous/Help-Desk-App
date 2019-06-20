@@ -16,7 +16,14 @@ export class ViewModalPage implements OnInit {
   public date: "";
   public current_id: "";
   public emp: "";
-  checkBoxList: any;
+  domain=  [
+    { val: 'IT', isChecked: false },
+    { val: 'Accounting', isChecked: false },
+    { val: 'Transportation', isChecked: false },
+    { val: 'Civil', isChecked: false },
+    { val: 'Telecom', isChecked: false },
+    { val: 'Architecture', isChecked: false }
+    ]; 
 
 
   constructor(private router: Router, private modalController: ModalController, private navParams: NavParams, private alertController: AlertController, private Actionsheet: ActionSheetController) {
@@ -28,9 +35,9 @@ export class ViewModalPage implements OnInit {
     this.record = JSON.parse(this.navParams.data.recordItem);
     this.priority = this.record.priority;
     this.date = this.record.date;
-    this.emp = this.record.name;
-    console.log(this.record.checkBoxList);
-    this.checkBoxList = this.record.checkBoxList;
+    this.emp = this.record.username;
+    console.log(this.record.domain);
+    this.domain = this.record.domain;
  
   }
   close()

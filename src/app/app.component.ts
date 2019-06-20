@@ -14,12 +14,12 @@ export class AppComponent {
     {
       title: 'Home',
       url: '/home',
-      icon: 'home'
+      icon: 'fas fa-home'
     },
     {
       title: 'Secretary',
       url: '/secretary',
-      icon: 'list'
+      icon: 'fas fa-tty'
     }
   ];
 

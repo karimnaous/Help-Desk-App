@@ -17,54 +17,81 @@ export class SecretaryPage implements OnInit {
   @Input() recordItem: any;
   @Input() employees_list: any;
   public incident_array: any[];
-  public employee_array: any[];
+  public officer_array: any[];
   public devWidth = window.innerWidth;
   public final_record: any;
   public switch_priority_order: boolean;
-
+ 
   constructor(public modalController: ModalController, private toastController: ToastController) {
 
-    localStorage.setItem("ObjArray", JSON.stringify([
+    localStorage.setItem("Incidents", JSON.stringify([
       {
-        "id": uuidv1(), "type": "txt1", "priority": "high", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
-          [{ "value":"Transportation", "isChecked":true},{"value":"IT","isChecked":false},{"value":"Civil","isChecked":false},{"value":"Engineering","isChecked":false},{"value":"Accounting","isChecked":false}]
+        "id": uuidv1(), "category": "txt1", "priority": "high", "date": "2007-01-01T00:00:00+02:00", "domain":
+        [
+          { "val": 'IT', isChecked: false },
+          { "val": 'Accounting', isChecked: false },
+          { "val": 'Transportation', isChecked: false },
+          { "val": 'Civil', isChecked: false },
+          { "val": 'Telecom', isChecked: false },
+          { "val": 'Architecture', isChecked: false }
+          ] ,    "fullName":"nameA"
       },
       {
-        "id": uuidv1(), "type": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
-        [{ "value":"Transportation", "isChecked":true},{"value":"IT","isChecked":false},{"value":"Civil","isChecked":false},{"value":"Engineering","isChecked":false},{"value":"Accounting","isChecked":false}]      },
+        "id": uuidv1(), "category": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "domain":
+        [
+          { "val": 'IT', isChecked:true},
+          { "val": 'Accounting', isChecked: false },
+          { "val": 'Transportation', isChecked: false },
+          { "val": 'Civil', isChecked: false },
+          { "val": 'Telecom', isChecked: false },
+          { "val": 'Architecture', isChecked: false }
+          ] ,  "fullName":"nameB"      },
       {
-        "id": uuidv1(), "type": "txt1", "priority": "mod", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
+        "id": uuidv1(), "category": "txt1", "priority": "mod", "date": "2007-01-01T00:00:00+02:00","domain":
    
-        [{ "value":"Transportation", "isChecked":true},{"value":"IT","isChecked":false},{"value":"Civil","isChecked":false},{"value":"Engineering","isChecked":false},{"value":"Accounting","isChecked":false}]  },
+        [
+          { "val": 'IT', isChecked: false },
+          { "val": 'Accounting', isChecked: false },
+          { "val": 'Transportation', isChecked: false },
+          { "val": 'Civil', isChecked:true},
+          { "val": 'Telecom', isChecked: false },
+          { "val": 'Architecture', isChecked: false }
+          ] ,  "fullName":"nameC" },
       {
-        "id": uuidv1(), "type": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "checkBoxList":
-        [{ "value":"Transportation", "isChecked":true},{"value":"IT","isChecked":false},{"value":"Civil","isChecked":false},{"value":"Engineering","isChecked":false},{"value":"Accounting","isChecked":false}]
-      }
+        "id": uuidv1(), "category": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "domain":
+        [
+          { "val": 'IT', isChecked: false },
+          { "val": 'Accounting', isChecked: false },
+          { "val": 'Transportation', isChecked: false },
+          { "val": 'Civil', isChecked: false },
+          { "val": 'Telecom', isChecked:true},
+          { "val": 'Architecture', isChecked: false }
+          ] ,  "fullName":"nameD"}
     ]))
-    // localStorage.setItem("EmployeeArray", JSON.stringify([{
-    //   "id": uuidv1(), "name": "name1"
+    localStorage.setItem("Employees", JSON.stringify([{
+      "ID": uuidv1(), "Role": "Officer","Name":"Tala"
 
-    // }, {
-    //   "id": uuidv1(), "name": "name2"
+    }, {
+      "ID": uuidv1(), "Role": "Admin","Name":"Karim"
 
-    // }, {
-    //   "id": uuidv1(), "name": "name3"
+    }, {
+      "ID": uuidv1(), "Role": "Officer","Name":"Alex"
 
-    // }, {
-    //   "id": uuidv1(), "name": "name4"
+    }, {
+      "ID": uuidv1(), "Role": "User","Name":"Sam"
 
-    // }
-    //   , {
-    //   "id": uuidv1(), "name": "name5"
+    }
+      , {
+      "ID": uuidv1(), "Role": "Officer","Name":"Layal"
 
-    // }]));
+    }]));
 
     //console.log(_.groupBy(this.incident_array, this.groupbyPriority));
 
   }
   ngOnInit() {
     this.incident_array = this.getIncidentArray();
-    this.employee_array = this.getEmployeeArray();
+    this.officer_array = this.getOfficerArray();
     this.switch_priority_order = false;
   }
 
@@ -138,11 +165,11 @@ export class SecretaryPage implements OnInit {
    * in componentProps
    */
   async assignModal(id) {
-    var record = JSON.stringify(JSON.parse(localStorage.getItem("ObjArray")).find(x => x.id == id));
+    var record = JSON.stringify(JSON.parse(localStorage.getItem("Incidents")).find(x => x.id == id));
     var submit_removeFunc = this.savefromModal.bind(this);
     const modal = await this.modalController.create({
       component: AssignModalPage,
-      componentProps: { recordItem: record, employees_list: this.employee_array, submitAndRemoveFunc: submit_removeFunc, }
+      componentProps: { recordItem: record, officer_list: this.officer_array, submitAndRemoveFunc: submit_removeFunc, }
     }
     );
 
@@ -157,7 +184,7 @@ export class SecretaryPage implements OnInit {
    * Sends the object having this id as a record in componentProps
    */
   async viewModal(id) {
-    var record = JSON.stringify(JSON.parse(localStorage.getItem("ObjArray")).find(x => x.id == id));
+    var record = JSON.stringify(JSON.parse(localStorage.getItem("Incidents")).find(x => x.id == id));
     const modal = await this.modalController.create({
       component: ViewModalPage,
       componentProps: { recordItem: record }
@@ -173,16 +200,17 @@ export class SecretaryPage implements OnInit {
    * 
    */
   getIncidentArray(): Object[] {
-    var localStorageItem = JSON.parse(localStorage.getItem("ObjArray"));
+    var localStorageItem = JSON.parse(localStorage.getItem("Incidents"));
     return localStorageItem;
 
   }
   /**
    * gets employee array from local storage
    */
-  getEmployeeArray(): Object[] {
-    var employees = JSON.parse(localStorage.getItem("EmployeeArray"));
-    return employees;
+  getOfficerArray(): Object[] {
+    var employees = JSON.parse(localStorage.getItem("Employees"));
+    const Officers = _.filter(employees, { Role: "Officer" });
+    return Officers;
   }
 
   /**
@@ -194,13 +222,20 @@ export class SecretaryPage implements OnInit {
    */
   async savefromModal(record) {
     console.log(record);
-    var localStorageItem = JSON.parse(localStorage.getItem("ObjArray"));
+    var localStorageItem = JSON.parse(localStorage.getItem("Incidents"));
     var old_record = localStorageItem.find(x => x.id == record.id);
     var index = localStorageItem.indexOf(old_record);
     localStorageItem.splice(index, 1);
-    window.localStorage.setItem("ObjArray", JSON.stringify(localStorageItem));
+    window.localStorage.setItem("Incidents", JSON.stringify(localStorageItem));
     this.incident_array = this.getIncidentArray();
     const toast = await this.toastController.create({ message: 'Submitted Successfully', duration: 2000 }); toast.present();
+    var taskString=localStorage.getItem("task");
+    var task=[];
+    if(taskString!==null)
+    task=JSON.parse(taskString);
+    task.push(record);
+    window.localStorage.setItem("task", JSON.stringify(task));
+
 
   }
 

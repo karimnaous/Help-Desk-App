@@ -43,8 +43,8 @@
     <h6>Domain
     </h6>
     <ion-list>
-      <ion-item *ngFor="let item of checkBoxList" disabled="true"> 
-        <ion-label>{{item.value}}</ion-label>
+      <ion-item *ngFor="let item of domain" disabled="true"> 
+        <ion-label>{{item.val}}</ion-label>
         <ion-checkbox slot="start" [(ngModel)]="item.isChecked"></ion-checkbox>
       </ion-item>
     </ion-list>

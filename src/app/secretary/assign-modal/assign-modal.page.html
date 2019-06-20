@@ -9,7 +9,7 @@
   <ion-item>
     <ion-label>Employee Name</ion-label>
     <ion-select placeholder="Select Employee" [(ngModel)]="emp" id={{emp}} value={{emp}}>
-      <ion-select-option *ngFor="let row of employee_array" value={{row.name}}> {{row.name}}</ion-select-option>
+      <ion-select-option *ngFor="let row of officer_array" value={{row.Name}}> {{row.Name}}</ion-select-option>
     </ion-select>
   </ion-item>
 
@@ -43,8 +43,8 @@
   <h6>Domain
   </h6>
   <ion-list>
-    <ion-item *ngFor="let item of checkBoxList">
-      <ion-label>{{item.value}}</ion-label>
+    <ion-item *ngFor="let item of domain">
+      <ion-label>{{item.val}}</ion-label>
       <ion-checkbox slot="start" [(ngModel)]="item.isChecked"></ion-checkbox>
     </ion-item>
   </ion-list>
