@@ -42,8 +42,9 @@ export class EmployeePage implements OnInit {
 
     const me = this;
     this.tasks = [];
-    if (localStorage.length != 0) {
-      me.tasks = JSON.parse(localStorage.getItem("Incidents"));
+    var localStorageIncidents=localStorage.getItem("Incidents")
+    if (localStorageIncidents===null) {
+      me.tasks = JSON.parse(localStorageIncidents);
     }
 
     console.log('newTask', me.tasks);
@@ -114,12 +115,14 @@ export class EmployeePage implements OnInit {
       "priority": task.priority,
       "description": task.description
     }
-    console.log(task.description);
-    if (localStorage.length != 0) {
-      arr = JSON.parse(localStorage.getItem("Incidents"));
+
+    var localStorageIncidents=localStorage.getItem("Incidents")
+    if (localStorageIncidents!==null) {
+      arr = JSON.parse(localStorageIncidents);
     }
+
     arr.push(obj);
-    this.tasks.push(obj);
+    this.tasks=arr;
 
 
     localStorage.setItem('Incidents', JSON.stringify(arr));
