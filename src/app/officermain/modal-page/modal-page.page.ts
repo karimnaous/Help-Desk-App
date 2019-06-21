@@ -38,22 +38,22 @@ export class ModalPagePage implements OnInit {
   ];
   
 
-  public checked = [];
-  save(){
-    for (let entry of this.form) {
-      if (entry.isChecked == true) {
-        this.checked.push(entry);
-      }
-    }
-  }
+  // public checked = [];
+  // save(){
+  //   for (let entry of this.form) {
+  //     if (entry.isChecked == true) {
+  //       this.checked.push(entry);
+  //     }
+  //   }
+  // }
 
   public task = JSON.parse(localStorage.getItem('task'));
   public user = JSON.parse(localStorage.getItem('myuser'));
 
   async savetaskReassign(id: any)
   {
-    this.save();
-    this.savetask1(id, this.username, this.priority, this.date, this.checked, this.comments);
+    //this.save();
+    this.savetask1(id, this.username, this.priority, this.date, this.form, this.comments);
 
     const toast = await this.toastController.create({
     message: 'Task reassigned successfully.',
@@ -66,8 +66,8 @@ export class ModalPagePage implements OnInit {
 
   async savetaskEdit(id: any)
   {
-    this.save();
-    this.savetask1(id, this.username, this.priority, this.date, this.checked, this.comments);
+    //this.save();
+    this.savetask1(id, this.username, this.priority, this.date, this.form, this.comments);
 
     const toast = await this.toastController.create({
     message: 'Your edits have been saved.',
