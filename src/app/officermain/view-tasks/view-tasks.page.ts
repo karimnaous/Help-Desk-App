@@ -20,6 +20,7 @@ export class ViewTasksPage implements OnInit {
   private ID: string;
   private comments: string;
   public splitted: string;
+  public description: string;
   //private id1: any = 0;
 
   // @Input() value: number;
@@ -54,6 +55,7 @@ export class ViewTasksPage implements OnInit {
     this.domain= this.task[id].domain;
     this.status= this.task[id].status;
     this.comments= this.task[id].comments;
+    this.description= this.task[id].description;
   }
 
   async dismiss()

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Pipe } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 
 import { ModalController, ToastController } from '@ionic/angular';
 import { AssignModalPage } from '../secretary/assign-modal/assign-modal.page';
@@ -6,7 +6,6 @@ import { AssignModalPage } from '../secretary/assign-modal/assign-modal.page';
 import * as uuidv1 from 'uuid/v1';
 import * as _ from 'lodash';
 import { ViewModalPage } from './view-modal/view-modal.page';
-import { defaultComparator } from '@angular/common/src/pipes/keyvalue_pipe';
 
 @Component({
   selector: 'app-secretary',
@@ -24,69 +23,6 @@ export class SecretaryPage implements OnInit {
  
   constructor(public modalController: ModalController, private toastController: ToastController) {
 
-    // localStorage.setItem("Incidents", JSON.stringify([
-    //   {
-    //     "id": uuidv1(), "category": "txt1", "priority": "high", "date": "2007-01-01T00:00:00+02:00", "domain":
-    //     [
-    //       { "val": 'IT', isChecked:true},
-    //       { "val": 'Accounting', isChecked: false },
-    //       { "val": 'Transportation', isChecked: false },
-    //       { "val": 'Civil', isChecked: false },
-    //       { "val": 'Telecom', isChecked: false },
-    //       { "val": 'Architecture', isChecked: false }
-    //       ] ,    "fullName":"nameA"
-    //   },
-    //   {
-    //     "id": uuidv1(), "category": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "domain":
-    //     [
-    //       { "val": 'IT', isChecked:true},
-    //       { "val": 'Accounting', isChecked: false },
-    //       { "val": 'Transportation', isChecked: false },
-    //       { "val": 'Civil', isChecked: false },
-    //       { "val": 'Telecom', isChecked: false },
-    //       { "val": 'Architecture', isChecked: false }
-    //       ] ,  "fullName":"nameB"      },
-    //   {
-    //     "id": uuidv1(), "category": "txt1", "priority": "mod", "date": "2007-01-01T00:00:00+02:00","domain":
-   
-    //     [
-    //       { "val": 'IT', isChecked: false },
-    //       { "val": 'Accounting', isChecked: false },
-    //       { "val": 'Transportation', isChecked: false },
-    //       { "val": 'Civil', isChecked:true},
-    //       { "val": 'Telecom', isChecked: false },
-    //       { "val": 'Architecture', isChecked: false }
-    //       ] ,  "fullName":"nameC" },
-    //   {
-    //     "id": uuidv1(), "category": "txt1", "priority": "low", "date": "2007-01-01T00:00:00+02:00", "domain":
-    //     [
-    //       { "val": 'IT', isChecked: false },
-    //       { "val": 'Accounting', isChecked: false },
-    //       { "val": 'Transportation', isChecked: false },
-    //       { "val": 'Civil', isChecked: false },
-    //       { "val": 'Telecom', isChecked:true},
-    //       { "val": 'Architecture', isChecked: false }
-    //       ] ,  "fullName":"nameD"}
-    // ]))
-    // localStorage.setItem("Employees", JSON.stringify([{
-    //   "ID": uuidv1(), "Role": "Officer","Name":"Tala"
-
-    // }, {
-    //   "ID": uuidv1(), "Role": "Admin","Name":"Karim"
-
-    // }, {
-    //   "ID": uuidv1(), "Role": "Officer","Name":"Alex"
-
-    // }, {
-    //   "ID": uuidv1(), "Role": "User","Name":"Sam"
-
-    // }
-    //   , {
-    //   "ID": uuidv1(), "Role": "Officer","Name":"Layal"
-
-    // }]));
-
-    //console.log(_.groupBy(this.incident_array, this.groupbyPriority));
 
   }
   ngOnInit() {
@@ -106,10 +42,10 @@ export class SecretaryPage implements OnInit {
    * 
    */
   priorityascComparator(a, b) {
-    if (a === 'low' || b === "high")
+    if (a.priority === 'Low' || b.priority === "High")
       return -1
 
-    if (a === 'high' || b === "low")
+    if (a.priority === 'High' || b.priority === "Low")
       return 1
     else return 0
   }
@@ -121,9 +57,9 @@ export class SecretaryPage implements OnInit {
    * used in sortbydescPriority() as a comparator in array.sort
    */
   prioritydescComparator(a, b) {
-    if (a === 'low' || b === "high")
+    if (a.priority === 'Low' || b.priority === "High")
       return 1
-    if (a === 'high' || b === "low")
+    if (a.priority === 'High' || b.priority === "Low")
       return -1
     else return 0
   }
@@ -135,7 +71,7 @@ export class SecretaryPage implements OnInit {
    */
   sortbyascPriority() {
     this.switch_priority_order = !this.switch_priority_order;
-    this.incident_array.sort((a, b) => this.priorityascComparator(a.priority, b.priority));
+    this.incident_array.sort((a, b) => this.priorityascComparator(a, b));
   }
   /**
     * Sorts by descending order of priority when ion-chip Priority is clicked
@@ -143,7 +79,7 @@ export class SecretaryPage implements OnInit {
     */
   sortbydescPriority() {
     this.switch_priority_order = !this.switch_priority_order;
-    this.incident_array.sort((a, b) => this.prioritydescComparator(a.priority, b.priority));
+    this.incident_array.sort((a, b) => this.prioritydescComparator(a, b));
   }
 
   /**
@@ -165,7 +101,7 @@ export class SecretaryPage implements OnInit {
    * in componentProps
    */
   async assignModal(id) {
-    var record = JSON.stringify(JSON.parse(localStorage.getItem("Incidents")).find(x => x.id == id));
+    var record = JSON.stringify(JSON.parse(localStorage.getItem("task")).find(x => x.id == id));
     var submit_removeFunc = this.savefromModal.bind(this);
     const modal = await this.modalController.create({
       component: AssignModalPage,
@@ -184,7 +120,7 @@ export class SecretaryPage implements OnInit {
    * Sends the object having this id as a record in componentProps
    */
   async viewModal(id) {
-    var record = JSON.stringify(JSON.parse(localStorage.getItem("Incidents")).find(x => x.id == id));
+    var record = JSON.stringify(JSON.parse(localStorage.getItem("task")).find(x => x.id == id));
     const modal = await this.modalController.create({
       component: ViewModalPage,
       componentProps: { recordItem: record }
@@ -200,8 +136,9 @@ export class SecretaryPage implements OnInit {
    * 
    */
   getIncidentArray(): Object[] {
-    var localStorageItem = JSON.parse(localStorage.getItem("Incidents"));
-    return localStorageItem;
+    var localStorageItem = JSON.parse(localStorage.getItem("task"));
+    var incidents = _.filter(localStorageItem, { status: "initiated" });
+    return incidents;
 
   }
   /**
@@ -222,19 +159,19 @@ export class SecretaryPage implements OnInit {
    */
   async savefromModal(record) {
     console.log(record);
-    var localStorageItem = JSON.parse(localStorage.getItem("Incidents"));
+    var localStorageItem = JSON.parse(localStorage.getItem("task"));
     var old_record = localStorageItem.find(x => x.id == record.id);
     var index = localStorageItem.indexOf(old_record);
-    localStorageItem.splice(index, 1);
-    window.localStorage.setItem("Incidents", JSON.stringify(localStorageItem));
+    localStorageItem.splice(index, 1,record);
+    window.localStorage.setItem("task", JSON.stringify(localStorageItem));
     this.incident_array = this.getIncidentArray();
     const toast = await this.toastController.create({ message: 'Submitted Successfully', duration: 2000 }); toast.present();
-    var taskString=localStorage.getItem("task");
-    var task=[];
-    if(taskString!==null)
-    task=JSON.parse(taskString);
-    task.push(record);
-    window.localStorage.setItem("task", JSON.stringify(task));
+    // var taskString=localStorage.getItem("task");
+    // var task=[];
+    // if(taskString!==null)
+    // task=JSON.parse(taskString);
+    // task.push(record);
+    // window.localStorage.setItem("task", JSON.stringify(task));
 
 
   }

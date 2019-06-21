@@ -1,7 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertController, ModalController,ToastController } from '@ionic/angular';
 import { ActionSheetController } from '@ionic/angular';
-import { SecretaryPage } from '../secretary.page'
 import { NavParams } from '@ionic/angular';
 import { Router } from "@angular/router";
 
@@ -18,7 +17,8 @@ export class AssignModalPage implements OnInit {
   public priority: "";
   public date: "";
   public current_id: "";
-  public emp: "";
+  public officer: "";
+
   public domain = [
     { val: 'IT', isChecked: false },
     { val: 'Accounting', isChecked: false },
@@ -75,8 +75,10 @@ export class AssignModalPage implements OnInit {
         }
       ]
     });
+    console.log(this.priority,this.record.priority, JSON.stringify(this.date) , JSON.stringify(this.record.date),JSON.stringify(this.domain)
+    ,JSON.stringify(this.record.domain) , this.officer,undefined)
     var changedForm = (this.priority!== this.record.priority ||  JSON.stringify(this.date) !== JSON.stringify(this.record.date)
-    || JSON.stringify(this.domain)!==JSON.stringify(this.record.domain) || this.emp!==undefined);
+    || JSON.stringify(this.domain)!==JSON.stringify(this.record.domain) || this.officer!==undefined);
    console.log(JSON.stringify(this.domain)===JSON.stringify(this.record.domain));
    
     if (changedForm)
@@ -95,11 +97,11 @@ export class AssignModalPage implements OnInit {
     current_record.priority = this.priority;
     current_record.date = this.date;
     current_record.domain = this.domain;
-    current_record.username = this.emp;
+    current_record.username = this.officer;
     current_record.status= "Assigned";
     if(current_record.username===undefined)
     {
-      const toast = await this.toastController.create({ message: 'Please Choose an Employee', duration: 5000 }); toast.present();
+      const toast = await this.toastController.create({ message: 'Please Choose an Employee', duration: 2000 }); toast.present();
 
     }
     else{

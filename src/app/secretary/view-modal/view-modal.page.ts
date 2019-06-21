@@ -35,7 +35,7 @@ export class ViewModalPage implements OnInit {
     this.record = JSON.parse(this.navParams.data.recordItem);
     this.priority = this.record.priority;
     this.date = this.record.date;
-    this.emp = this.record.username;
+    this.emp = this.record.fullName;
     console.log(this.record.domain);
     this.domain = this.record.domain;
  
