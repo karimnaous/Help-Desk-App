@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, NavParams } from '@ionic/angular';
+import { ModalController, ToastController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-modal-admin',
@@ -22,7 +22,7 @@ export class ModalAdminPage implements OnInit {
   saveEmployees;
 
   constructor(
-    private modalController: ModalController,
+    private modalController: ModalController, public toastController: ToastController,
     private navParams: NavParams
   ) { }
 
@@ -40,6 +40,10 @@ export class ModalAdminPage implements OnInit {
   }
 
   async closeModal(save:boolean) {
+    const toast = await this.toastController.create({
+      message: 'Employee details updated.',
+      duration: 2000
+    });
     if (save == true) {
         let married = "Single";
         if (this.maritalStatus == true) { married = "Married"; }
@@ -47,6 +51,7 @@ export class ModalAdminPage implements OnInit {
         this.arrayEmps[this.index] = this.emp;
         this.saveEmployees(this.arrayEmps);
         const onClosedData = null;
+        toast.present();
         await this.modalController.dismiss(onClosedData);
     }
     else {

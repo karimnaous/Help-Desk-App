@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { ModalController, NavParams } from '@ionic/angular';
+import { ModalController, ToastController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-modal-add',
@@ -26,7 +26,7 @@ export class ModalAddPage implements OnInit {
   saveEmployees;
 
   constructor(
-    private modalController: ModalController,
+    private modalController: ModalController,  public toastController: ToastController,
     private navParams: NavParams
   ) { }
 
@@ -37,15 +37,19 @@ export class ModalAddPage implements OnInit {
   }
 
   async closeModal(save:boolean) {
+    const toast = await this.toastController.create({
+      message: 'Added Employee.',
+      duration: 2000
+    });
     if (save == true) {
         let married = "Single";
         if (this.emp.MaritalStatus) { married = "Married"; }
         this.emp.MaritalStatus = married;
-        console.log(this.emp);
         this.arrayEmps.push(this.emp);
         this.saveEmployees(this.arrayEmps);
         const onClosedData = null;
         await this.modalController.dismiss(onClosedData);
+        toast.present();
     }
     else {
         const onClosedData = null;
