@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, ToastController, NavParams } from '@ionic/angular';
+import { ModalController, ToastController, AlertController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-modal-admin',
@@ -18,11 +18,10 @@ export class ModalAdminPage implements OnInit {
   
   findEmployee; 
   readEmployeeBound;
-  // saveEmployee;
   saveEmployees;
 
   constructor(
-    private modalController: ModalController, public toastController: ToastController,
+    private modalController: ModalController, public alertController: AlertController, public toastController: ToastController,
     private navParams: NavParams
   ) { }
 
@@ -31,7 +30,6 @@ export class ModalAdminPage implements OnInit {
     this.ID = this.navParams.data.ID;
     this.arrayEmps = this.navParams.data.arrayEmps;
     this.findEmployee = this.navParams.data.findEmployee;
-    // this.saveEmployee = this.navParams.data.saveEmployee;
     this.saveEmployees = this.navParams.data.saveEmployees;
     this.maritalStatus = this.navParams.data.maritalStatus;
     this.index = this.findEmployee(this.ID);
@@ -57,6 +55,36 @@ export class ModalAdminPage implements OnInit {
     else {
         const onClosedData = null;;
         await this.modalController.dismiss(onClosedData);
+    }
+  }
+
+  changed = false;
+  checkValue(event){ this.changed = true; }
+
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      header: 'You have unsaved changes.',
+      message: 'Are you sure you want to cancel?',
+      buttons: [
+        {
+          text: 'Back',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            this.closeModal(false);
+          }
+        }
+      ]
+    });
+    if (this.changed == true) {
+        await alert.present();
+    }
+    else {
+        this.closeModal(false);
     }
   }
 

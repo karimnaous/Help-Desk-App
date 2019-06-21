@@ -1,64 +1,59 @@
 <ion-header>
   <ion-toolbar text-center color="primary">
-    <ion-title>Add</ion-title>
+    <ion-title>Add Employee</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-list-header>
-      <ion-label>
-        <h1> Add Employee </h1>
-      </ion-label>
-    </ion-list-header>
     <ion-item>
       <ion-label>Name: </ion-label>
-      <ion-input [(ngModel)]="emp.Name" placeholder=" Enter Name"></ion-input>
+      <ion-input [(ngModel)]="emp.Name" (ionChange)="checkValue($event)" placeholder=" Enter Name"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Gender</ion-label>
-      <ion-select [(ngModel)]="emp.Gender" value="Select One." okText="Okay" cancelText="Dismiss">
+      <ion-select [(ngModel)]="emp.Gender" (ionChange)="checkValue($event)" value="Select One." okText="Okay" cancelText="Dismiss">
         <ion-select-option value="Male">Male</ion-select-option>
         <ion-select-option value="Female">Female</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Date of Birth</ion-label>
-      <ion-datetime [(ngModel)]="emp.Birthdate" placeholder="Click to enter date." slot="end"></ion-datetime>
+      <ion-datetime [(ngModel)]="emp.Birthdate" (ionChange)="checkValue($event)" placeholder="Click to enter date." slot="end"></ion-datetime>
     </ion-item>
     <ion-item>
         <ion-label>Department</ion-label>
         <ion-list>
-            <ion-radio-group [(ngModel)]="emp.Department" >
+            <ion-radio-group [(ngModel)]="emp.Department" (ionChange)="checkValue($event)" >
               <ion-item>
-                <ion-label>Accounting</ion-label>
+                <ion-label style="margin-right:10px;">Accounting</ion-label>
                 <ion-radio value="Accounting"></ion-radio>
               </ion-item>
           
               <ion-item>
-                <ion-label>Engineering</ion-label>
+                <ion-label style="margin-right:10px;">Engineering</ion-label>
                 <ion-radio value="Engineering"></ion-radio>
               </ion-item>
           
               <ion-item>
-                <ion-label>Human Resources</ion-label>
+                <ion-label style="margin-right:10px;">Human Resources</ion-label>
                 <ion-radio value="Human Resources"></ion-radio>
               </ion-item>
           
               <ion-item>
-                <ion-label>Information Technology</ion-label>
+                <ion-label style="margin-right:10px;">Information Technology</ion-label>
                 <ion-radio value="Information Technology"></ion-radio>
               </ion-item>
             </ion-radio-group>
           </ion-list>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Married (check if yes)</ion-label>
-      <ion-checkbox slot="end" [(ngModel)]="emp.MaritalStatus">Married</ion-checkbox>
+      <ion-label>Married (check if yes)</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="maritalStatus" (ionChange)="checkValue($event)">Married</ion-checkbox>
     </ion-item>
     <ion-item>
       <ion-label>Role</ion-label>
-      <ion-select [(ngModel)]="emp.Role" value="Select One" okText="Okay" cancelText="Dismiss">
+      <ion-select [(ngModel)]="emp.Role" (ionChange)="checkValue($event)" value="Select One" okText="Okay" cancelText="Dismiss">
         <ion-select-option value="Administrator">Administrator</ion-select-option>
         <ion-select-option value="Officer">Officer</ion-select-option>
         <ion-select-option value="Secretary">Secretary</ion-select-option>
@@ -67,11 +62,11 @@
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Notes</ion-label>
-      <ion-textarea [(ngModel)]="emp.Notes" placeholder="Enter any notes."></ion-textarea>
+      <ion-textarea [(ngModel)]="emp.Notes" (ionChange)="checkValue($event)" placeholder="Enter any notes."></ion-textarea>
     </ion-item>
   </ion-list>
 </ion-content>
 <ion-footer>
-    <ion-button class="custom-button" slot="start" color="primary" fill="clear" (click)="closeModal(false)">Cancel</ion-button>
+    <ion-button class="custom-button" slot="start" color="primary" fill="clear" (click)="presentAlertConfirm()">Cancel</ion-button>
     <ion-button class="custom-button" float-right slot="fixed" color="primary" fill="clear" (click)="closeModal(true)">Save</ion-button>
 </ion-footer>

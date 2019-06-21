@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { ModalController, ToastController, NavParams } from '@ionic/angular';
+import { ModalController, ToastController, NavParams, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-modal-add',
@@ -10,6 +10,7 @@ import { ModalController, ToastController, NavParams } from '@ionic/angular';
 export class ModalAddPage implements OnInit {
 
   arrayEmps: [any]; 
+  maritalStatus: false;
 
   emp = {
     ID : "",
@@ -26,7 +27,7 @@ export class ModalAddPage implements OnInit {
   saveEmployees;
 
   constructor(
-    private modalController: ModalController,  public toastController: ToastController,
+    private modalController: ModalController, public alertController: AlertController, public toastController: ToastController,
     private navParams: NavParams
   ) { }
 
@@ -43,7 +44,7 @@ export class ModalAddPage implements OnInit {
     });
     if (save == true) {
         let married = "Single";
-        if (this.emp.MaritalStatus) { married = "Married"; }
+        if (this.maritalStatus) { married = "Married"; }
         this.emp.MaritalStatus = married;
         this.arrayEmps.push(this.emp);
         this.saveEmployees(this.arrayEmps);
@@ -53,8 +54,39 @@ export class ModalAddPage implements OnInit {
     }
     else {
         const onClosedData = null;
+        console.log('hello');
         await this.modalController.dismiss(onClosedData);
     }
   }
 
+  changed = false;
+  checkValue(event){ this.changed = true; }
+
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      header: 'You have unsaved changes.',
+      message: 'Are you sure you want to cancel?',
+      buttons: [
+        {
+          text: 'Back',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            this.closeModal(false);
+          }
+        }
+      ]
+    });
+    if (this.changed == true) {
+      await alert.present();
+    }
+    else {
+        this.closeModal(false);
+    }
+  }
 }
