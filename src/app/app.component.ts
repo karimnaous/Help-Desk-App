@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+//import { user-edit} from "@fortawesome/fontawesome-free";
 
 
 @Component({
@@ -17,15 +18,25 @@ export class AppComponent {
       icon: 'fas fa-home'
     },
     {
+      title: 'Employee',
+      url: '/employee',
+      icon: 'fas fa-users'
+     
+    },
+    {
+      title: 'Officer',
+      url: '/officermain',
+      icon: 'fas fa-user-cog'
+    },
 
-      title: 'Secretary',
+    {title: 'Secretary',
       url: '/secretary',
       icon: 'fas fa-tty'
     },
     { 
       title: 'Admin',
       url: '/admin',
-      icon: 'person-add'
+      icon: 'fas fa-user-plus'
 
     }
   ];
@@ -36,6 +47,7 @@ export class AppComponent {
     private statusBar: StatusBar
   ) {
     this.initializeApp();
+    
   }
 
   initializeApp() {

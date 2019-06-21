@@ -1,0 +1,34 @@
+// ion-button {padding: 5px 10px;}
+
+@media (max-width:  576px) {
+  .hide-sm {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hide-md {
+    display: none;
+  }
+}
+
+ion-grid {
+  --ion-grid-padding: 15px;
+}
+
+.bottomRow {
+  background-color:#6f9ee6;
+  color: white;
+}
+
+.even {
+  background-color: white;
+  }
+
+.odd {
+  background-color:rgb(226,242,248);
+} 
+  
+// .bottomRow1 {
+//   padding-bottom: 20px;
+// }

@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Reassign Task</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- <style>
+  ion-fab {
+    position: absolute;
+    left: 38%;
+    margin-left: -33px;
+  }
+</style> -->
+
+<ion-content>
+  <ion-list (ionChange)="allChange()">
+    <ion-item>
+      <ion-label>Officer</ion-label>
+      <ion-select (ionChange)="onChange()" [(ngModel)]="username" [interfaceOptions]="customActionSheetOptions"
+        interface="action-sheet" placeholder="Select One">
+        <div *ngFor="let entry of officer">
+        <ion-select-option *ngIf="entry.Role=='Officer'"  value={{entry.Name}}>{{entry.Name}}</ion-select-option>
+        </div>
+      </ion-select>
+    </ion-item>
+
+    <!-- <ion-item> -->
+    <!-- <ion-label>Priority</ion-label> -->
+
+    <ion-radio-group [(ngModel)]="priority">
+      <ion-list-header>
+        <h6>
+          <ion-label>Priority</ion-label>
+        </h6>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>Low</ion-label>
+        <ion-radio slot="start" value="Low" checked></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Medium</ion-label>
+        <ion-radio slot="start" value="Medium"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>High</ion-label>
+        <ion-radio slot="start" value="High"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+
+    <!-- <ion-select [(ngModel)]="priority" placeholder="Select One">
+              <ion-select-option value="Low">Low</ion-select-option>
+              <ion-select-option value="Medium">Medium</ion-select-option>
+              <ion-select-option value="High">High</ion-select-option>
+            </ion-select> -->
+    <!-- </ion-item> -->
+
+
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime [(ngModel)]="date" display-format="MMM DD, YYYY"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Domain</ion-label>
+      <ion-list>
+        <ion-item *ngFor="let entry of form">
+          <ion-label>{{entry.val}}</ion-label>
+          <ion-checkbox slot="end" [(ngModel)]="entry.isChecked"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Comments:</ion-label>
+      <ion-input [(ngModel)]="comments" value="{{comments}}"></ion-input>
+    </ion-item>
+
+    
+  </ion-list>
+</ion-content>
+
+<ion-footer style="text-align:center;">
+  <ion-toolbar class="footer-center">
+    <div *ngIf="change">
+      <ion-button fill="clear" (click)="savetaskReassign(id1)">Reassign</ion-button>
+      <ion-button fill="clear" (click)="presentAlertConfirm()">Cancel</ion-button>
+    </div>
+
+    <div *ngIf="!change">
+      <ion-button fill="clear" (click)="savetaskEdit(id1)">Save</ion-button>
+      <ion-button fill="clear" (click)="presentAlertConfirm()">Cancel</ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>
