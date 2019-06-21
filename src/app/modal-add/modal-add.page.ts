@@ -37,10 +37,10 @@ export class ModalAddPage implements OnInit {
   }
 
   async closeModal(save:boolean) {
-    // const toast = await this.toastController.create({
-    //   message: 'Added Employee.',
-    //   duration: 2000
-    // });
+    const toast = await this.toastController.create({
+      message: 'Added Employee.',
+      duration: 2000
+    });
     if (save == true) {
         let married = "Single";
         if (this.emp.MaritalStatus) { married = "Married"; }
@@ -49,7 +49,7 @@ export class ModalAddPage implements OnInit {
         this.saveEmployees(this.arrayEmps);
         const onClosedData = null;
         await this.modalController.dismiss(onClosedData);
-        // toast.present();
+        toast.present();
     }
     else {
         const onClosedData = null;
