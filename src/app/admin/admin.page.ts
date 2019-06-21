@@ -27,16 +27,16 @@ export class AdminPage implements OnInit {
   constructor(
     public modalController: ModalController, public toastController: ToastController, public alertController: AlertController
   ) {
-    //localStorage.clear();
-    if (localStorage.length <= 0 && this.getEmployees() != null) {
-      let employee = [
-        { ID: Guid.create()["value"], Name: "Jason", Gender: "Male", Birthdate: "Jun-30-1999", Role: "Administrator", Department: "Information Technology", MaritalStatus: "Married", Notes: "None" },
-        { ID: Guid.create()["value"], Name: "Alex", Gender: "Male", Birthdate: "Jan-02-1999", Role: "Secretary", Department: "Human Resources", MaritalStatus: "Single", Notes: "None" },
-        { ID: Guid.create()["value"], Name: "Karim", Gender: "Male", Birthdate: "Dec-16-1999", Role: "Employee", Department: "Accounting", MaritalStatus: "Single", Notes: "None" },
-        { ID: Guid.create()["value"], Name: "Leen", Gender: "Female", Birthdate: "Feb-07-1999", Role: "Officer", Department: "Information Technology", MaritalStatus: "Single", Notes: "None" }
-      ];
-      this.saveEmployees(employee);
-    }
+    // localStorage.clear();
+    // if (localStorage.length <= 0 && this.getEmployees() != null) {
+    //   let employee = [
+    //     { ID: Guid.create()["value"], Name: "Jason", Gender: "Male", Birthdate: "Jun-30-1999", Role: "Administrator", Department: "Information Technology", MaritalStatus: "Married", Notes: "None" },
+    //     { ID: Guid.create()["value"], Name: "Alex", Gender: "Male", Birthdate: "Jan-02-1999", Role: "Secretary", Department: "Human Resources", MaritalStatus: "Single", Notes: "None" },
+    //     { ID: Guid.create()["value"], Name: "Karim", Gender: "Male", Birthdate: "Dec-16-1999", Role: "Employee", Department: "Accounting", MaritalStatus: "Single", Notes: "None" },
+    //     { ID: Guid.create()["value"], Name: "Leen", Gender: "Female", Birthdate: "Feb-07-1999", Role: "Officer", Department: "Information Technology", MaritalStatus: "Single", Notes: "None" }
+    //   ];
+    //   this.saveEmployees(employee);
+    // }
     this.employees = this.getEmployees();
   }
 
@@ -135,7 +135,8 @@ export class AdminPage implements OnInit {
 
 
   public getEmployees(): Object {
-    if (localStorage.length > 0) {
+    let myJSON = localStorage.getItem('Employees');
+    if (myJSON != null) {
       let myJSON = localStorage.getItem('Employees');
       let myObj = JSON.parse(myJSON);
       return myObj;

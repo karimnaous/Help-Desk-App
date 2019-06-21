@@ -22,8 +22,6 @@
       <ion-col class="hide-xs" size="2" size-sm="2" size-md="2" size-lg="1"><strong>Date of Birth</strong></ion-col>
       <ion-col class="hide-xs" size="2" size-sm="2" size-md="2" size-lg="2"><strong>Role</strong></ion-col>
       <ion-col class="hide-xs" size="2" size-sm="2" size-md="2" size-lg="2"><strong>Department</strong></ion-col>
-      <!-- <ion-col class="hide-xs hide-sm hide-md" size="4" size-sm="2" size-md="2" size-lg="1"><strong>Marital Status</strong></ion-col> -->
-      <!-- <ion-col size="1"><strong>Notes</strong></ion-col> -->
       <ion-col text-center size="4" size-xs="8" size-sm="4" size-md="2" size-lg="2"><strong>Actions</strong></ion-col>
     </ion-row>
     <ion-row *ngFor="let employee of employees; let i = index" [attr.data-index]="i" [ngClass]="(i%2==0) ? 'even' : 'odd'" style="text-align:center">
@@ -33,8 +31,6 @@
       <ion-col class="hide-xs" size="2" size-sm="2" size-md="2" size-lg="1" >{{displayDate(employee) | date}}</ion-col>
       <ion-col class="hide-xs" size="2" size-sm="2" size-md="2" size-lg="2">{{employee.Role}}</ion-col>
       <ion-col class="hide-xs" size="2" size-sm="2" size-md="2" size-lg="2">{{employee.Department}}</ion-col>
-      <!-- <ion-col class="hide-xs hide-sm hide-md" size="2" size-sm="2" size-md="2" size-lg="1">{{employee.MaritalStatus}}</ion-col> -->
-      <!-- <ion-col size="1">{{employee.Notes}}</ion-col> -->
       <ion-col text-center size="2" size-xs="4" size-sm="2" size-md="1" size-lg="1">
         <ion-button fill="clear" (click)="openModalView(employee.ID)">View</ion-button>
       </ion-col>
