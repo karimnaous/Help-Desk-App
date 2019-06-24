@@ -14,6 +14,7 @@ export class ModalViewPage implements OnInit {
   index : number;
   findEmployee; 
   readEmployeeBound;
+  displayDate;
 
   constructor(
     private modalController: ModalController,
@@ -28,6 +29,7 @@ export class ModalViewPage implements OnInit {
     this.index = this.findEmployee(this.ID);
     this.readEmployeeBound(this.arrayEmps[this.index]);
     this.emp = this.navParams.data.emp; 
+    this.displayDate = this.navParams.data.displayDate;
   }
 
   async closeModal(edit:boolean) {

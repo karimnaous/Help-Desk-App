@@ -5,10 +5,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import {ModalPage} from '../Employee/modal/modal.page';
+import {ModalPage} from '../employee/modal/modal.page';
 import { EmployeePage } from './employee.page';
-import {ViewPage} from '../Employee/view/view.page';
-import {EditPage} from '../Employee/edit/edit.page';
+import {ViewPage} from '../employee/view/view.page';
+import {EditPage} from '../employee/edit/edit.page';
 
 const routes: Routes = [
   {

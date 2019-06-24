@@ -49,7 +49,9 @@ export class ModalAdminPage implements OnInit {
         this.arrayEmps[this.index] = this.emp;
         this.saveEmployees(this.arrayEmps);
         const onClosedData = null;
-        toast.present();
+        if (this.edited == true) {
+          toast.present();
+        }
         await this.modalController.dismiss(onClosedData);
     }
     else {
@@ -58,8 +60,8 @@ export class ModalAdminPage implements OnInit {
     }
   }
 
-  changed = false;
-  checkValue(event){ this.changed = true; }
+  edited = false;
+  checkValue(event){ this.edited = true; }
 
   async presentAlertConfirm() {
     const alert = await this.alertController.create({
@@ -80,7 +82,7 @@ export class ModalAdminPage implements OnInit {
         }
       ]
     });
-    if (this.changed == true) {
+    if (this.edited == true) {
         await alert.present();
     }
     else {

@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NavController, ModalController } from '@ionic/angular';
-import { ModalPage } from '../Employee/modal/modal.page';
-import { ViewPage } from '../Employee/view/view.page';
-import { EditPage } from '../Employee/edit/edit.page';
+import { ModalPage } from '../employee/modal/modal.page';
+import { ViewPage } from '../employee/view/view.page';
+import { EditPage } from '../employee/edit/edit.page';
 import { Guid } from "guid-typescript";
 import { ToastController } from '@ionic/angular';
 import { viewAttached } from '@angular/core/src/render3/instructions';
@@ -38,7 +38,7 @@ export class EmployeePage implements OnInit {
   ];
   tasks = [];
 
-  ngOnInit() {
+  ngOnInit() { 
 
     const me = this;
     this.tasks = [];

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, ToastController } from '@ionic/angular';
-import { AlertController } from '@ionic/angular';
+import { ModalController, ToastController, AlertController } from '@ionic/angular';
 import { ModalAdminPage } from '../modal-admin/modal-admin.page'
 import { ModalAddPage } from '../modal-add/modal-add.page'
 import { ModalViewPage } from '../modal-view/modal-view.page'
@@ -56,6 +55,7 @@ export class AdminPage implements OnInit {
       component: ModalAddPage,
       componentProps: {
         "arrayEmps": this.getEmployees(),
+        "emp": this.createEmp(),
         "ID": Guid.create()["value"],
         "findEmployee": this.findEmployeeBound,
         "saveEmployees": this.saveEmployeesBound,
@@ -81,6 +81,7 @@ export class AdminPage implements OnInit {
         "findEmployee": this.findEmployeeBound,
         "saveEmployees": this.saveEmployeesBound,
         "readEmployee": this.readEmployeeBound,
+        "displayDate": this.displayDateBound,
       }
     });
 
@@ -152,7 +153,7 @@ export class AdminPage implements OnInit {
       let date = new Date(employee["Birthdate"]);
       return date;
   }
-
+  public displayDateBound = this.displayDate.bind(this);
 
   emp: any = {}
   maritalStatus;
@@ -169,9 +170,21 @@ export class AdminPage implements OnInit {
   }
   public readEmployeeBound = this.readEmployee.bind(this);
 
+  empAdd;
+  public createEmp() {
+      let empAdd = {
+        ID : "",
+        Name : "", 
+        Gender : "", 
+        Birthdate : "",
+        Department : "",  
+        MaritalStatus : "", 
+        Role : "",
+        Notes : "",
+      };
+      return empAdd;
+  }
+
 
 }
-
-
-
 
