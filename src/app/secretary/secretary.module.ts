@@ -8,6 +8,8 @@ import { IonicModule } from '@ionic/angular';
 import { SecretaryPage } from './secretary.page';
 import { AssignModalPage } from './assign-modal/assign-modal.page';
 import { ViewModalPage } from './view-modal/view-modal.page';
+import { HttpClientModule } from '@angular/common/http';
+
 // import { jsonParse } from '../json-parse.pipe';
 
 const routes: Routes = [
@@ -22,6 +24,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    HttpClientModule,
     RouterModule.forChild(routes)
   ],
   providers:[],

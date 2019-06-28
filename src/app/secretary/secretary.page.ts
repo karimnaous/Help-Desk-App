@@ -6,6 +6,8 @@ import { AssignModalPage } from '../secretary/assign-modal/assign-modal.page';
 import * as uuidv1 from 'uuid/v1';
 import * as _ from 'lodash';
 import { ViewModalPage } from './view-modal/view-modal.page';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-secretary',
@@ -15,22 +17,51 @@ import { ViewModalPage } from './view-modal/view-modal.page';
 export class SecretaryPage implements OnInit {
   @Input() recordItem: any;
   @Input() employees_list: any;
-  public incident_array: any[];
+  public incident_array: any;
   public officer_array: any[];
   public devWidth = window.innerWidth;
   public final_record: any;
+  public domains: any;
   public switch_priority_order: boolean;
  
-  constructor(public modalController: ModalController, private toastController: ToastController) {
+  constructor(public modalController: ModalController,public loadingController: LoadingController, public http: HttpClient,private toastController: ToastController) {
 
 
   }
-  ngOnInit() {
-    this.incident_array = this.getIncidentArray();
-    this.officer_array = this.getOfficerArray();
+  async ngOnInit() {
+
+    const loading = await this.loadingController.create({
+      message: 'Loading'
+    });
+    await loading.present();
     this.switch_priority_order = false;
-  }
+    this.http.get('https://localhost:44304/api/employees/getallemployees')
+    .toPromise()
+    .then((employees)=>{
+      
+      this.officer_array = _.filter(employees, { employee_role: "Officer" });
+      this.http.get('https://localhost:44304/api/incidents/getallincidents')
+      .toPromise()
+      .then((incidents)=>{
+        
+      this.incident_array = incidents;
+      this.http.get('https://localhost:44304/api/Domains/GetAllDomains')
+      .toPromise()
+      .then((domains)=>{
+        
+        this.domains = domains;
+        loading.dismiss();
+  
+      })
 
+  
+      })
+    
+
+    })
+
+
+  }
 
 
   /**
@@ -42,10 +73,10 @@ export class SecretaryPage implements OnInit {
    * 
    */
   priorityascComparator(a, b) {
-    if (a.priority === 'Low' || b.priority === "High")
+    if (a.incident_priority === 'Low' || b.incident_priority === "High")
       return -1
 
-    if (a.priority === 'High' || b.priority === "Low")
+    if (a.incident_priority === 'High' || b.incident_priority === "Low")
       return 1
     else return 0
   }
@@ -57,9 +88,9 @@ export class SecretaryPage implements OnInit {
    * used in sortbydescPriority() as a comparator in array.sort
    */
   prioritydescComparator(a, b) {
-    if (a.priority === 'Low' || b.priority === "High")
+    if (a.incident_priority === 'Low' || b.incident_priority === "High")
       return 1
-    if (a.priority === 'High' || b.priority === "Low")
+    if (a.incident_priority === 'High' || b.incident_priority === "Low")
       return -1
     else return 0
   }
@@ -101,11 +132,11 @@ export class SecretaryPage implements OnInit {
    * in componentProps
    */
   async assignModal(id) {
-    var record = JSON.stringify(JSON.parse(localStorage.getItem("task")).find(x => x.id == id));
+    var record = JSON.stringify(this.incident_array.find(x => x.id == id));
     var submit_removeFunc = this.savefromModal.bind(this);
     const modal = await this.modalController.create({
       component: AssignModalPage,
-      componentProps: { recordItem: record, officer_list: this.officer_array, submitAndRemoveFunc: submit_removeFunc, }
+      componentProps: { recordItem: record, officer_list: this.officer_array, domains: this.domains,submitAndRemoveFunc: submit_removeFunc, }
     }
     );
 
@@ -130,26 +161,6 @@ export class SecretaryPage implements OnInit {
     await modal.present();
   }
 
-
-  /**
-   * gets incident array from local storage
-   * 
-   */
-  getIncidentArray(): Object[] {
-    var localStorageItem = JSON.parse(localStorage.getItem("task"));
-    var incidents = _.filter(localStorageItem, { status: "initiated" });
-    return incidents;
-
-  }
-  /**
-   * gets employee array from local storage
-   */
-  getOfficerArray(): Object[] {
-    var employees = JSON.parse(localStorage.getItem("Employees"));
-    const Officers = _.filter(employees, { Role: "Officer" });
-    return Officers;
-  }
-
   /**
    * This function will be binded and sent to modal to
    * save changes
@@ -158,22 +169,26 @@ export class SecretaryPage implements OnInit {
    * 
    */
   async savefromModal(record) {
-    console.log(record);
-    var localStorageItem = JSON.parse(localStorage.getItem("task"));
-    var old_record = localStorageItem.find(x => x.id == record.id);
-    var index = localStorageItem.indexOf(old_record);
-    localStorageItem.splice(index, 1,record);
-    window.localStorage.setItem("task", JSON.stringify(localStorageItem));
-    this.incident_array = this.getIncidentArray();
-    const toast = await this.toastController.create({ message: 'Submitted Successfully', duration: 2000 }); toast.present();
-    // var taskString=localStorage.getItem("task");
-    // var task=[];
-    // if(taskString!==null)
-    // task=JSON.parse(taskString);
-    // task.push(record);
-    // window.localStorage.setItem("task", JSON.stringify(task));
+    const loading = await this.loadingController.create({
+      message: 'Loading'
+    });
+    await loading.present();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type" :  'application/json'
+      })};
+    this.http.post('https://localhost:44304/api/Incidents/editIncident',
+    JSON.parse(JSON.stringify(record)),httpOptions)
+    .subscribe();
+    this.http.get('https://localhost:44304/api/incidents/GetAllincidents')
+    .toPromise()
+    .then((incidents)=>{
+      
+      this.incident_array = incidents;
+      loading.dismiss();
 
-
+    })
+       
   }
 
 
