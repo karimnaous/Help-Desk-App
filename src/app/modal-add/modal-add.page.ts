@@ -14,6 +14,7 @@ export class ModalAddPage implements OnInit {
   // NavParams data and methods
   emp;
   arrayEmps: [any]; 
+  saveEmployee;
   saveEmployees;
 
   maritalStatus: false;
@@ -29,6 +30,7 @@ export class ModalAddPage implements OnInit {
     this.emp = this.navParams.data.emp;
     this.emp.ID = this.navParams.data.ID;
     this.arrayEmps = this.navParams.data.arrayEmps;
+    this.saveEmployee = this.navParams.data.saveEmployee;
     this.saveEmployees = this.navParams.data.saveEmployees;
   }
 
@@ -39,9 +41,10 @@ export class ModalAddPage implements OnInit {
     if (save == true) {
         let married = "Single";
         if (this.maritalStatus) { married = "Married"; }
-        this.emp.MaritalStatus = married;
-        this.arrayEmps.push(this.emp);
-        this.saveEmployees(this.arrayEmps);
+        this.emp.marital_status = married;
+        this.saveEmployee(this.emp);
+        // this.arrayEmps.push(this.emp);
+        // this.saveEmployees(this.arrayEmps);
         toast.present();
     }
     const onClosedData = null;

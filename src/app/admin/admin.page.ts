@@ -4,6 +4,7 @@ import { ModalAdminPage } from '../modal-admin/modal-admin.page'
 import { ModalAddPage } from '../modal-add/modal-add.page'
 import { ModalViewPage } from '../modal-view/modal-view.page'
 import { Guid } from "guid-typescript";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -15,14 +16,18 @@ export class AdminPage implements OnInit {
 
 
   dataReturned : any;
-  employees: any;
+  employees;
 
   ngOnInit() {
-     this.employees = this.getEmployees();
+    this.getEmployees().then((employees) => {
+      this.employees = employees;
+    });
+
+     
   }
 
   constructor(
-    public modalController: ModalController, public toastController: ToastController, public alertController: AlertController
+    public modalController: ModalController, public http: HttpClient, public toastController: ToastController, public alertController: AlertController
   ) {  
   }
 
@@ -31,13 +36,15 @@ export class AdminPage implements OnInit {
     const modal = await this.modalController.create({
       component: ModalAdminPage,
       componentProps: {
-        "arrayEmps": this.getEmployees(),
-        "emp" : this.readEmployee(this.getEmployees()[this.findEmployee(id)]),
+        "arrayEmps": this.employees,
+        "emp" : this.employees[this.findEmployee(id)],
         "maritalStatus" : this.maritalStatus,
         "ID": id,
         "findEmployee": this.findEmployeeBound,
+        "saveEmployee": this.saveEmployeeBound,
         "saveEmployees": this.saveEmployeesBound,
         "readEmployee": this.readEmployeeBound,
+        "editEmployee": this.editEmployee,
       }
     });
 
@@ -58,6 +65,7 @@ export class AdminPage implements OnInit {
         "emp": this.createEmp(),
         "ID": Guid.create()["value"],
         "findEmployee": this.findEmployeeBound,
+        "saveEmployee": this.saveEmployeeBound,
         "saveEmployees": this.saveEmployeesBound,
       }
     });
@@ -72,11 +80,12 @@ export class AdminPage implements OnInit {
 
 
   async openModalView(id: string) {
+    console.log(this.employees[this.findEmployee(id)]);
     const modal = await this.modalController.create({
       component: ModalViewPage,
       componentProps: {
-        "arrayEmps": this.getEmployees(),
-        "emp" : this.readEmployee(this.getEmployees()[this.findEmployee(id)]),
+        "arrayEmps": this.employees,
+        "emp" : this.employees[this.findEmployee(id)],
         "ID": id,
         "findEmployee": this.findEmployeeBound,
         "saveEmployees": this.saveEmployeesBound,
@@ -101,23 +110,15 @@ export class AdminPage implements OnInit {
   }
 
 
-  public getEmployees(): Object {
-    let myJSON = localStorage.getItem('Employees');
-    if (myJSON != null) {
-      let myJSON = localStorage.getItem('Employees');
-      let myObj = JSON.parse(myJSON);
-      return myObj;
-    }
-    else {
-      return [];
-    }
+  public getEmployees(): any {
+    return this.http.get('https://localhost:44304/api/Employee/GetAllEmployees').toPromise();
   }
 
 
   // Bound Methods
   public findEmployee(ID: string) {
     for (let i = 0; i < this.employees.length; i++) {
-      if (this.employees[i]["ID"] == ID) {
+      if (this.employees[i]["id"] == ID) {
         return i;
       }
     }
@@ -133,6 +134,34 @@ export class AdminPage implements OnInit {
   }
   public saveEmployeesBound = this.saveEmployees.bind(this);
 
+  public saveEmployee(emp: object) {
+    let headers = new HttpHeaders({
+      'Content-Type': "application/json",
+      'Accept': "application/json",
+      
+    });
+    let options = { headers: headers };
+    let url = "https://localhost:44304/api/Employee/PostEmployee";
+    this.http.post(url, emp, options)
+      .subscribe( error => {
+        console.log(error);
+      });
+  }
+  public saveEmployeeBound = this.saveEmployee.bind(this);
+
+  public editEmployee(emp: object) {
+    let headers = new HttpHeaders({
+      'Content-Type': "application/json",
+      'Accept': "application/json",
+      
+    });
+    let options = { headers: headers };
+    this.http.post("https://localhost:44304/api/Employee/PostEmployee/aa37d8de-fecf-4c39-ba76-31ef9e9a1ce4", emp, options)
+      .subscribe( error => {
+        console.log(error);
+      });
+  }
+  public editEmployeeBound = this.editEmployee.bind(this);
 
   async presentAlertMultipleButtons() {
     const alert = await this.alertController.create({
@@ -147,10 +176,10 @@ export class AdminPage implements OnInit {
 
 
   public displayDate(employee) {
-      if(employee["Birthdate"] == "") {
+      if(employee["birthdate"] == "") {
           return "";
       }
-      let date = new Date(employee["Birthdate"]);
+      let date = new Date(employee["birthdate"]);
       return date;
   }
   public displayDateBound = this.displayDate.bind(this);
@@ -158,29 +187,29 @@ export class AdminPage implements OnInit {
   emp: any = {}
   maritalStatus;
   public readEmployee(emp : object) {
-    this.emp['Name'] = emp["Name"];
-    this.emp['Gender'] = emp["Gender"];
-    this.emp['Birthdate'] = emp["Birthdate"];
-    this.emp['Department'] = emp["Department"];
-    if (emp["MaritalStatus"] == "Married") { this.maritalStatus = true; this.emp['MaritalStatus'] = "Married"; }
-    else { this.maritalStatus = false; this.emp['MaritalStatus'] = "Single";}
-    this.emp['Role'] = emp["Role"];
-    this.emp['Notes'] = emp["Notes"];
-    return emp;
+    this.emp['fullname'] = emp["fullname"];
+    this.emp['gender'] = emp["gender"];
+    this.emp['birthdate'] = emp["birthdate"]; 
+    this.emp['department'] = emp["department"];
+    if (emp["marital_status"] == "Married") { this.maritalStatus = true; this.emp['marital_status'] = "Married"; }
+    else { this.maritalStatus = false; this.emp['marital_status'] = "Single";}
+    this.emp['employee_role'] = emp["employee_role"];
+    this.emp['notes'] = emp["notes"];
+    return this.emp;
   }
   public readEmployeeBound = this.readEmployee.bind(this);
 
   empAdd;
   public createEmp() {
       let empAdd = {
-        ID : "",
-        Name : "", 
-        Gender : "", 
-        Birthdate : "",
-        Department : "",  
-        MaritalStatus : "", 
-        Role : "",
-        Notes : "",
+        id : "",
+        fullname : "", 
+        gender : "", 
+        birthdate : "",
+        department : "",  
+        marital_status : "", 
+        employee_role : "",
+        notes : "",
       };
       return empAdd;
   }

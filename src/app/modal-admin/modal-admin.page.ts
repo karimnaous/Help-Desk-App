@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, ToastController, AlertController, NavParams } from '@ionic/angular';
+import { __core_private_testing_placeholder__ } from '@angular/core/testing';
 
 @Component({
   selector: 'app-modal-admin',
@@ -18,7 +19,9 @@ export class ModalAdminPage implements OnInit {
   
   findEmployee; 
   readEmployeeBound;
+  saveEmployee;
   saveEmployees;
+  editEmployee;
 
   constructor(
     private modalController: ModalController, public alertController: AlertController, public toastController: ToastController,
@@ -26,15 +29,18 @@ export class ModalAdminPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.readEmployeeBound = this.navParams.data.readEmployee;
+    // this.readEmployeeBound = this.navParams.data.readEmployee;
     this.ID = this.navParams.data.ID;
     this.arrayEmps = this.navParams.data.arrayEmps;
     this.findEmployee = this.navParams.data.findEmployee;
     this.saveEmployees = this.navParams.data.saveEmployees;
+    this.editEmployee = this.navParams.data.editEmployee;
     this.maritalStatus = this.navParams.data.maritalStatus;
     this.index = this.findEmployee(this.ID);
-    this.readEmployeeBound(this.arrayEmps[this.index]);
+    // this.readEmployeeBound(this.arrayEmps[this.index]);
     this.emp = this.navParams.data.emp;
+
+    console.log(this.emp);
   }
 
   async closeModal(save:boolean) {
@@ -45,9 +51,11 @@ export class ModalAdminPage implements OnInit {
     if (save == true) {
         let married = "Single";
         if (this.maritalStatus == true) { married = "Married"; }
-        this.emp.MaritalStatus = married;
-        this.arrayEmps[this.index] = this.emp;
-        this.saveEmployees(this.arrayEmps);
+        this.emp.marital_status = married;
+        console.log(this.emp);
+        this.editEmployee(this.emp);
+        // this.arrayEmps[this.index] = this.emp;
+        // this.saveEmployees(this.arrayEmps);
         const onClosedData = null;
         if (this.edited == true) {
           toast.present();

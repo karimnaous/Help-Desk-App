@@ -8,23 +8,23 @@
   <ion-list>
     <ion-item>
       <ion-label>Name: </ion-label>
-      <ion-input [(ngModel)]="emp.Name" (ionChange)="checkValue($event)" placeholder=" Enter Name"></ion-input>
+      <ion-input [(ngModel)]="emp.fullname" (ionChange)="checkValue($event)" placeholder=" Enter Name"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Gender</ion-label>
-      <ion-select [(ngModel)]="emp.Gender" (ionChange)="checkValue($event)" value="Select One." okText="Okay" cancelText="Dismiss">
+      <ion-select [(ngModel)]="emp.gender" (ionChange)="checkValue($event)" value="Select One." okText="Okay" cancelText="Dismiss">
         <ion-select-option value="Male">Male</ion-select-option>
         <ion-select-option value="Female">Female</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Date of Birth</ion-label>
-      <ion-datetime [(ngModel)]="emp.Birthdate" (ionChange)="checkValue($event)" placeholder="Click to enter date." slot="end"></ion-datetime>
+      <ion-datetime [(ngModel)]="emp.birthdate" (ionChange)="checkValue($event)" placeholder="Click to enter date." slot="end"></ion-datetime>
     </ion-item>
     <ion-item>
         <ion-label>Department</ion-label>
         <ion-list>
-            <ion-radio-group [(ngModel)]="emp.Department" (ionChange)="checkValue($event)" >
+            <ion-radio-group [(ngModel)]="emp.department" (ionChange)="checkValue($event)" >
               <ion-item>
                 <ion-label style="margin-right:10px;">Accounting</ion-label>
                 <ion-radio value="Accounting"></ion-radio>
@@ -53,7 +53,7 @@
     </ion-item>
     <ion-item>
       <ion-label>Role</ion-label>
-      <ion-select [(ngModel)]="emp.Role" (ionChange)="checkValue($event)" value="Select One" okText="Okay" cancelText="Dismiss">
+      <ion-select [(ngModel)]="emp.employee_role" (ionChange)="checkValue($event)" value="Select One" okText="Okay" cancelText="Dismiss">
         <ion-select-option value="Administrator">Administrator</ion-select-option>
         <ion-select-option value="Officer">Officer</ion-select-option>
         <ion-select-option value="Secretary">Secretary</ion-select-option>
@@ -62,7 +62,7 @@
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Notes</ion-label>
-      <ion-textarea [(ngModel)]="emp.Notes" (ionChange)="checkValue($event)" placeholder="Enter any notes."></ion-textarea>
+      <ion-textarea [(ngModel)]="emp.notes" (ionChange)="checkValue($event)" placeholder="Enter any notes."></ion-textarea>
     </ion-item>
   </ion-list>
 </ion-content>
