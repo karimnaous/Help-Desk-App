@@ -19,6 +19,7 @@ export class SecretaryPage implements OnInit {
   @Input() employees_list: any;
   public incident_array: any;
   public officer_array: any[];
+  
   public devWidth = window.innerWidth;
   public final_record: any;
   public domains: any;
@@ -38,13 +39,13 @@ export class SecretaryPage implements OnInit {
     this.http.get('https://localhost:44304/api/employees/getallemployees')
     .toPromise()
     .then((employees)=>{
-      
+      this.employees_list=employees;
       this.officer_array = _.filter(employees, { employee_role: "Officer" });
       this.http.get('https://localhost:44304/api/incidents/getallincidents')
       .toPromise()
       .then((incidents)=>{
         
-      this.incident_array = incidents;
+      this.incident_array = _.filter(incidents,{incident_status:"initiated"});
       this.http.get('https://localhost:44304/api/Domains/GetAllDomains')
       .toPromise()
       .then((domains)=>{
@@ -151,10 +152,10 @@ export class SecretaryPage implements OnInit {
    * Sends the object having this id as a record in componentProps
    */
   async viewModal(id) {
-    var record = JSON.stringify(JSON.parse(localStorage.getItem("task")).find(x => x.id == id));
+    var record =JSON.stringify(this.incident_array.find(x => x.id == id));;
     const modal = await this.modalController.create({
       component: ViewModalPage,
-      componentProps: { recordItem: record }
+      componentProps: { recordItem: record, domains: this.domains,employees:this.employees_list }
     }
     );
 
@@ -173,21 +174,25 @@ export class SecretaryPage implements OnInit {
       message: 'Loading'
     });
     await loading.present();
-    const httpOptions = {
-      headers: new HttpHeaders({
-        "Content-Type" :  'application/json'
-      })};
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      
+      });
+    headers.set("body",record);
+    const options = {
+      headers,
+    };
+    
     this.http.post('https://localhost:44304/api/Incidents/editIncident',
-    JSON.parse(JSON.stringify(record)),httpOptions)
-    .subscribe();
+    record,options).toPromise().then(()=>
     this.http.get('https://localhost:44304/api/incidents/GetAllincidents')
     .toPromise()
     .then((incidents)=>{
-      
-      this.incident_array = incidents;
+      this.incident_array = _.filter(incidents,{incident_status:"initiated"});
       loading.dismiss();
 
     })
+    )
        
   }
 
