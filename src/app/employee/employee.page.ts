@@ -7,6 +7,7 @@ import { Guid } from "guid-typescript";
 import { ToastController } from '@ionic/angular';
 import { viewAttached } from '@angular/core/src/render3/instructions';
 import * as _ from 'lodash';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -18,7 +19,7 @@ import * as _ from 'lodash';
 export class EmployeePage implements OnInit {
 
 
-  constructor(private modalController: ModalController, public toastController: ToastController) { }
+  constructor(private modalController: ModalController, public toastController: ToastController, public http: HttpClient) { }
   name: any;
   incidentTitle: any;
   date: any;
@@ -36,20 +37,53 @@ export class EmployeePage implements OnInit {
     { val: "Telecom", isChecked: false },
     { val: "Architecture", isChecked: false }
   ];
-  tasks = [];
+  merged=[];
+
+  tasks;
+  employees;
 
   ngOnInit() {
 
     
     const me = this;
-    this.tasks = [];
-    var localStoragetask=localStorage.getItem("task")
-    if (localStoragetask!==null) {
-      me.tasks = JSON.parse(localStoragetask);
-    }
+    this.tasks;
+    this.employees;
+    //var localStoragetask=localStorage.getItem("task")
+    // if (localStoragetask!==null) {
+    //   me.tasks = JSON.parse(localStoragetask);
+    // }
 
-    console.log('newTask', me.tasks);
-  }
+    // console.log('newTask', me.tasks);
+    
+    this.http.get('https://localhost:44304/api/Incidents/GetAllIncidents')
+    .toPromise()
+    .then((Incidents)=>{
+    console.log(Incidents);
+     this.tasks=Incidents;
+     this.http.get('https://localhost:44304/api/Employee/GetAllEmployees')
+     .toPromise()
+     .then((Employees)=>{
+     console.log(Employees);
+      this.employees=Employees;
+      for (let i=0;i<this.tasks.length;i++)
+      {
+        var item=_.find(this.employees,{id:this.tasks[i].employee_id});
+        var item2=this.tasks[i]
+         item2['fullname']=item['fullname']
+         this.merged.push(item2)
+      }
+   //_.merge(_.keyBy(this.tasks, 'employee_id'), _.keyBy(this.employees, 'id'));
+     console.log(this.merged);
+     }) }) 
+
+        
+
+
+  
+}
+
+
+
 
   saveEdit(task: any) {
     console.log(this.tasks);
@@ -62,34 +96,39 @@ export class EmployeePage implements OnInit {
       }
     }
 
-    this.name = task.fullName;
-    this.incidentTitle = task.incidentTitle;
-    this.date = task.date;
-    this.category = task.category;
-    this.priority = task.priority;
-    this.description = task.description;
+    // this.name = task.fullName;
+    // this.incidentTitle = task.incidentTitle;
+    // this.date = task.date;
+    // this.category = task.category;
+    // this.priority = task.priority;
+    // this.description = task.description;
 
     var obj = {
       "id": task.id,
-      "fullName": task.fullName,
-      "incidentTitle": task.incidentTitle,
-      "date": task.date,
+      "title": task.title,
+      "incident_date": task.incident_date,
       "category": task.category,
       "domain": task.domain,
-      "priority": task.priority,
-      "description": task.description,
-      "status":"initiated"
+      "incident_priority": task.incident_priority,
+      "incident_description": task.incident_description,
+      "incident_status":"initiated"
     }
+
     
-    arr = JSON.parse(localStorage.getItem("task"));
+    arr = JSON.parse(this.tasks);
     for (let i = 0; i < arr.length; i++) {
       if (arr[i].id === task.id) {
         index = i;
       }
     }
+
+   
+
+
     arr.splice(index, 1, obj);
-    this.tasks = arr;
-    localStorage.setItem('task', JSON.stringify(arr));
+    this.http.get('https://localhost:44304/api/Incidents/PostIncidents[arr]')
+    //this.tasks = arr;
+    //localStorage.setItem('task', JSON.stringify(arr));
 
     this.presentToast("Task successfully edited.")
     this.closeModal()
@@ -108,27 +147,29 @@ export class EmployeePage implements OnInit {
 
     this.id = Guid.create();
     var obj = {
-      "id": this.id.value,
-      "fullName": task.fullName,
-      "incidentTitle": task.incidentTitle,
-      "date": task.date,
+      "id": task.id,
+      "id_emp": task.employee_id,
+      "title": task.title,
+      "incident_date": task.incident_date,
       "category": task.category,
       "domain": task.domain,
-      "priority": task.priority,
-      "description": task.description,
-      "status":"initiated"
+      "incident_priority": task.incident_priority,
+      "incident_description": task.incident_description,
+      "incident_status":"initiated"
     }
-
-    var localStoragetask=localStorage.getItem("task")
-    if (localStoragetask!==null) {
-      arr = JSON.parse(localStoragetask);
+ 
+   // var localStoragetask=localStorage.getItem("task")
+    if (this.tasks!==null) {
+      arr = JSON.parse(this.tasks);
     }
 
     arr.push(obj);
     this.tasks=arr;
 
 
-    localStorage.setItem('task', JSON.stringify(arr));
+    //localStorage.setItem('task', JSON.stringify(arr));
+
+    this.http.get('https://localhost:44304/api/Incidents/PostIncidents[arr]')
 
     this.presentToast("Task successfully saved.")
     this.closeModal();
@@ -144,7 +185,8 @@ export class EmployeePage implements OnInit {
 
   async openView(returnedId: any) {
     const task = _.find(this.tasks, { id: returnedId });
-    const view = await this.modalController.create({ component: ViewPage, componentProps: { value: task } });
+    const employee_name = _.find(this.employees, { id: task.employee_id });
+    const view = await this.modalController.create({ component: ViewPage, componentProps: { value: task,employee_name:employee_name.fullname } });
     view.present();
   }
 

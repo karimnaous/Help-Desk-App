@@ -21,9 +21,10 @@ export class ModalPage implements OnInit {
     { val: "Telecom", isChecked: false },
     { val: "Architecture", isChecked: false }
   ];
+  
+  public name: any = this.navParams.data.value.employee_Name;
   public newCreate: any = this.navParams.data.bindFunction;
   public data;
-  name: any;
   incidentTitle: any;
   date: any;
   category: any;

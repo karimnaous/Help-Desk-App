@@ -9,7 +9,7 @@
 
   <ion-item>
     <ion-label>Full Name</ion-label>
-    <ion-input value={{name}} disabled="true"> </ion-input>
+    <ion-input value={{employee}} disabled="true"> </ion-input>
   </ion-item>
 
   <ion-item>
@@ -30,7 +30,7 @@
   <ion-item>
     <ion-label >Domain: </ion-label>
     <div *ngFor="let entry of dom;">
-      <p [hidden]="!entry.isChecked" style="margin-right: 10px;">{{entry.val}} </p>
+      <p style="margin-right: 10px;">{{entry.domain_name}} </p>
     </div>
   </ion-item>
 

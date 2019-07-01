@@ -14,6 +14,7 @@ import { ModalAdminPageModule } from './modal-admin/modal-admin.module';
 import { ModalAddPageModule } from './modal-add/modal-add.module';
 import { ModalViewPageModule } from './modal-view/modal-view.module';
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -27,6 +28,7 @@ import { ModalViewPageModule } from './modal-view/modal-view.module';
     ModalAdminPageModule,
     ModalAddPageModule,
     ModalViewPageModule,
+
   ],
   providers: [
     StatusBar,
